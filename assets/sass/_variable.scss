@@ -1,6 +1,75 @@
 :root {
   // font
+  --font-heading: "SVN-RB Vitruv Display", sans-serif;
+  --font-body: "Plus Jakarta Sans", sans-serif;
   // color
-  // other
+  --color-primary: #e82c2a;
+  --color-gray: #f0ede4;
+  --color-black: #000000;
+  --color-black-opa: rgba(0, 0, 0, 0.5);
+  --color-white: #ffffff;
 }
 // set class name
+.h2-font {
+  font-family: var(--font-heading);
+  font-size: 40px;
+  line-height: 48px;
+  font-weight: 500;
+  @media (max-width: 767px) {
+    font-size: 28px;
+    line-height: 36px;
+  }
+}
+.h3-font {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  line-height: 36px;
+  font-weight: 500;
+}
+.b1-font {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 400;
+}
+.b2-font {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
+}
+.b2-bold-font {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: bold;
+}
+.tag-font {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 700;
+}
+// class name color
+.color-primary {
+  color: var(--color-primary);
+}
+.color-gray {
+  color: var(--color-gray);
+}
+.color-black {
+  color: var(--color-black);
+}
+.color-black-opa {
+  color: var(--color-black-opa);
+}
+.color-white {
+  color: var(--color-white);
+}
+// other
+.spacing-xl {
+  height: 80px;
+}
+.spacing-xxl {
+  height: 120px;
+}
