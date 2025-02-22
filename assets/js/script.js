@@ -35,7 +35,7 @@ function handlePageVisibilityAndFavicon() {
     const hostname = window.location.origin;
     const favicons = [
       "./assets/images/utilize/favicon_red.svg",
-      "./assets/images/utilize/favicon_black.svg",
+      "./assets/images/utilize/favicon_black.svg"
     ];
     let faviconIndex = 0;
     faviconInterval = setInterval(function () {
@@ -108,12 +108,35 @@ function scrollHeader() {
   });
 }
 
+function textQuote() {
+  gsap.config({ trialWarn: false });
+  console.clear();
+  gsap.registerPlugin(ScrollTrigger, SplitType);
+
+  const split = new SplitType(".quote-wrapper .text span", { type: "chars" });
+
+  split.lines.forEach((target) => {
+    gsap.to(target, {
+      backgroundPositionX: 0,
+      ease: "none",
+      scrollTrigger: {
+        trigger: target,
+        markers: false,
+        scrub: 1,
+        start: "top center",
+        end: "bottom center"
+      }
+    });
+  });
+}
+
 const init = () => {
   handlePageVisibilityAndFavicon();
   toggleMenu();
   scrollHeader();
   setTimeout(() => {
     loading();
+    textQuote();
   }, 1000);
 };
 preloadImages("img").then(() => {
