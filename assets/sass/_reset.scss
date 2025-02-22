@@ -32,6 +32,9 @@ button:focus {
 }
 a {
   display: inline-block;
+  &:hover {
+    color: var(--color-white);
+  }
 }
 a,
 a:hover {
