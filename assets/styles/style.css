@@ -130,6 +130,10 @@ button:focus {
   outline: none;
 }
 
+a {
+  display: inline-block;
+}
+
 a,
 a:hover {
   text-decoration: none;
@@ -231,6 +235,9 @@ body {
 }
 .header .menu__social ul li {
   text-align: right;
+}
+.header .menu__social ul li a {
+  margin-bottom: 20px;
 }
 
 /*# sourceMappingURL=style.css.map */
