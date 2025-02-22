@@ -1,8 +1,75 @@
 import { preloadImages } from "../libs/utils.js";
 let lenis;
 Splitting();
+function handlePageVisibilityAndFavicon() {
+  const originalTitle = document.title;
+  let faviconInterval;
 
-const init = () => {};
+  // Xử lý thay đổi tiêu đề khi tab/cửa sổ thay đổi trạng thái hiển thị
+  $(document).on("visibilitychange", function () {
+    if (document.hidden) {
+      document.title = "Flos.Q !";
+    } else {
+      document.title = originalTitle;
+    }
+  });
+
+  function changeFavicon(src) {
+    let link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement("link");
+      link.rel = "icon";
+      link.type = "image/svg+xml"; // Thêm MIME type cho SVG
+      document.head.appendChild(link);
+    }
+    link.href = `${src}?v=${new Date().getTime()}`; // Thêm timestamp để tránh cache
+  }
+
+  $(window).focus(function () {
+    clearInterval(faviconInterval);
+    const hostname = window.location.origin;
+    changeFavicon("./assets/images/utilize/favicon_red.svg");
+  });
+
+  $(window).blur(function () {
+    const hostname = window.location.origin;
+    const favicons = [
+      "./assets/images/utilize/favicon_red.svg",
+      "./assets/images/utilize/favicon_black.svg",
+    ];
+    let faviconIndex = 0;
+    faviconInterval = setInterval(function () {
+      changeFavicon(favicons[faviconIndex]);
+      faviconIndex = (faviconIndex + 1) % favicons.length; //
+    }, 100);
+  });
+}
+
+function loading() {
+  gsap.registerPlugin(ScrollTrigger);
+
+  const tl = gsap.timeline({ defaults: { ease: "none" } });
+
+  gsap.fromTo(
+    ".loading-overlay",
+    { opacity: 0 },
+    { opacity: 1, duration: 1, ease: "none" }
+  );
+
+  // Animation
+  tl.to(".loading-image", { opacity: 1, scale: 1, duration: 1 }).to(
+    ".loading-overlay",
+    { scale: 200, duration: 1, opacity: 1 },
+    "+=0.25"
+  );
+}
+
+const init = () => {
+  handlePageVisibilityAndFavicon();
+  setTimeout(() => {
+    loading();
+  }, 1000);
+};
 preloadImages("img").then(() => {
   // Once images are preloaded, remove the 'loading' indicator/class from the body
 
