@@ -4,11 +4,12 @@
   left: 0;
   width: 100%;
   z-index: 99;
-  background-color: var(--color-white);
   &__container {
     padding: 7px 60px;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(30px);
   }
   &__menu--sub {
     position: fixed;
@@ -16,6 +17,12 @@
     top: 0;
     bottom: 0;
     width: 380px;
+    clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+    will-change: transform;
+    transition: all 0.3s ease-in-out;
+    &.show {
+      clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
+    }
   }
   .menu__sub--container {
     background-color: var(--color-black);
@@ -36,6 +43,9 @@
         a {
           margin-bottom: 24px;
           display: inline-block;
+          &:hover {
+            color: var(--color-white);
+          }
         }
       }
     }
@@ -52,8 +62,68 @@
         text-align: right;
         a {
           margin-bottom: 20px;
+          &:hover {
+            color: var(--color-white);
+          }
         }
       }
     }
   }
+  .btnClose,
+  .btnOpen {
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform: scale(3);
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &.scrolled {
+    .logo-group {
+      // height: 24px;
+      img {
+        &:first-child {
+          opacity: 0;
+          visibility: hidden;
+          transform: translate(-50%, -50%) scale(0);
+        }
+        &:last-child {
+          opacity: 1;
+          visibility: visible;
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+    }
+  }
+  .logo-group {
+    display: block;
+    position: relative;
+    width: 156px;
+    height: 50px;
+    transition: height 0.3s ease-in-out;
+
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-origin: center;
+      &:last-child {
+        opacity: 0;
+        visibility: hidden;
+        transform: translate(-50%, -50%) scale(0);
+      }
+    }
+  }
+}
+.spacing {
+  height: 200vh;
 }

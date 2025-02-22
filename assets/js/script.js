@@ -63,9 +63,55 @@ function loading() {
     "+=0.25"
   );
 }
+function toggleMenu() {
+  let btnOpen = $(".btnOpen");
+  let btnClose = $(".btnClose");
+
+  let tl = gsap.timeline({ paused: true });
+
+  tl.from(".menu__sub ul li", {
+    opacity: 0,
+    y: 20,
+    stagger: 0.1,
+    duration: 0.6,
+    ease: "power2.out",
+  }).from(
+    ".menu__social ul li",
+    {
+      opacity: 0,
+      y: 20,
+      stagger: 0.1,
+      duration: 0.6,
+      ease: "power2.out",
+    },
+    "-=0.4"
+  );
+
+  btnOpen.on("click", function () {
+    $(".header__menu--sub").addClass("show");
+    tl.restart();
+  });
+
+  btnClose.on("click", function () {
+    $(".header__menu--sub").removeClass("show");
+    tl.reverse();
+  });
+}
+function scrollHeader() {
+  gsap.to(".header", {
+    scrollTrigger: {
+      trigger: "body",
+      start: "top+=100 top",
+      toggleClass: { targets: ".header", className: "scrolled" }, //
+      once: false,
+    },
+  });
+}
 
 const init = () => {
   handlePageVisibilityAndFavicon();
+  toggleMenu();
+  scrollHeader();
   setTimeout(() => {
     loading();
   }, 1000);
