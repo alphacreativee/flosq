@@ -189,6 +189,20 @@ body {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.magic-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 123;
+}
+.magic-cursor .cursor {
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+}
+
 .loading {
   background-color: var(--color-white);
 }
@@ -212,7 +226,6 @@ body {
 
 .header {
   position: fixed;
-  display: none;
   top: 0;
   left: 0;
   width: 100%;

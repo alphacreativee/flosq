@@ -23,3 +23,16 @@
 
 // https://codepen.io/jd-aposto/pen/oNgOdLJ
 // https://codepen.io/Jase2018/pen/bGBJGpY
+.magic-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 123;
+  .cursor {
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+  }
+}

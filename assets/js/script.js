@@ -35,7 +35,7 @@ function handlePageVisibilityAndFavicon() {
     const hostname = window.location.origin;
     const favicons = [
       "./assets/images/utilize/favicon_red.svg",
-      "./assets/images/utilize/favicon_black.svg"
+      "./assets/images/utilize/favicon_black.svg",
     ];
     let faviconIndex = 0;
     faviconInterval = setInterval(function () {
@@ -124,16 +124,52 @@ function textQuote() {
         markers: false,
         scrub: 1,
         start: "top center",
-        end: "bottom center"
-      }
+        end: "bottom center",
+      },
     });
   });
+}
+function magicCursor() {
+  var circle = document.querySelector(".magic-cursor");
+
+  gsap.set(circle, {
+    xPercent: -50,
+    yPercent: -50,
+  });
+
+  let mouseX = 0,
+    mouseY = 0;
+  let posX = 0,
+    posY = 0;
+  let speed = 0.1; // Điều chỉnh độ mượt (0.1 - 0.3)
+
+  window.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  function moveCircle() {
+    posX += (mouseX - posX) * speed;
+    posY += (mouseY - posY) * speed;
+
+    gsap.to(circle, {
+      x: posX,
+      y: posY,
+      ease: "power3.out",
+      duration: 0.3,
+    });
+
+    requestAnimationFrame(moveCircle);
+  }
+
+  moveCircle();
 }
 
 const init = () => {
   handlePageVisibilityAndFavicon();
   toggleMenu();
   scrollHeader();
+  magicCursor();
   setTimeout(() => {
     loading();
     textQuote();
