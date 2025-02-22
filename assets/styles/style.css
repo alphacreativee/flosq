@@ -154,4 +154,8 @@ body {
   -moz-osx-font-smoothing: grayscale !important;
 }
 
+.loading {
+  background-color: aqua;
+}
+
 /*# sourceMappingURL=style.css.map */
