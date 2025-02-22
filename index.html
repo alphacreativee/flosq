@@ -34,6 +34,11 @@
     <!-- end link custom css page -->
   </head>
   <body>
+    <!-- magic cursor -->
+    <div class="magic-cursor">
+      <div class="cursor"></div>
+    </div>
+    <!-- end magic cursor -->
     <!-- loading -->
     <!-- <div class="loading position-fixed top-0 lef-0 w-100 h-100">
       <div
@@ -54,8 +59,9 @@
           <div
             class="header__logo d-flex align-items-center justify-content-center"
           >
-            <a href="">
+            <a href="" class="logo-group">
               <img src="./assets/images/utilize/logo_full.svg" alt="" />
+              <img src="./assets/images/utilize/logo_scroll.svg" alt="" />
             </a>
           </div>
           <div
@@ -70,7 +76,7 @@
               </div>
             </div>
             <div class="header__menu">
-              <div class="header__menu--icon">
+              <div class="header__menu--icon btnOpen">
                 <img src="./assets/images/utilize/ic_menu.svg" alt="" />
               </div>
             </div>
@@ -78,39 +84,47 @@
         </div>
         <div class="header__menu--sub">
           <div class="menu__sub--container">
-            <div class="menu__close">
+            <div class="menu__close btnClose">
               <img src="./assets/images/utilize/ic_close.svg" alt="" />
             </div>
             <div class="menu__container">
               <div class="menu__sub">
                 <ul>
                   <li>
-                    <a href="" class="h3-font color-white">Trang chủ</a>
+                    <a href="" class="h3-font color-white a-line">Trang chủ</a>
                   </li>
                   <li>
-                    <a href="" class="h3-font color-white">Flos.Q</a>
+                    <a href="" class="h3-font color-white a-line">Flos.Q</a>
                   </li>
                   <li>
-                    <a href="" class="h3-font color-white">Dự án</a>
+                    <a href="" class="h3-font color-white a-line">Dự án</a>
                   </li>
                   <li>
-                    <a href="" class="h3-font color-white">Liên hệ</a>
+                    <a href="" class="h3-font color-white a-line">Liên hệ</a>
                   </li>
                 </ul>
               </div>
               <div class="menu__social">
                 <ul>
                   <li>
-                    <a href="" class="b2-bold-font color-white">Facebook</a>
+                    <a href="" class="b2-bold-font color-white a-line"
+                      >Facebook</a
+                    >
                   </li>
                   <li>
-                    <a href="" class="b2-bold-font color-white">Linkdln</a>
+                    <a href="" class="b2-bold-font color-white a-line"
+                      >Linkdln</a
+                    >
                   </li>
                   <li>
-                    <a href="" class="b2-bold-font color-white">Behance</a>
+                    <a href="" class="b2-bold-font color-white a-line"
+                      >Behance</a
+                    >
                   </li>
                   <li>
-                    <a href="" class="b2-bold-font color-white"> Instagram </a>
+                    <a href="" class="b2-bold-font color-white a-line">
+                      Instagram
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -119,6 +133,7 @@
         </div>
       </div>
     </header>
+
     <main>
       <section class="section-projects">
         <div class="container-fluid p-0">

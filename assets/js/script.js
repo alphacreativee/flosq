@@ -35,8 +35,8 @@ function handlePageVisibilityAndFavicon() {
     const hostname = window.location.origin;
 
     const favicons = [
-      `${hostname}/flosq/assets/images/utilize/favicon_red.svg`,
-      `${hostname}/flosq/assets/images/utilize/favicon_black.svg`
+      "./assets/images/utilize/favicon_red.svg",
+      "./assets/images/utilize/favicon_black.svg"
     ];
     let faviconIndex = 0;
     faviconInterval = setInterval(function () {
@@ -64,6 +64,50 @@ function loading() {
     "+=0.25"
   );
 }
+function toggleMenu() {
+  let btnOpen = $(".btnOpen");
+  let btnClose = $(".btnClose");
+
+  let tl = gsap.timeline({ paused: true });
+
+  tl.from(".menu__sub ul li", {
+    opacity: 0,
+    y: 20,
+    stagger: 0.1,
+    duration: 0.6,
+    ease: "power2.out"
+  }).from(
+    ".menu__social ul li",
+    {
+      opacity: 0,
+      y: 20,
+      stagger: 0.1,
+      duration: 0.6,
+      ease: "power2.out"
+    },
+    "-=0.4"
+  );
+
+  btnOpen.on("click", function () {
+    $(".header__menu--sub").addClass("show");
+    tl.restart();
+  });
+
+  btnClose.on("click", function () {
+    $(".header__menu--sub").removeClass("show");
+    tl.reverse();
+  });
+}
+function scrollHeader() {
+  gsap.to(".header", {
+    scrollTrigger: {
+      trigger: "body",
+      start: "top+=100 top",
+      toggleClass: { targets: ".header", className: "scrolled" }, //
+      once: false
+    }
+  });
+}
 
 function textQuote() {
   gsap.config({ trialWarn: false });
@@ -86,6 +130,41 @@ function textQuote() {
     });
   });
 }
+function magicCursor() {
+  var circle = document.querySelector(".magic-cursor");
+
+  gsap.set(circle, {
+    xPercent: -50,
+    yPercent: -50
+  });
+
+  let mouseX = 0,
+    mouseY = 0;
+  let posX = 0,
+    posY = 0;
+  let speed = 0.1; // Điều chỉnh độ mượt (0.1 - 0.3)
+
+  window.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  function moveCircle() {
+    posX += (mouseX - posX) * speed;
+    posY += (mouseY - posY) * speed;
+
+    gsap.to(circle, {
+      x: posX,
+      y: posY,
+      ease: "power3.out",
+      duration: 0.3
+    });
+
+    requestAnimationFrame(moveCircle);
+  }
+
+  moveCircle();
+}
 
 function ourProjects() {
   if (!$("section.section-projects").length) return;
@@ -104,6 +183,9 @@ function ourProjects() {
 
 const init = () => {
   handlePageVisibilityAndFavicon();
+  toggleMenu();
+  scrollHeader();
+  magicCursor();
   setTimeout(() => {
     loading();
     textQuote();
