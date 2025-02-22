@@ -1,0 +1,27 @@
+section.section-quote {
+  background-color: var(--color-black);
+
+  .quote-wrapper {
+    padding: 150px 0;
+    text-align: center;
+  }
+
+  .text {
+    font-family: var(--font-heading);
+    color: var(--color-white);
+
+    .line {
+      background: linear-gradient(
+        to right,
+        rgb(255, 255, 255) 50%,
+        rgb(255, 255, 255, 0.5) 50%
+      );
+      background-size: 200% 100%;
+      background-position-x: 100%;
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+      text-align: center;
+    }
+  }
+}

@@ -241,6 +241,27 @@ body {
   margin-bottom: 20px;
 }
 
+section.section-quote {
+  background-color: var(--color-black);
+}
+section.section-quote .quote-wrapper {
+  padding: 150px 0;
+  text-align: center;
+}
+section.section-quote .text {
+  font-family: var(--font-heading);
+  color: var(--color-white);
+}
+section.section-quote .text .line {
+  background: linear-gradient(to right, rgb(255, 255, 255) 50%, rgba(255, 255, 255, 0.5) 50%);
+  background-size: 200% 100%;
+  background-position-x: 100%;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  text-align: center;
+}
+
 footer .footer-wrapper {
   padding: 80px 40px 20px;
   background-image: url(../images/notutilize/bg-footer.png);
