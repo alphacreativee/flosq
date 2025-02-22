@@ -4,13 +4,16 @@ Splitting();
 function handlePageVisibilityAndFavicon() {
   const originalTitle = document.title;
   let faviconInterval;
+  let isBlinking = false; // Tránh chạy nhiều interval cùng lúc
 
   // Xử lý thay đổi tiêu đề khi tab/cửa sổ thay đổi trạng thái hiển thị
-  $(document).on("visibilitychange", function () {
+  document.addEventListener("visibilitychange", function () {
     if (document.hidden) {
       document.title = "Flos.Q !";
+      startFaviconBlinking();
     } else {
       document.title = originalTitle;
+      stopFaviconBlinking();
     }
   });
 
@@ -22,28 +25,30 @@ function handlePageVisibilityAndFavicon() {
       link.type = "image/svg+xml"; // Thêm MIME type cho SVG
       document.head.appendChild(link);
     }
-    link.href = `${src}?v=${new Date().getTime()}`; // Thêm timestamp để tránh cache
+    link.href = `${src}?v=${new Date().getTime()}`;
   }
 
-  $(window).focus(function () {
-    clearInterval(faviconInterval);
-    const hostname = window.location.origin;
-    changeFavicon("./assets/images/utilize/favicon_red.svg");
-  });
+  function startFaviconBlinking() {
+    if (isBlinking) return; // Tránh chạy nhiều interval
 
-  $(window).blur(function () {
-    const hostname = window.location.origin;
-
+    isBlinking = true;
     const favicons = [
       "./assets/images/utilize/favicon_red.svg",
-      "./assets/images/utilize/favicon_black.svg"
+      "./assets/images/utilize/favicon_black.svg",
     ];
     let faviconIndex = 0;
-    faviconInterval = setInterval(function () {
+
+    faviconInterval = setInterval(() => {
       changeFavicon(favicons[faviconIndex]);
-      faviconIndex = (faviconIndex + 1) % favicons.length; //
-    }, 200);
-  });
+      faviconIndex = (faviconIndex + 1) % favicons.length;
+    }, 100);
+  }
+
+  function stopFaviconBlinking() {
+    clearInterval(faviconInterval);
+    isBlinking = false;
+    changeFavicon("./assets/images/utilize/favicon_red.svg");
+  }
 }
 
 function loading() {
@@ -75,7 +80,7 @@ function toggleMenu() {
     y: 20,
     stagger: 0.1,
     duration: 0.6,
-    ease: "power2.out"
+    ease: "power2.out",
   }).from(
     ".menu__social ul li",
     {
@@ -83,7 +88,7 @@ function toggleMenu() {
       y: 20,
       stagger: 0.1,
       duration: 0.6,
-      ease: "power2.out"
+      ease: "power2.out",
     },
     "-=0.4"
   );
@@ -104,8 +109,8 @@ function scrollHeader() {
       trigger: "body",
       start: "top+=100 top",
       toggleClass: { targets: ".header", className: "scrolled" }, //
-      once: false
-    }
+      once: false,
+    },
   });
 }
 
@@ -125,8 +130,8 @@ function textQuote() {
         markers: false,
         scrub: 1,
         start: "top center",
-        end: "bottom center"
-      }
+        end: "bottom center",
+      },
     });
   });
 }
@@ -135,7 +140,7 @@ function magicCursor() {
 
   gsap.set(circle, {
     xPercent: -50,
-    yPercent: -50
+    yPercent: -50,
   });
 
   let mouseX = 0,
@@ -157,7 +162,7 @@ function magicCursor() {
       x: posX,
       y: posY,
       ease: "power3.out",
-      duration: 0.3
+      duration: 0.3,
     });
 
     requestAnimationFrame(moveCircle);
