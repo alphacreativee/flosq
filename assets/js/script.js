@@ -33,15 +33,16 @@ function handlePageVisibilityAndFavicon() {
 
   $(window).blur(function () {
     const hostname = window.location.origin;
+
     const favicons = [
-      "./assets/images/utilize/favicon_red.svg",
-      "./assets/images/utilize/favicon_black.svg"
+      `${hostname}/flosq/assets/images/utilize/favicon_red.svg`,
+      `${hostname}/flosq/assets/images/utilize/favicon_black.svg`
     ];
     let faviconIndex = 0;
     faviconInterval = setInterval(function () {
       changeFavicon(favicons[faviconIndex]);
       faviconIndex = (faviconIndex + 1) % favicons.length; //
-    }, 100);
+    }, 200);
   });
 }
 
@@ -86,11 +87,27 @@ function textQuote() {
   });
 }
 
+function ourProjects() {
+  if (!$("section.section-projects").length) return;
+
+  const itemProjects = $("section.section-projects .item");
+
+  itemProjects.mousemove(function (e) {
+    let offset = $(this).offset();
+    let x = e.pageX - offset.left;
+    let y = e.pageY - offset.top;
+
+    $(this).css("--x", x + "px");
+    $(this).css("--y", y + "px");
+  });
+}
+
 const init = () => {
   handlePageVisibilityAndFavicon();
   setTimeout(() => {
     loading();
     textQuote();
+    ourProjects();
   }, 1000);
 };
 preloadImages("img").then(() => {
