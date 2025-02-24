@@ -34,7 +34,7 @@ function handlePageVisibilityAndFavicon() {
     isBlinking = true;
     const favicons = [
       "./assets/images/utilize/favicon_red.svg",
-      "./assets/images/utilize/favicon_black.svg",
+      "./assets/images/utilize/favicon_black.svg"
     ];
     let faviconIndex = 0;
 
@@ -75,7 +75,7 @@ function toggleMenu() {
     y: 20,
     stagger: 0.1,
     duration: 0.6,
-    ease: "power2.out",
+    ease: "power2.out"
   }).from(
     ".menu__social ul li",
     {
@@ -83,7 +83,7 @@ function toggleMenu() {
       y: 20,
       stagger: 0.1,
       duration: 0.6,
-      ease: "power2.out",
+      ease: "power2.out"
     },
     "-=0.4"
   );
@@ -104,8 +104,8 @@ function scrollHeader() {
       trigger: "body",
       start: "top+=100 top",
       toggleClass: { targets: ".header", className: "scrolled" }, //
-      once: false,
-    },
+      once: false
+    }
   });
 }
 
@@ -125,8 +125,8 @@ function textQuote() {
         markers: false,
         scrub: 1,
         start: "top center",
-        end: "bottom center",
-      },
+        end: "bottom center"
+      }
     });
   });
 }
@@ -135,7 +135,7 @@ function magicCursor() {
 
   gsap.set(circle, {
     xPercent: -50,
-    yPercent: -50,
+    yPercent: -50
   });
 
   let mouseX = 0,
@@ -157,7 +157,7 @@ function magicCursor() {
       x: posX,
       y: posY,
       ease: "power3.out",
-      duration: 0.3,
+      duration: 0.3
     });
 
     requestAnimationFrame(moveCircle);
@@ -198,15 +198,17 @@ function ourProjects() {
 
   // filter
   gsap.registerPlugin(ScrollTrigger);
-  gsap.to(".section-projects", {
+  gsap.to(".projects-list", {
     ease: "none",
     scrollTrigger: {
-      trigger: ".section-projects",
-      // markers: true,
+      trigger: ".projects-list",
+      markers: true,
       scrub: 1,
       start: "top bottom",
       end: "bottom bottom",
       onUpdate: function (self) {
+        console.log(self.progress);
+
         if (
           self.progress >= 0.2 &&
           !document
@@ -216,8 +218,7 @@ function ourProjects() {
           document
             .querySelector(".section-projects")
             .classList.add("on-active");
-        }
-        if (self.progress >= 1) {
+        } else if (self.progress <= 0 || self.progress >= 1) {
           document
             .querySelector(".section-projects")
             .classList.remove("on-active");
@@ -225,6 +226,19 @@ function ourProjects() {
       }
     }
   });
+
+  let tl = gsap.timeline({ paused: true });
+  tl.from(
+    ".projects-filter .menu-item",
+    {
+      opacity: 0,
+      y: 20,
+      stagger: 0.1,
+      duration: 0.5,
+      ease: "none"
+    },
+    "-=0.3"
+  );
 
   $(".projects-filter .filter-item").on("click", function () {
     let thisFilterProject = $(this);
@@ -234,6 +248,12 @@ function ourProjects() {
     thisFilterProject.find(".sub-menu").toggleClass("open");
 
     let thisListItem = thisFilterProject.find(".menu-item");
+
+    if (thisFilterProject.find(".sub-menu").hasClass("open")) {
+      tl.restart();
+    } else {
+      tl.reverse();
+    }
   });
 
   // filter item on click
@@ -246,20 +266,6 @@ function ourProjects() {
 
     thisItem.closest(".filter-item").find("span").text(dataFilterText);
     updateLayout(dataFilter, dataFilterValue);
-
-    tl.restart();
-    let tl = gsap.timeline({ paused: true });
-    tl.from(
-      ".projects-filter .menu-item",
-      {
-        opacity: 0,
-        y: 20,
-        stagger: 0.1,
-        duration: 0.6,
-        ease: "power2.out"
-      },
-      "-=0.4"
-    );
   });
 
   function updateLayout(dataFilter, dataFilterValue) {
@@ -298,8 +304,8 @@ function bannerBall() {
         } else {
           $(".hero__content").removeClass("change");
         }
-      },
-    },
+      }
+    }
   });
 }
 function itemParalax() {
@@ -316,7 +322,7 @@ function itemParalax() {
     gsap.fromTo(
       wrap,
       {
-        y: y,
+        y: y
       },
       {
         y: 0,
@@ -326,9 +332,9 @@ function itemParalax() {
           end: "bottom top",
           scrub: 1,
           ease: "power4",
-          delay: 0.2,
+          delay: 0.2
           // markers: true
-        },
+        }
       }
     );
   });
@@ -346,7 +352,7 @@ function gallery() {
     trigger: ".gallery__container ",
     start: "top top",
     end: "bottom bottom",
-    pin: ".right",
+    pin: ".right"
   });
 
   details.forEach((detail, index) => {
@@ -360,8 +366,8 @@ function gallery() {
       start: "top 70%",
       end: "top 30%",
       animation: animation,
-      scrub: true,
-      markers: true,
+      scrub: true
+      // markers: true
     });
   });
 }
