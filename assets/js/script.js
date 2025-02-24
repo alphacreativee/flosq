@@ -197,7 +197,6 @@ function ourProjects() {
   });
 }
 function bannerBall() {
-  gsap.registerPlugin(ScrollTrigger);
   let yPercent = -135;
   gsap.set(".hero__ball", { yPercent: yPercent });
 
@@ -255,12 +254,44 @@ function itemParalax() {
     );
   });
 }
+function gallery() {
+  // gsap.registerPlugin(ScrollTrigger);
 
+  const details = gsap.utils.toArray(".gallery__content:not(:first-child)");
+  const photos = gsap.utils.toArray(".gallery__img:not(:first-child)");
+
+  gsap.set(photos, { clipPath: "inset(100% 0% 0% 0%)" });
+
+  const allPhotos = gsap.utils.toArray(".gallery__img");
+  ScrollTrigger.create({
+    trigger: ".gallery__container ",
+    start: "top top",
+    end: "bottom bottom",
+    pin: ".right",
+  });
+
+  details.forEach((detail, index) => {
+    let headline = detail.querySelector("h2");
+    let animation = gsap
+      .timeline()
+      .to(photos[index], { clipPath: "inset(0% 0% 0% 0%)" })
+      .set(allPhotos[index], { autoAlpha: 0 });
+    ScrollTrigger.create({
+      trigger: headline,
+      start: "top 70%",
+      end: "top 30%",
+      animation: animation,
+      scrub: true,
+      markers: true,
+    });
+  });
+}
 const init = () => {
   bannerBall();
   handlePageVisibilityAndFavicon();
   toggleMenu();
   scrollHeader();
+  gallery();
   magicCursor();
   setTimeout(() => {
     loading();
