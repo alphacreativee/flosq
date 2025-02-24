@@ -56,19 +56,14 @@ function loading() {
 
   const tl = gsap.timeline({ defaults: { ease: "none" } });
 
-  gsap.fromTo(
-    ".loading-overlay",
-    { opacity: 0 },
-    { opacity: 1, duration: 1, ease: "none" }
-  );
+  gsap.fromTo(".loading-overlay", { opacity: 0 }, { opacity: 1, duration: 1 });
 
-  // Animation
-  tl.to(".loading-image", { opacity: 1, scale: 1, duration: 1 }).to(
-    ".loading-overlay",
-    { scale: 200, duration: 1, opacity: 1 },
-    "+=0.25"
-  );
+  tl.to(".loading-image", { opacity: 1, scale: 1, duration: 1 })
+    .to(".loading-overlay", { scale: 200, opacity: 1, duration: 1 }, "+=0.25")
+    .to(".loading", { opacity: 0, ease: "expo.inOut", duration: 1 }, "+=0.4");
+  // scaleY: 0, transformOrigin: "top", ease: "expo.inOut", duration: 1
 }
+
 function toggleMenu() {
   let btnOpen = $(".btnOpen");
   let btnClose = $(".btnClose");
@@ -185,8 +180,36 @@ function ourProjects() {
     $(this).css("--y", y + "px");
   });
 }
+function bannerBall() {
+  gsap.registerPlugin(ScrollTrigger);
+  let yPercent = -135;
+  gsap.set(".hero__ball", { yPercent: yPercent });
 
+  gsap.to(".hero__ball", {
+    yPercent: 60,
+    scrollTrigger: {
+      trigger: ".hero",
+      start: "top top",
+      end: "+=100%",
+      scrub: true,
+      pin: true,
+      pinSpacing: true,
+      // markers: true,
+
+      onUpdate: (self) => {
+        console.log(self.progress);
+
+        if (self.progress > 0.25) {
+          $(".hero__content").addClass("change");
+        } else {
+          $(".hero__content").removeClass("change");
+        }
+      },
+    },
+  });
+}
 const init = () => {
+  bannerBall();
   handlePageVisibilityAndFavicon();
   toggleMenu();
   scrollHeader();
