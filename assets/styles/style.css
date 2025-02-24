@@ -596,8 +596,9 @@ section.section-projects .projects-list__right {
   padding-right: 40px;
 }
 .gallery__contents {
-  margin: auto;
-  width: 80%;
+  padding-left: 127px;
+  padding-right: 95px;
+  width: 100%;
 }
 .gallery__title {
   padding-left: 40px;
@@ -613,7 +614,7 @@ section.section-projects .projects-list__right {
   margin-bottom: 32px;
 }
 .gallery__imgs {
-  width: 40vw;
+  width: calc(100% - 127px);
   height: 40vw;
   position: relative;
   overflow: hidden;
@@ -636,6 +637,26 @@ section.section-projects .projects-list__right {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
+}
+.right::before {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  background-color: rgba(240, 240, 240, 0.9411764706);
+  right: 0px;
+  top: 0;
+}
+.right .section-line {
+  width: 32px;
+  height: 32px;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: -32px;
+  z-index: 99;
 }
 
 .red {

@@ -34,7 +34,7 @@ function handlePageVisibilityAndFavicon() {
     isBlinking = true;
     const favicons = [
       "./assets/images/utilize/favicon_red.svg",
-      "./assets/images/utilize/favicon_black.svg"
+      "./assets/images/utilize/favicon_black.svg",
     ];
     let faviconIndex = 0;
 
@@ -75,7 +75,7 @@ function toggleMenu() {
     y: 20,
     stagger: 0.1,
     duration: 0.6,
-    ease: "power2.out"
+    ease: "power2.out",
   }).from(
     ".menu__social ul li",
     {
@@ -83,7 +83,7 @@ function toggleMenu() {
       y: 20,
       stagger: 0.1,
       duration: 0.6,
-      ease: "power2.out"
+      ease: "power2.out",
     },
     "-=0.4"
   );
@@ -104,8 +104,8 @@ function scrollHeader() {
       trigger: "body",
       start: "top+=100 top",
       toggleClass: { targets: ".header", className: "scrolled" }, //
-      once: false
-    }
+      once: false,
+    },
   });
 }
 
@@ -125,8 +125,8 @@ function textQuote() {
         markers: false,
         scrub: 1,
         start: "top center",
-        end: "bottom center"
-      }
+        end: "bottom center",
+      },
     });
   });
 }
@@ -135,7 +135,7 @@ function magicCursor() {
 
   gsap.set(circle, {
     xPercent: -50,
-    yPercent: -50
+    yPercent: -50,
   });
 
   let mouseX = 0,
@@ -157,7 +157,7 @@ function magicCursor() {
       x: posX,
       y: posY,
       ease: "power3.out",
-      duration: 0.3
+      duration: 0.3,
     });
 
     requestAnimationFrame(moveCircle);
@@ -223,8 +223,8 @@ function ourProjects() {
             .querySelector(".section-projects")
             .classList.remove("on-active");
         }
-      }
-    }
+      },
+    },
   });
 
   let tl = gsap.timeline({ paused: true });
@@ -235,7 +235,7 @@ function ourProjects() {
       y: 20,
       stagger: 0.1,
       duration: 0.5,
-      ease: "none"
+      ease: "none",
     },
     "-=0.3"
   );
@@ -304,8 +304,8 @@ function bannerBall() {
         } else {
           $(".hero__content").removeClass("change");
         }
-      }
-    }
+      },
+    },
   });
 }
 function itemParalax() {
@@ -322,7 +322,7 @@ function itemParalax() {
     gsap.fromTo(
       wrap,
       {
-        y: y
+        y: y,
       },
       {
         y: 0,
@@ -332,9 +332,9 @@ function itemParalax() {
           end: "bottom top",
           scrub: 1,
           ease: "power4",
-          delay: 0.2
+          delay: 0.2,
           // markers: true
-        }
+        },
       }
     );
   });
@@ -352,23 +352,52 @@ function gallery() {
     trigger: ".gallery__container ",
     start: "top top",
     end: "bottom bottom",
-    pin: ".right"
+    pin: ".right",
   });
 
   details.forEach((detail, index) => {
     let headline = detail.querySelector("h2");
     let animation = gsap
       .timeline()
-      .to(photos[index], { clipPath: "inset(0% 0% 0% 0%)" })
+      .to(photos[index], {
+        clipPath: "inset(0% 0% 0% 0%)",
+        duration: 2.5,
+      })
       .set(allPhotos[index], { autoAlpha: 0 });
     ScrollTrigger.create({
       trigger: headline,
       start: "top 70%",
       end: "top 30%",
       animation: animation,
-      scrub: true
+      scrub: true,
       // markers: true
     });
+  });
+
+  const line = $(".section-line");
+  const lineWrapper = $(".gallery__container");
+
+  // Định vị ban đầu của vòng tròn
+  gsap.set(line, {
+    transformOrigin: "center center",
+    xPercent: -50,
+    yPercent: -50,
+    y: 0,
+  });
+
+  // Animation di chuyển vòng tròn khi cuộn
+  ScrollTrigger.create({
+    trigger: lineWrapper,
+    start: "top top",
+    end: "bottom top",
+    scrub: true,
+    // markers: true,
+    onUpdate: (self) => {
+      let progress = self.progress;
+      let moveY = progress * window.innerHeight;
+
+      gsap.to(line, { y: moveY, duration: 0.1, ease: "none" });
+    },
   });
 }
 const init = () => {
