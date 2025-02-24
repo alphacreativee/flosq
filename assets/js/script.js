@@ -164,6 +164,22 @@ function magicCursor() {
   }
 
   moveCircle();
+
+  const items = document.querySelectorAll("[data-cursor-text]");
+  var cursorText = document.querySelector(".magic-cursor .cursor");
+
+  items.forEach((item) => {
+    item.addEventListener("mouseenter", () => {
+      const text = item.getAttribute("data-cursor-text");
+      cursorText.innerHTML = `<span class="b2-regular color-white">${text}</span>`;
+      cursorText.classList.add("show-text");
+    });
+
+    item.addEventListener("mouseleave", () => {
+      cursorText.innerHTML = "";
+      cursorText.classList.remove("show-text");
+    });
+  });
 }
 
 function ourProjects() {
@@ -199,7 +215,7 @@ function bannerBall() {
       onUpdate: (self) => {
         console.log(self.progress);
 
-        if (self.progress > 0.25) {
+        if (self.progress > 0.26) {
           $(".hero__content").addClass("change");
         } else {
           $(".hero__content").removeClass("change");
@@ -208,6 +224,38 @@ function bannerBall() {
     },
   });
 }
+function itemParalax() {
+  gsap.registerPlugin(ScrollTrigger);
+
+  // let lenis;
+  // lenis = new Lenis();
+
+  // lenis.on("scroll", () => ScrollTrigger.update());
+
+  gsap.utils.toArray(".js-parallax").forEach((wrap) => {
+    const y = wrap.getAttribute("data-y") || 100;
+
+    gsap.fromTo(
+      wrap,
+      {
+        y: y,
+      },
+      {
+        y: 0,
+        scrollTrigger: {
+          trigger: wrap,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1,
+          ease: "power4",
+          delay: 0.2,
+          // markers: true
+        },
+      }
+    );
+  });
+}
+
 const init = () => {
   bannerBall();
   handlePageVisibilityAndFavicon();
@@ -218,6 +266,7 @@ const init = () => {
     loading();
     textQuote();
     ourProjects();
+    itemParalax();
   }, 1000);
 };
 preloadImages("img").then(() => {
