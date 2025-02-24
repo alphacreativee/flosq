@@ -234,18 +234,16 @@ function ourProjects() {
   $(".projects-filter .filter-item").on("click", function () {
     let thisFilterProject = $(this);
 
-    console.log("click");
-
     // $(".projects-filter .filter-item .sub-menu").removeClass("open");
     thisFilterProject.siblings().find(".sub-menu").removeClass("open");
     thisFilterProject.find(".sub-menu").toggleClass("open");
+
+    let thisListItem = thisFilterProject.find(".menu-item");
   });
 
   // filter item on click
   $(".projects-filter .menu-item").on("click", function () {
     let thisItem = $(this);
-
-    console.log("menu item click");
 
     let dataFilter = thisItem.data("filter");
     let dataFilterValue = thisItem.data("filter-value");
@@ -253,6 +251,20 @@ function ourProjects() {
 
     thisItem.closest(".filter-item").find("span").text(dataFilterText);
     updateLayout(dataFilter, dataFilterValue);
+
+    tl.restart();
+    let tl = gsap.timeline({ paused: true });
+    tl.from(
+      ".projects-filter .menu-item",
+      {
+        opacity: 0,
+        y: 20,
+        stagger: 0.1,
+        duration: 0.6,
+        ease: "power2.out"
+      },
+      "-=0.4"
+    );
   });
 
   function updateLayout(dataFilter, dataFilterValue) {
