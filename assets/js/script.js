@@ -200,6 +200,73 @@ function ourProjects() {
     $(this).css("--x", x + "px");
     $(this).css("--y", y + "px");
   });
+
+  // filter
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.to(".section-projects", {
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".section-projects",
+      // markers: true,
+      scrub: 1,
+      start: "top bottom",
+      end: "bottom bottom",
+      onUpdate: function (self) {
+        if (
+          self.progress >= 0.2 &&
+          !document
+            .querySelector(".section-projects")
+            .classList.contains("on-active")
+        ) {
+          document
+            .querySelector(".section-projects")
+            .classList.add("on-active");
+        }
+        if (self.progress >= 1) {
+          document
+            .querySelector(".section-projects")
+            .classList.remove("on-active");
+        }
+      }
+    }
+  });
+
+  $(".projects-filter .filter-item").on("click", function () {
+    let thisFilterProject = $(this);
+
+    console.log("click");
+
+    // $(".projects-filter .filter-item .sub-menu").removeClass("open");
+    thisFilterProject.siblings().find(".sub-menu").removeClass("open");
+    thisFilterProject.find(".sub-menu").toggleClass("open");
+  });
+
+  // filter item on click
+  $(".projects-filter .menu-item").on("click", function () {
+    let thisItem = $(this);
+
+    console.log("menu item click");
+
+    let dataFilter = thisItem.data("filter");
+    let dataFilterValue = thisItem.data("filter-value");
+    let dataFilterText = thisItem.text();
+
+    thisItem.closest(".filter-item").find("span").text(dataFilterText);
+    updateLayout(dataFilter, dataFilterValue);
+  });
+
+  function updateLayout(dataFilter, dataFilterValue) {
+    $(".section-projects .projects-list .item").addClass("opacity");
+    $(
+      `.section-projects .projects-list .item[data-filter='${dataFilter}'][data-filter-value='${dataFilterValue}']`
+    ).removeClass("opacity");
+
+    if (dataFilterValue == "all") {
+      $(
+        `.section-projects .projects-list .item[data-filter='${dataFilter}']`
+      ).removeClass("opacity");
+    }
+  }
 }
 
 function itemParalax() {

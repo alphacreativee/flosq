@@ -13,6 +13,79 @@ section.section-projects {
     position: sticky;
   }
 
+  &.on-active {
+    .projects-filter {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  .projects-filter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 16px;
+    padding: 0 24px;
+    border-radius: 50px;
+    background-color: var(--color-black);
+    width: max-content;
+    transition: all 0.4s ease;
+    opacity: 0;
+    visibility: hidden;
+
+    .filter-item {
+      text-transform: uppercase;
+      cursor: pointer;
+      padding: 12px 0;
+      position: relative;
+
+      span {
+        font-weight: 600;
+      }
+
+      .sub-menu {
+        max-width: 370px;
+        width: max-content;
+        height: max-content;
+        position: absolute;
+        bottom: calc(100% + 12px);
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: var(--color-black);
+        padding: 12px 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+
+        &.open {
+          opacity: 1;
+          visibility: visible;
+        }
+
+        li {
+          padding: 12px 0;
+          transition: all 0.4s ease;
+          text-transform: uppercase;
+          width: 100%;
+          text-align: center;
+
+          &:hover,
+          &.active {
+            color: var(--color-primary);
+          }
+        }
+      }
+    }
+  }
+
   .projects-ball {
     width: 420px;
     height: 420px;
@@ -44,6 +117,11 @@ section.section-projects {
     .item {
       position: relative;
       overflow: hidden;
+
+      &.opacity {
+        pointer-events: none;
+        opacity: 0.5;
+      }
 
       &-img {
         width: 100%;
