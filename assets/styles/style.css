@@ -204,6 +204,18 @@ body {
   height: 10px;
   background-color: var(--color-primary);
   border-radius: 50%;
+  transition: all 0.4s ease;
+}
+.magic-cursor .cursor.show-text {
+  width: 88px;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-primary);
+}
+.magic-cursor .cursor span {
+  font-family: var(--font-body);
 }
 
 .loading {
@@ -344,8 +356,39 @@ body {
   height: 200vh;
 }
 
+section.section-projects {
+  position: relative;
+}
 section.section-projects .projects-wrapper {
   padding: 120px 40px;
+  position: relative;
+  z-index: 1;
+}
+section.section-projects .section-tag {
+  height: max-content;
+  top: 120px;
+  position: sticky;
+}
+section.section-projects .projects-ball {
+  width: 420px;
+  height: 420px;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  position: absolute;
+  left: 40px;
+  top: 50vh;
+  transform: translateY(-50%);
+}
+section.section-projects .projects-ball::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(30px);
+  background-color: rgba(255, 255, 255, 0.2);
 }
 section.section-projects .projects-list {
   display: grid;
@@ -370,6 +413,11 @@ section.section-projects .projects-list .item-title {
   z-index: 3;
   bottom: 32px;
   left: 32px;
+}
+section.section-projects .projects-list .item-link {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
 }
 section.section-projects .projects-list .item:not(:first-child) {
   margin-top: 32px;
@@ -404,6 +452,16 @@ section.section-projects .projects-list .item:hover::after {
 }
 section.section-projects .projects-list__right {
   margin-top: 40px;
+}
+
+.section-map__container {
+  width: 100%;
+  height: 810px;
+}
+.section-map__container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 section.section-quote {

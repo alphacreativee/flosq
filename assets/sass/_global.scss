@@ -32,5 +32,19 @@
     height: 10px;
     background-color: var(--color-primary);
     border-radius: 50%;
+    transition: all 0.4s ease;
+
+    &.show-text {
+      width: 88px;
+      height: 88px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--color-primary);
+    }
+
+    span {
+      font-family: var(--font-body);
+    }
   }
 }

@@ -34,7 +34,7 @@ function handlePageVisibilityAndFavicon() {
     isBlinking = true;
     const favicons = [
       "./assets/images/utilize/favicon_red.svg",
-      "./assets/images/utilize/favicon_black.svg",
+      "./assets/images/utilize/favicon_black.svg"
     ];
     let faviconIndex = 0;
 
@@ -80,7 +80,7 @@ function toggleMenu() {
     y: 20,
     stagger: 0.1,
     duration: 0.6,
-    ease: "power2.out",
+    ease: "power2.out"
   }).from(
     ".menu__social ul li",
     {
@@ -88,7 +88,7 @@ function toggleMenu() {
       y: 20,
       stagger: 0.1,
       duration: 0.6,
-      ease: "power2.out",
+      ease: "power2.out"
     },
     "-=0.4"
   );
@@ -109,8 +109,8 @@ function scrollHeader() {
       trigger: "body",
       start: "top+=100 top",
       toggleClass: { targets: ".header", className: "scrolled" }, //
-      once: false,
-    },
+      once: false
+    }
   });
 }
 
@@ -130,8 +130,8 @@ function textQuote() {
         markers: false,
         scrub: 1,
         start: "top center",
-        end: "bottom center",
-      },
+        end: "bottom center"
+      }
     });
   });
 }
@@ -140,7 +140,7 @@ function magicCursor() {
 
   gsap.set(circle, {
     xPercent: -50,
-    yPercent: -50,
+    yPercent: -50
   });
 
   let mouseX = 0,
@@ -162,13 +162,29 @@ function magicCursor() {
       x: posX,
       y: posY,
       ease: "power3.out",
-      duration: 0.3,
+      duration: 0.3
     });
 
     requestAnimationFrame(moveCircle);
   }
 
   moveCircle();
+
+  const items = document.querySelectorAll("[data-cursor-text]");
+  var cursorText = document.querySelector(".magic-cursor .cursor");
+
+  items.forEach((item) => {
+    item.addEventListener("mouseenter", () => {
+      const text = item.getAttribute("data-cursor-text");
+      cursorText.innerHTML = `<span class="b2-regular color-white">${text}</span>`;
+      cursorText.classList.add("show-text");
+    });
+
+    item.addEventListener("mouseleave", () => {
+      cursorText.innerHTML = "";
+      cursorText.classList.remove("show-text");
+    });
+  });
 }
 
 function ourProjects() {
@@ -186,6 +202,38 @@ function ourProjects() {
   });
 }
 
+function itemParalax() {
+  gsap.registerPlugin(ScrollTrigger);
+
+  // let lenis;
+  // lenis = new Lenis();
+
+  // lenis.on("scroll", () => ScrollTrigger.update());
+
+  gsap.utils.toArray(".js-parallax").forEach((wrap) => {
+    const y = wrap.getAttribute("data-y") || 100;
+
+    gsap.fromTo(
+      wrap,
+      {
+        y: y
+      },
+      {
+        y: 0,
+        scrollTrigger: {
+          trigger: wrap,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1,
+          ease: "power4",
+          delay: 0.2
+          // markers: true
+        }
+      }
+    );
+  });
+}
+
 const init = () => {
   handlePageVisibilityAndFavicon();
   toggleMenu();
@@ -195,6 +243,7 @@ const init = () => {
     loading();
     textQuote();
     ourProjects();
+    itemParalax();
   }, 1000);
 };
 preloadImages("img").then(() => {
