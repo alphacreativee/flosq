@@ -675,6 +675,53 @@ section.section-quote .text .line {
   text-align: center;
 }
 
+section.section-services {
+  background-color: var(--color-black);
+  padding: 0 24px;
+}
+section.section-services .services-wrapper {
+  padding: 56px 0 0 0;
+}
+section.section-services .services-wrapper__left {
+  position: relative;
+}
+section.section-services .services-wrapper__left .num-counter {
+  width: calc(40vw - 24px);
+  position: absolute;
+  right: 0;
+  right: 0;
+  color: var(--color-primary);
+  font-weight: 500;
+  font-size: 490px;
+  font-family: var(--font-body);
+}
+section.section-services .services-wrapper__right .list-item {
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+section.section-services .services-wrapper__right .list-item .item {
+  width: 100%;
+}
+section.section-services .services-wrapper__right .list-item .item-image {
+  width: 100%;
+  aspect-ratio: 438/246;
+}
+section.section-services .services-wrapper__right .list-item .item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+section.section-services .services-wrapper__right .list-item .item-title {
+  margin-top: 24px;
+}
+section.section-services .services-wrapper__right .list-item .item:not(:first-child) {
+  margin-top: 115px;
+}
+
 footer .footer-wrapper {
   padding: 80px 40px 20px;
   background-image: url(../images/notutilize/bg-footer.png);

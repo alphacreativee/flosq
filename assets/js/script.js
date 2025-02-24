@@ -202,7 +202,7 @@ function ourProjects() {
     ease: "none",
     scrollTrigger: {
       trigger: ".projects-list",
-      markers: true,
+      // markers: true,
       scrub: 1,
       start: "top bottom",
       end: "bottom bottom",
