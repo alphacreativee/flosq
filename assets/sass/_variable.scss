@@ -8,6 +8,7 @@
   --color-black: #000000;
   --color-black-opa: rgba(0, 0, 0, 0.5);
   --color-white: #ffffff;
+  --color-text-white: #fffefe;
 }
 // set class name
 .h2-font {
@@ -65,6 +66,9 @@
 }
 .color-white {
   color: var(--color-white);
+}
+.color-text-white {
+  color: var(--color-text-white);
 }
 // other
 .spacing-xl {
