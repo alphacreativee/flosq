@@ -222,8 +222,8 @@ function ourProjects() {
             .querySelector(".section-projects")
             .classList.remove("on-active");
         }
-      }
-    }
+      },
+    },
   });
 
   $(".projects-filter .filter-item").on("click", function () {
@@ -256,7 +256,7 @@ function ourProjects() {
         y: 20,
         stagger: 0.1,
         duration: 0.6,
-        ease: "power2.out"
+        ease: "power2.out",
       },
       "-=0.4"
     );
@@ -353,7 +353,10 @@ function gallery() {
     let headline = detail.querySelector("h2");
     let animation = gsap
       .timeline()
-      .to(photos[index], { clipPath: "inset(0% 0% 0% 0%)" })
+      .to(photos[index], {
+        clipPath: "inset(0% 0% 0% 0%)",
+        duration: 2.5,
+      })
       .set(allPhotos[index], { autoAlpha: 0 });
     ScrollTrigger.create({
       trigger: headline,
@@ -361,8 +364,34 @@ function gallery() {
       end: "top 30%",
       animation: animation,
       scrub: true,
-      markers: true,
+      // markers: true,
     });
+  });
+
+  const line = $(".section-line");
+  const lineWrapper = $(".gallery__container");
+
+  // Định vị ban đầu của vòng tròn
+  gsap.set(line, {
+    transformOrigin: "center center",
+    xPercent: -50,
+    yPercent: -50,
+    y: 0,
+  });
+
+  // Animation di chuyển vòng tròn khi cuộn
+  ScrollTrigger.create({
+    trigger: lineWrapper,
+    start: "top top",
+    end: "bottom top",
+    scrub: true,
+    // markers: true,
+    onUpdate: (self) => {
+      let progress = self.progress;
+      let moveY = progress * window.innerHeight;
+
+      gsap.to(line, { y: moveY, duration: 0.1, ease: "none" });
+    },
   });
 }
 const init = () => {
