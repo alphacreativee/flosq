@@ -34,7 +34,7 @@ function handlePageVisibilityAndFavicon() {
     isBlinking = true;
     const favicons = [
       "./assets/images/utilize/favicon_red.svg",
-      "./assets/images/utilize/favicon_black.svg"
+      "./assets/images/utilize/favicon_black.svg",
     ];
     let faviconIndex = 0;
 
@@ -56,19 +56,14 @@ function loading() {
 
   const tl = gsap.timeline({ defaults: { ease: "none" } });
 
-  gsap.fromTo(
-    ".loading-overlay",
-    { opacity: 0 },
-    { opacity: 1, duration: 1, ease: "none" }
-  );
+  gsap.fromTo(".loading-overlay", { opacity: 0 }, { opacity: 1, duration: 1 });
 
-  // Animation
-  tl.to(".loading-image", { opacity: 1, scale: 1, duration: 1 }).to(
-    ".loading-overlay",
-    { scale: 200, duration: 1, opacity: 1 },
-    "+=0.25"
-  );
+  tl.to(".loading-image", { opacity: 1, scale: 1, duration: 1 })
+    .to(".loading-overlay", { scale: 200, opacity: 1, duration: 1 }, "+=0.25")
+    .to(".loading", { opacity: 0, ease: "expo.inOut", duration: 1 }, "+=0.4");
+  // scaleY: 0, transformOrigin: "top", ease: "expo.inOut", duration: 1
 }
+
 function toggleMenu() {
   let btnOpen = $(".btnOpen");
   let btnClose = $(".btnClose");
@@ -80,7 +75,7 @@ function toggleMenu() {
     y: 20,
     stagger: 0.1,
     duration: 0.6,
-    ease: "power2.out"
+    ease: "power2.out",
   }).from(
     ".menu__social ul li",
     {
@@ -88,7 +83,7 @@ function toggleMenu() {
       y: 20,
       stagger: 0.1,
       duration: 0.6,
-      ease: "power2.out"
+      ease: "power2.out",
     },
     "-=0.4"
   );
@@ -109,8 +104,8 @@ function scrollHeader() {
       trigger: "body",
       start: "top+=100 top",
       toggleClass: { targets: ".header", className: "scrolled" }, //
-      once: false
-    }
+      once: false,
+    },
   });
 }
 
@@ -130,8 +125,8 @@ function textQuote() {
         markers: false,
         scrub: 1,
         start: "top center",
-        end: "bottom center"
-      }
+        end: "bottom center",
+      },
     });
   });
 }
@@ -140,7 +135,7 @@ function magicCursor() {
 
   gsap.set(circle, {
     xPercent: -50,
-    yPercent: -50
+    yPercent: -50,
   });
 
   let mouseX = 0,
@@ -162,7 +157,7 @@ function magicCursor() {
       x: posX,
       y: posY,
       ease: "power3.out",
-      duration: 0.3
+      duration: 0.3,
     });
 
     requestAnimationFrame(moveCircle);
@@ -280,7 +275,34 @@ function ourProjects() {
     }
   }
 }
+function bannerBall() {
+  gsap.registerPlugin(ScrollTrigger);
+  let yPercent = -135;
+  gsap.set(".hero__ball", { yPercent: yPercent });
 
+  gsap.to(".hero__ball", {
+    yPercent: 60,
+    scrollTrigger: {
+      trigger: ".hero",
+      start: "top top",
+      end: "+=100%",
+      scrub: true,
+      pin: true,
+      pinSpacing: true,
+      // markers: true,
+
+      onUpdate: (self) => {
+        console.log(self.progress);
+
+        if (self.progress > 0.26) {
+          $(".hero__content").addClass("change");
+        } else {
+          $(".hero__content").removeClass("change");
+        }
+      },
+    },
+  });
+}
 function itemParalax() {
   gsap.registerPlugin(ScrollTrigger);
 
@@ -295,7 +317,7 @@ function itemParalax() {
     gsap.fromTo(
       wrap,
       {
-        y: y
+        y: y,
       },
       {
         y: 0,
@@ -305,15 +327,16 @@ function itemParalax() {
           end: "bottom top",
           scrub: 1,
           ease: "power4",
-          delay: 0.2
+          delay: 0.2,
           // markers: true
-        }
+        },
       }
     );
   });
 }
 
 const init = () => {
+  bannerBall();
   handlePageVisibilityAndFavicon();
   toggleMenu();
   scrollHeader();

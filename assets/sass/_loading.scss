@@ -1,5 +1,6 @@
 .loading {
   background-color: var(--color-white);
+  z-index: 200;
   &-inner {
     position: relative;
     // &::before {
