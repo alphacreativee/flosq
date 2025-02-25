@@ -66,3 +66,7 @@
 .modal-backdrop.show {
   opacity: 1;
 }
+
+.fade {
+  transition: opacity 0.3s linear;
+}

@@ -95,9 +95,9 @@ function loading() {
     onComplete: function () {
       gsap.to(".dots", {
         scale: 1,
-        transformOrigin: "center",
+        transformOrigin: "center"
       });
-    },
+    }
   });
 
   gsap.fromTo(".loading-overlay", { opacity: 0 }, { opacity: 1, duration: 1 });
@@ -266,8 +266,6 @@ function ourProjects() {
       start: "top bottom",
       end: "bottom bottom",
       onUpdate: function (self) {
-        console.log(self.progress);
-
         if (
           self.progress >= 0.2 &&
           !document
@@ -547,9 +545,9 @@ function scrollBall() {
           { x: "50vw", y: "100vh" },
           { x: "25vw", y: "150vh" },
           { x: "5vw", y: "200vh" },
-          { x: "0vw", y: "300vh" },
-        ],
-      },
+          { x: "0vw", y: "300vh" }
+        ]
+      }
     }
   );
   // tl.to(".projects-ball", { top: "30%", left: "60%", ease: "power1.inOut" })

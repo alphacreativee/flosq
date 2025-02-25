@@ -16,62 +16,6 @@ section.section-services {
     background-color: #f0f0f0;
   }
 
-  .services-modal {
-    .modal {
-      &-content {
-        padding: 48px;
-        padding-right: 16px;
-        border-radius: unset;
-        border: none;
-        background-image: url("../images/utilize/bg-modal.png");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-
-        .content {
-          display: flex;
-          gap: 48px;
-          margin-top: 48px;
-          justify-content: top;
-          justify-content: space-between;
-
-          max-height: 375px;
-          overflow-y: scroll;
-
-          .content-item {
-            width: calc(50% - 24px);
-          }
-
-          &::-webkit-scrollbar {
-            width: 6px;
-          }
-
-          /* Handle */
-          &::-webkit-scrollbar-thumb {
-            background: #d9d9d9;
-            border-radius: unset;
-          }
-        }
-
-        ul {
-          margin-top: 16px;
-
-          li {
-            &:not(:first-child) {
-              margin-top: 8px;
-            }
-          }
-        }
-      }
-
-      &-dialog {
-        @media (min-width: 991px) {
-          max-width: 890px;
-        }
-      }
-    }
-  }
-
   .services-wrapper {
     &__left {
       position: relative;
@@ -168,6 +112,62 @@ section.section-services {
             margin-top: 115px;
           }
         }
+      }
+    }
+  }
+}
+
+.services-modal {
+  .modal {
+    &-content {
+      padding: 48px;
+      padding-right: 16px;
+      border-radius: unset;
+      border: none;
+      background-image: url("../images/utilize/bg-modal.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+
+      .content {
+        display: flex;
+        gap: 48px;
+        margin-top: 48px;
+        justify-content: top;
+        justify-content: space-between;
+
+        max-height: 375px;
+        overflow-y: scroll;
+
+        .content-item {
+          width: calc(50% - 24px);
+        }
+
+        &::-webkit-scrollbar {
+          width: 6px;
+        }
+
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+          background: #d9d9d9;
+          border-radius: unset;
+        }
+      }
+
+      ul {
+        margin-top: 16px;
+
+        li {
+          &:not(:first-child) {
+            margin-top: 8px;
+          }
+        }
+      }
+    }
+
+    &-dialog {
+      @media (min-width: 991px) {
+        max-width: 890px;
       }
     }
   }
