@@ -4,6 +4,12 @@ section.section-projects {
   z-index: 2;
   background-color: var(--color-black);
 
+  &.ver-2 {
+    .projects-list .item::after {
+      background-color: var(--color-black);
+    }
+  }
+
   &::after {
     content: "";
     width: 32px;
@@ -30,9 +36,6 @@ section.section-projects {
     padding: 120px 40px;
     position: relative;
     z-index: 1;
-  }
-
-  .section-tag {
   }
 
   .projects-content {
@@ -209,11 +212,16 @@ section.section-projects {
         }
       }
 
-      &-title {
+      &-title,
+      &-text {
         position: absolute;
         z-index: 3;
         bottom: 32px;
         left: 32px;
+
+        &.desc {
+          margin-top: 8px;
+        }
       }
 
       &-link {

@@ -597,7 +597,6 @@ function sectionServices() {
 
       gsap.to(line, { y: moveY, duration: 0.1, ease: "none" });
 
-      console.log(progress);
       if (progress >= 0.93) {
         document.querySelector(".section-projects").classList.add("touch");
       }

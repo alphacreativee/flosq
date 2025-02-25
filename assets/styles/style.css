@@ -9,6 +9,13 @@
   --color-text-white: #fffefe;
 }
 
+.h1-font {
+  font-family: var(--font-heading);
+  font-size: 58px;
+  line-height: 72px;
+  font-weight: 600;
+}
+
 .h2-font {
   font-family: var(--font-heading);
   font-size: 40px;
@@ -482,6 +489,9 @@ section.section-projects {
   z-index: 2;
   background-color: var(--color-black);
 }
+section.section-projects.ver-2 .projects-list .item::after {
+  background-color: var(--color-black);
+}
 section.section-projects::after {
   content: "";
   width: 32px;
@@ -656,11 +666,14 @@ section.section-projects .projects-list .item-img img {
   height: 100%;
   object-fit: cover;
 }
-section.section-projects .projects-list .item-title {
+section.section-projects .projects-list .item-title, section.section-projects .projects-list .item-text {
   position: absolute;
   z-index: 3;
   bottom: 32px;
   left: 32px;
+}
+section.section-projects .projects-list .item-title.desc, section.section-projects .projects-list .item-text.desc {
+  margin-top: 8px;
 }
 section.section-projects .projects-list .item-link {
   position: absolute;

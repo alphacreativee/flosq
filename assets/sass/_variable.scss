@@ -11,6 +11,12 @@
   --color-text-white: #fffefe;
 }
 // set class name
+.h1-font {
+  font-family: var(--font-heading);
+  font-size: 58px;
+  line-height: 72px;
+  font-weight: 600;
+}
 .h2-font {
   font-family: var(--font-heading);
   font-size: 40px;
