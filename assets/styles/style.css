@@ -416,6 +416,7 @@ body {
 
 section.section-projects {
   position: relative;
+  z-index: 2;
 }
 section.section-projects .projects-wrapper {
   padding: 120px 40px;
@@ -593,7 +594,6 @@ section.section-projects .projects-list__right {
 
 .gallery {
   padding-top: 80px;
-  padding-right: 40px;
 }
 .gallery__contents {
   padding-left: 127px;
@@ -699,12 +699,35 @@ section.section-quote .text .line {
 section.section-services {
   background-color: var(--color-black);
   padding: 0 24px;
+  position: relative;
+  overflow: hidden;
 }
-section.section-services .services-wrapper {
-  padding: 56px 0 0 0;
+section.section-services::after {
+  content: "";
+  width: 1px;
+  height: 100%;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  position: absolute;
+  background-color: #f0f0f0;
 }
 section.section-services .services-wrapper__left {
   position: relative;
+  z-index: 2;
+  width: 50%;
+  padding-top: 56px;
+}
+section.section-services .services-wrapper__left .service-ball {
+  width: 32px;
+  height: 32px;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  position: absolute;
+  z-index: 2;
+  top: -32px;
+  right: 0;
+  transform: translateX(50%);
 }
 section.section-services .services-wrapper__left .num-counter {
   width: calc(40vw - 24px);
@@ -715,6 +738,30 @@ section.section-services .services-wrapper__left .num-counter {
   font-weight: 500;
   font-size: 490px;
   font-family: var(--font-body);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  line-height: 100%;
+}
+section.section-services .services-wrapper__left .num-counter > span {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform 2s ease;
+  line-height: 1;
+  transform: translateY(0);
+  transition-delay: 0s;
+}
+section.section-services .services-wrapper__left .num-counter > span span {
+  flex: 0 0 100%;
+  height: 100%;
+}
+section.section-services .services-wrapper__right {
+  width: 50%;
+  padding-top: 56px;
+  padding-bottom: 56px;
 }
 section.section-services .services-wrapper__right .list-item {
   width: 60%;
