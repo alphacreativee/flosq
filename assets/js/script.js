@@ -101,7 +101,12 @@ function loading() {
   });
 
   gsap.fromTo(".loading-overlay", { opacity: 0 }, { opacity: 1, duration: 1 });
-
+  gsap.fromTo(
+    ".loading-overlay-white",
+    { opacity: 0 },
+    { opacity: 1, duration: 1 },
+    "+=0.2"
+  );
   tl.to(".loading-image", { opacity: 1, scale: 1, duration: 1 })
     .to(".loading-overlay", { scale: 200, opacity: 1, duration: 1 }, "+=0.5")
     .to(".loading", { opacity: 0, ease: "expo.inOut", duration: 1 }, "+=0.7");
