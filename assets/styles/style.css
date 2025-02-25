@@ -620,6 +620,10 @@ section.section-projects .projects-list__right {
 }
 .gallery__content h2 {
   margin-bottom: 32px;
+  transition: all 0.4s ease;
+}
+.gallery__content h2.active {
+  color: var(--color-primary);
 }
 .gallery__imgs {
   width: calc(100% - 127px);

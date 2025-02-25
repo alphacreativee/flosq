@@ -430,8 +430,14 @@ function gallery() {
       start: "top 70%",
       end: "top 30%",
       animation: animation,
-      scrub: true
-      // markers: true
+      scrub: true,
+      // markers: true,
+      onEnter: () => {
+        headline.classList.add("active");
+      },
+      onLeaveBack: () => {
+        headline.classList.remove("active");
+      }
     });
   });
 
