@@ -394,8 +394,7 @@ body {
   opacity: 1;
   visibility: visible;
 }
-.hero__content--one,
-.hero__content--two {
+.hero__content--one, .hero__content--two {
   text-align: center;
   position: absolute;
   top: 50%;
@@ -498,32 +497,25 @@ section.section-projects .projects-filter .filter-item .sub-menu li {
   width: 100%;
   text-align: center;
 }
-section.section-projects .projects-filter .filter-item .sub-menu li:hover,
-section.section-projects .projects-filter .filter-item .sub-menu li.active {
+section.section-projects .projects-filter .filter-item .sub-menu li:hover, section.section-projects .projects-filter .filter-item .sub-menu li.active {
   color: var(--color-primary);
 }
 section.section-projects .projects-ball {
   width: 400px;
   height: 400px;
   position: absolute;
-  left: 0;
+  left: 40px;
   top: 180px;
 }
 section.section-projects .projects-ball:hover .ball-container span {
   border-radius: 31% 45% 74% 35%/38% 56% 51% 87%;
   animation: animate2 6s linear infinite;
 }
-section.section-projects
-  .projects-ball:hover
-  .ball-container
-  span:nth-child(2) {
+section.section-projects .projects-ball:hover .ball-container span:nth-child(2) {
   border-radius: 38% 62% 63% 37%/41% 44% 56% 59%;
   animation: animate 10s linear infinite;
 }
-section.section-projects
-  .projects-ball:hover
-  .ball-container
-  span:nth-child(3) {
+section.section-projects .projects-ball:hover .ball-container span:nth-child(3) {
   border-radius: 32% 58% 69% 43%/48% 32% 59% 55%;
   animation: animate2 4s linear infinite;
 }
@@ -603,11 +595,7 @@ section.section-projects .projects-list .item::before {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0) 45.21%,
-    rgba(0, 0, 0, 0.8) 90.31%
-  );
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 45.21%, rgba(0, 0, 0, 0.8) 90.31%);
   z-index: 1;
 }
 section.section-projects .projects-list .item::after {
@@ -758,11 +746,7 @@ section.section-quote .text {
   color: var(--color-white);
 }
 section.section-quote .text .line {
-  background: linear-gradient(
-    to right,
-    rgb(255, 255, 255) 50%,
-    rgba(255, 255, 255, 0.5) 50%
-  );
+  background: linear-gradient(to right, rgb(255, 255, 255) 50%, rgba(255, 255, 255, 0.5) 50%);
   background-size: 200% 100%;
   background-position-x: 100%;
   color: transparent;
@@ -830,20 +814,11 @@ section.section-services .services-wrapper__left .num-counter .number > span {
   transform: translateY(0);
   line-height: 1;
 }
-section.section-services
-  .services-wrapper__left
-  .num-counter
-  .number
-  > span
-  span {
+section.section-services .services-wrapper__left .num-counter .number > span span {
   flex: 0 0 100%;
   height: 100%;
 }
-section.section-services
-  .services-wrapper__left
-  .num-counter
-  .number:nth-child(1)
-  > span {
+section.section-services .services-wrapper__left .num-counter .number:nth-child(1) > span {
   transition-delay: 0s;
 }
 section.section-services .services-wrapper__right {
@@ -874,10 +849,7 @@ section.section-services .services-wrapper__right .list-item .item-image img {
 section.section-services .services-wrapper__right .list-item .item-title {
   margin-top: 24px;
 }
-section.section-services
-  .services-wrapper__right
-  .list-item
-  .item:not(:first-child) {
+section.section-services .services-wrapper__right .list-item .item:not(:first-child) {
   margin-top: 115px;
 }
 
