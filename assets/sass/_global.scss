@@ -26,7 +26,7 @@
   top: 0;
   left: 0;
   pointer-events: none;
-  z-index: 123;
+  z-index: 1061;
   .cursor {
     width: 10px;
     height: 10px;
@@ -57,4 +57,12 @@
     min-width: max-content;
     opacity: 0;
   }
+}
+
+[data-cursor-text] {
+  cursor: none;
+}
+
+.modal-backdrop.show {
+  opacity: 1;
 }

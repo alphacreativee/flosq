@@ -165,13 +165,22 @@ function magicCursor() {
 
   moveCircle();
 
-  const items = document.querySelectorAll("[data-cursor-text]");
+  const items = document.querySelectorAll(
+    ".modal-backdrop, [data-cursor-text]"
+  );
   var cursorDot = document.querySelector(".magic-cursor .cursor");
   var cursorText = document.querySelector(".magic-cursor .cursor .text");
 
   items.forEach((item) => {
     item.addEventListener("mouseenter", () => {
-      const text = item.getAttribute("data-cursor-text");
+      let text = "";
+      if (item.classList.contains("modal-backdrop")) {
+        text = "Đóng";
+      } else {
+        text = item.getAttribute("data-cursor-text");
+      }
+
+      // const text = item.getAttribute("data-cursor-text");
       cursorText.innerHTML = `<span class="b2-regular color-white">${text}</span>`;
       cursorDot.classList.add("show-text");
     });
