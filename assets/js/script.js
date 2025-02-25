@@ -55,12 +55,56 @@ function loading() {
   gsap.registerPlugin(ScrollTrigger);
 
   const tl = gsap.timeline({ defaults: { ease: "none" } });
+  gsap.to(".dots", {
+    x: (index, target) => {
+      const logo = document.querySelector(".loading-overlay");
+      const logoRect = logo.getBoundingClientRect();
+      const dotRect = target.getBoundingClientRect();
+
+      // Lấy giá trị transform của logo
+      const logoTransform = getComputedStyle(logo).transform;
+      console.log(logoTransform);
+
+      let translateX = 0;
+
+      if (logoTransform !== "none") {
+        const matrix = new DOMMatrixReadOnly(logoTransform);
+        translateX = matrix.m41; // Lấy giá trị translateX
+      }
+
+      return (
+        logoRect.left +
+        logoRect.width / 2 -
+        dotRect.left -
+        dotRect.width / 2 -
+        translateX
+      );
+    },
+    y: (index, target) => {
+      const logo = document.querySelector(".loading-overlay");
+      const logoRect = logo.getBoundingClientRect();
+      const dotRect = target.getBoundingClientRect();
+
+      return (
+        logoRect.top + logoRect.height / 2 - dotRect.top - dotRect.height / 2
+      );
+    },
+    duration: 1,
+    ease: "power2.inOut",
+    stagger: 0.1,
+    onComplete: function () {
+      gsap.to(".dots", {
+        scale: 1,
+        transformOrigin: "center",
+      });
+    },
+  });
 
   gsap.fromTo(".loading-overlay", { opacity: 0 }, { opacity: 1, duration: 1 });
 
   tl.to(".loading-image", { opacity: 1, scale: 1, duration: 1 })
-    .to(".loading-overlay", { scale: 200, opacity: 1, duration: 1 }, "+=0.25")
-    .to(".loading", { opacity: 0, ease: "expo.inOut", duration: 1 }, "+=0.4");
+    .to(".loading-overlay", { scale: 200, opacity: 1, duration: 1 }, "+=0.5")
+    .to(".loading", { opacity: 0, ease: "expo.inOut", duration: 1 }, "+=0.7");
   // scaleY: 0, transformOrigin: "top", ease: "expo.inOut", duration: 1
 }
 
@@ -477,6 +521,7 @@ function gallery() {
   });
 }
 function scrollBall() {
+  gsap.registerPlugin(MotionPathPlugin, ScrollTrigger);
   let tl = gsap.timeline({
     scrollTrigger: {
       trigger: ".section-projects",
@@ -487,11 +532,25 @@ function scrollBall() {
       invalidateOnRefresh: true
     }
   });
-
-  tl.to(".projects-ball", { top: "30%", left: "60%", ease: "power1.inOut" })
-    .to(".projects-ball", { top: "50%", left: "30%", ease: "power1.inOut" })
-    .to(".projects-ball", { top: "70%", left: "10%", ease: "power1.inOut" })
-    .to(".projects-ball", { top: "90%", left: "20%", ease: "power1.inOut" });
+  tl.fromTo(
+    ".projects-ball",
+    { x: 0, y: 0 },
+    {
+      ease: "none",
+      motionPath: {
+        path: [
+          { x: "50vw", y: "100vh" },
+          { x: "25vw", y: "150vh" },
+          { x: "5vw", y: "200vh" },
+          { x: "0vw", y: "300vh" },
+        ],
+      },
+    }
+  );
+  // tl.to(".projects-ball", { top: "30%", left: "60%", ease: "power1.inOut" })
+  //   .to(".projects-ball", { top: "50%", left: "30%", ease: "power1.inOut" })
+  //   .to(".projects-ball", { top: "70%", left: "10%", ease: "power1.inOut" })
+  //   .to(".projects-ball", { top: "90%", left: "20%", ease: "power1.inOut" });
 }
 function sectionServices() {
   gsap.to(".services-wrapper__right", {

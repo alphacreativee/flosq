@@ -242,13 +242,44 @@ body {
 .loading {
   background-color: var(--color-white);
   z-index: 200;
+  pointer-events: none;
 }
 .loading-inner {
   position: relative;
 }
+.loading-inner .dots {
+  background-color: var(--color-primary);
+  position: absolute;
+  border-radius: 50%;
+  z-index: 4;
+  width: 12px;
+  height: 12px;
+}
+.loading-inner .dots.top-left {
+  transform: scale(2);
+  top: 105px;
+  left: 100px;
+}
+.loading-inner .dots.bottom-left {
+  transform: scale(3);
+  left: 100px;
+  bottom: 60px;
+}
+.loading-inner .dots.right-left {
+  transform: scale(5);
+  top: 60px;
+  right: 100px;
+}
+.loading-inner .dots.bottom-right {
+  transform: scale(1.5);
+  bottom: 170px;
+  right: 113px;
+}
 .loading-image {
   transform: translateX(-70px);
   opacity: 0;
+  position: relative;
+  z-index: 5;
 }
 .loading-overlay {
   position: absolute;
@@ -512,7 +543,7 @@ section.section-projects .projects-ball {
   width: 400px;
   height: 400px;
   position: absolute;
-  left: 0;
+  left: 40px;
   top: 180px;
 }
 section.section-projects .projects-ball:hover .ball-container span {

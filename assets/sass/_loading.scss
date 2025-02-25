@@ -1,6 +1,7 @@
 .loading {
   background-color: var(--color-white);
   z-index: 200;
+  pointer-events: none;
   &-inner {
     position: relative;
     // &::before {
@@ -12,10 +13,40 @@
     //   left: 50%;
     //   transform: translateX(-50%);
     // }
+    .dots {
+      background-color: var(--color-primary);
+      position: absolute;
+      border-radius: 50%;
+      z-index: 4;
+      width: 12px;
+      height: 12px;
+      &.top-left {
+        transform: scale(2);
+        top: 105px;
+        left: 100px;
+      }
+      &.bottom-left {
+        transform: scale(3);
+        left: 100px;
+        bottom: 60px;
+      }
+      &.right-left {
+        transform: scale(5);
+        top: 60px;
+        right: 100px;
+      }
+      &.bottom-right {
+        transform: scale(1.5);
+        bottom: 170px;
+        right: 113px;
+      }
+    }
   }
   &-image {
     transform: translateX(-70px);
     opacity: 0;
+    position: relative;
+    z-index: 5;
   }
   &-overlay {
     position: absolute;
