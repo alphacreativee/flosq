@@ -2,6 +2,29 @@ section.section-projects {
   position: relative;
   overflow: hidden;
   z-index: 2;
+  background-color: var(--color-black);
+
+  &::after {
+    content: "";
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--color-white);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    opacity: 0;
+    transition: width 2s ease, height 2s ease, opacity 0.4s ease;
+  }
+
+  &.touch {
+    &::after {
+      opacity: 1;
+      width: 400%;
+      height: 200%;
+    }
+  }
 
   .projects-wrapper {
     padding: 120px 40px;
@@ -10,10 +33,22 @@ section.section-projects {
   }
 
   .section-tag {
+  }
+
+  .projects-content {
     height: max-content;
     top: 120px;
     position: sticky;
     z-index: 3;
+
+    &__title {
+      max-width: 80%;
+    }
+
+    &__desc {
+      margin-top: 32px;
+      max-width: 80%;
+    }
   }
 
   &.on-active {

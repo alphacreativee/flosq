@@ -284,6 +284,20 @@ function ourProjects() {
     }
   });
 
+  // gsap.to(".section-projects", {
+  //   ease: "none",
+  //   scrollTrigger: {
+  //     trigger: ".section-projects",
+  //     markers: true,
+  //     scrub: 1,
+  //     start: "-64px top",
+  //     end: "bottom bottom",
+  //     onEnter: () => {
+  //       document.querySelector(".section-projects").classList.add("touch");
+  //     }
+  //   }
+  // });
+
   let tl = gsap.timeline({ paused: true });
   tl.from(
     ".projects-filter .menu-item",
@@ -582,6 +596,11 @@ function sectionServices() {
       let moveY = progress * window.innerHeight;
 
       gsap.to(line, { y: moveY, duration: 0.1, ease: "none" });
+
+      console.log(progress);
+      if (progress >= 0.93) {
+        document.querySelector(".section-projects").classList.add("touch");
+      }
     }
   });
 }

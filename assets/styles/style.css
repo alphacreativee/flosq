@@ -480,17 +480,43 @@ section.section-projects {
   position: relative;
   overflow: hidden;
   z-index: 2;
+  background-color: var(--color-black);
+}
+section.section-projects::after {
+  content: "";
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--color-white);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  opacity: 0;
+  transition: width 2s ease, height 2s ease, opacity 0.4s ease;
+}
+section.section-projects.touch::after {
+  opacity: 1;
+  width: 400%;
+  height: 200%;
 }
 section.section-projects .projects-wrapper {
   padding: 120px 40px;
   position: relative;
   z-index: 1;
 }
-section.section-projects .section-tag {
+section.section-projects .projects-content {
   height: max-content;
   top: 120px;
   position: sticky;
   z-index: 3;
+}
+section.section-projects .projects-content__title {
+  max-width: 80%;
+}
+section.section-projects .projects-content__desc {
+  margin-top: 32px;
+  max-width: 80%;
 }
 section.section-projects.on-active .projects-filter {
   opacity: 1;
