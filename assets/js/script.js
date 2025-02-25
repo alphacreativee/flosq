@@ -462,6 +462,7 @@ function gallery() {
   });
 }
 function scrollBall() {
+  gsap.registerPlugin(MotionPathPlugin, ScrollTrigger);
   let tl = gsap.timeline({
     scrollTrigger: {
       trigger: ".section-projects",
@@ -472,11 +473,25 @@ function scrollBall() {
       invalidateOnRefresh: true,
     },
   });
-
-  tl.to(".projects-ball", { top: "30%", left: "60%", ease: "power1.inOut" })
-    .to(".projects-ball", { top: "50%", left: "30%", ease: "power1.inOut" })
-    .to(".projects-ball", { top: "70%", left: "10%", ease: "power1.inOut" })
-    .to(".projects-ball", { top: "90%", left: "20%", ease: "power1.inOut" });
+  tl.fromTo(
+    ".projects-ball",
+    { x: 0, y: 0 },
+    {
+      ease: "none",
+      motionPath: {
+        path: [
+          { x: "50vw", y: "100vh" },
+          { x: "25vw", y: "150vh" },
+          { x: "75vw", y: "200vh" },
+          { x: "0vw", y: "300vh" },
+        ],
+      },
+    }
+  );
+  // tl.to(".projects-ball", { top: "30%", left: "60%", ease: "power1.inOut" })
+  //   .to(".projects-ball", { top: "50%", left: "30%", ease: "power1.inOut" })
+  //   .to(".projects-ball", { top: "70%", left: "10%", ease: "power1.inOut" })
+  //   .to(".projects-ball", { top: "90%", left: "20%", ease: "power1.inOut" });
 }
 function sectionServices() {
   gsap.to(".services-wrapper__right", {
