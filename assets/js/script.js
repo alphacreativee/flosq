@@ -34,7 +34,7 @@ function handlePageVisibilityAndFavicon() {
     isBlinking = true;
     const favicons = [
       "./assets/images/utilize/favicon_red.svg",
-      "./assets/images/utilize/favicon_black.svg",
+      "./assets/images/utilize/favicon_black.svg"
     ];
     let faviconIndex = 0;
 
@@ -96,9 +96,9 @@ function loading() {
     onComplete: function () {
       gsap.to(".dots", {
         scale: 1,
-        transformOrigin: "center",
+        transformOrigin: "center"
       });
-    },
+    }
   });
 
   gsap.fromTo(".loading-overlay", { opacity: 0 }, { opacity: 1, duration: 1 });
@@ -125,7 +125,7 @@ function toggleMenu() {
     y: 20,
     stagger: 0.1,
     duration: 0.6,
-    ease: "power2.out",
+    ease: "power2.out"
   }).from(
     ".menu__social ul li",
     {
@@ -133,7 +133,7 @@ function toggleMenu() {
       y: 20,
       stagger: 0.1,
       duration: 0.6,
-      ease: "power2.out",
+      ease: "power2.out"
     },
     "-=0.4"
   );
@@ -154,8 +154,8 @@ function scrollHeader() {
       trigger: "body",
       start: "top+=100 top",
       toggleClass: { targets: ".header", className: "scrolled" }, //
-      once: false,
-    },
+      once: false
+    }
   });
 }
 
@@ -175,8 +175,8 @@ function textQuote() {
         markers: false,
         scrub: 1,
         start: "top center",
-        end: "bottom center",
-      },
+        end: "bottom center"
+      }
     });
   });
 }
@@ -185,7 +185,7 @@ function magicCursor() {
 
   gsap.set(circle, {
     xPercent: -50,
-    yPercent: -50,
+    yPercent: -50
   });
 
   let mouseX = 0,
@@ -207,7 +207,7 @@ function magicCursor() {
       x: posX,
       y: posY,
       ease: "power3.out",
-      duration: 0.3,
+      duration: 0.3
     });
 
     requestAnimationFrame(moveCircle);
@@ -215,13 +215,22 @@ function magicCursor() {
 
   moveCircle();
 
-  const items = document.querySelectorAll("[data-cursor-text]");
+  const items = document.querySelectorAll(
+    ".modal-backdrop, [data-cursor-text]"
+  );
   var cursorDot = document.querySelector(".magic-cursor .cursor");
   var cursorText = document.querySelector(".magic-cursor .cursor .text");
 
   items.forEach((item) => {
     item.addEventListener("mouseenter", () => {
-      const text = item.getAttribute("data-cursor-text");
+      let text = "";
+      if (item.classList.contains("modal-backdrop")) {
+        text = "Đóng";
+      } else {
+        text = item.getAttribute("data-cursor-text");
+      }
+
+      // const text = item.getAttribute("data-cursor-text");
       cursorText.innerHTML = `<span class="b2-regular color-white">${text}</span>`;
       cursorDot.classList.add("show-text");
     });
@@ -258,8 +267,6 @@ function ourProjects() {
       start: "top bottom",
       end: "bottom bottom",
       onUpdate: function (self) {
-        console.log(self.progress);
-
         if (
           self.progress >= 0.2 &&
           !document
@@ -274,9 +281,23 @@ function ourProjects() {
             .querySelector(".section-projects")
             .classList.remove("on-active");
         }
-      },
-    },
+      }
+    }
   });
+
+  // gsap.to(".section-projects", {
+  //   ease: "none",
+  //   scrollTrigger: {
+  //     trigger: ".section-projects",
+  //     markers: true,
+  //     scrub: 1,
+  //     start: "-64px top",
+  //     end: "bottom bottom",
+  //     onEnter: () => {
+  //       document.querySelector(".section-projects").classList.add("touch");
+  //     }
+  //   }
+  // });
 
   let tl = gsap.timeline({ paused: true });
   tl.from(
@@ -286,7 +307,7 @@ function ourProjects() {
       y: 20,
       stagger: 0.1,
       duration: 0.5,
-      ease: "none",
+      ease: "none"
     },
     "-=0.3"
   );
@@ -353,8 +374,8 @@ function bannerBall() {
         } else {
           $(".hero__content").removeClass("change");
         }
-      },
-    },
+      }
+    }
   });
 }
 
@@ -433,7 +454,7 @@ function itemParalax() {
     gsap.fromTo(
       wrap,
       {
-        y: y,
+        y: y
       },
       {
         y: 0,
@@ -443,9 +464,9 @@ function itemParalax() {
           end: "bottom top",
           scrub: 1,
           ease: "power4",
-          delay: 0.2,
+          delay: 0.2
           // markers: true
-        },
+        }
       }
     );
   });
@@ -463,7 +484,7 @@ function gallery() {
     trigger: ".gallery__container ",
     start: "top top",
     end: "bottom bottom",
-    pin: ".right",
+    pin: ".right"
   });
 
   details.forEach((detail, index) => {
@@ -472,7 +493,7 @@ function gallery() {
       .timeline()
       .to(photos[index], {
         clipPath: "inset(0% 0% 0% 0%)",
-        duration: 2.5,
+        duration: 2.5
       })
       .set(allPhotos[index], { autoAlpha: 0 });
     ScrollTrigger.create({
@@ -481,7 +502,13 @@ function gallery() {
       end: "top 30%",
       animation: animation,
       scrub: true,
-      // markers: true
+      // markers: true,
+      onEnter: () => {
+        headline.classList.add("active");
+      },
+      onLeaveBack: () => {
+        headline.classList.remove("active");
+      }
     });
   });
 
@@ -493,7 +520,7 @@ function gallery() {
     transformOrigin: "center center",
     xPercent: -50,
     yPercent: -50,
-    y: 0,
+    y: 0
   });
 
   // Animation di chuyển vòng tròn khi cuộn
@@ -508,7 +535,7 @@ function gallery() {
       let moveY = progress * window.innerHeight;
 
       gsap.to(line, { y: moveY, duration: 0.1, ease: "none" });
-    },
+    }
   });
 }
 function scrollBall() {
@@ -520,8 +547,8 @@ function scrollBall() {
       end: "bottom top",
       scrub: 2,
       // markers: true,
-      invalidateOnRefresh: true,
-    },
+      invalidateOnRefresh: true
+    }
   });
   tl.fromTo(
     ".projects-ball",
@@ -533,9 +560,9 @@ function scrollBall() {
           { x: "50vw", y: "100vh" },
           { x: "25vw", y: "150vh" },
           { x: "5vw", y: "200vh" },
-          { x: "0vw", y: "300vh" },
-        ],
-      },
+          { x: "0vw", y: "300vh" }
+        ]
+      }
     }
   );
   // tl.to(".projects-ball", { top: "30%", left: "60%", ease: "power1.inOut" })
@@ -551,9 +578,9 @@ function sectionServices() {
       start: "-64px top",
       end: "bottom bottom",
       scrub: 1,
-      pin: ".services-wrapper__left",
+      pin: ".services-wrapper__left"
       // markers: true
-    },
+    }
   });
 
   // Animation di chuyển vòng tròn khi cuộn
@@ -570,7 +597,12 @@ function sectionServices() {
       let moveY = progress * window.innerHeight;
 
       gsap.to(line, { y: moveY, duration: 0.1, ease: "none" });
-    },
+
+      console.log(progress);
+      if (progress >= 0.93) {
+        document.querySelector(".section-projects").classList.add("touch");
+      }
+    }
   });
 }
 function swiperLogo() {
