@@ -1,0 +1,56 @@
+.contact-form {
+  background-image: url("../images/utilize/bg_contact.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-top: 120px;
+  padding-bottom: 32px;
+  &__container {
+    h3 {
+      margin-bottom: 56px;
+    }
+  }
+  &__form {
+    &--input {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      input {
+        border: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      }
+      textarea {
+        border: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        resize: none;
+      }
+    }
+  }
+  &__submit {
+    margin-top: 24px;
+    display: flex;
+    justify-content: end;
+
+    button {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background-color: var(--color-primary);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.4s ease-in-out;
+      &:hover {
+        background-color: var(--color-black);
+      }
+      path {
+        transition: all 0.4s ease-in-out;
+      }
+    }
+  }
+}
