@@ -298,8 +298,6 @@ function bannerBall() {
       // markers: true,
 
       onUpdate: (self) => {
-        console.log(self.progress);
-
         if (self.progress > 0.26) {
           $(".hero__content").addClass("change");
         } else {
@@ -309,13 +307,75 @@ function bannerBall() {
     }
   });
 }
+
+function counterOnScroll() {
+  if ($(".section-services").length < 1) return;
+
+  $(".number").each(function () {
+    const $stat = $(this);
+    const patt = /(\D+)?(\d+(\.\d+)?)(\D+)?/;
+    const time = 0;
+    let result = patt.exec($stat.text());
+    let fresh = true;
+    let ticks;
+
+    if (!result) return;
+
+    result.shift();
+    result = result.filter((res) => res != null);
+
+    $stat.empty();
+
+    result.forEach((res) => {
+      if (isNaN(res)) {
+        $stat.append(`<span>${res}</span>`);
+      } else {
+        for (let i = 0; i < res.length; i++) {
+          $stat.append(`
+            <span data-value="${res[i]}">
+              <span>&nbsp;</span>
+              ${Array(parseInt(res[i]) + 1)
+                .join(0)
+                .split(0)
+                .map((x, j) => `<span>${j}</span>`)
+                .join("")}
+            </span>
+          `);
+        }
+      }
+    });
+
+    ticks = $stat.find("span[data-value]");
+
+    const activate = () => {
+      const top = $stat[0].getBoundingClientRect().top;
+      const offset = $(window).height() * 0.8;
+
+      setTimeout(() => {
+        fresh = false;
+      }, time);
+
+      if (top < offset) {
+        setTimeout(
+          () => {
+            ticks.each(function () {
+              const dist = parseInt($(this).attr("data-value")) + 1;
+              $(this).css("transform", `translateY(-${dist * 100}%)`);
+            });
+          },
+          fresh ? time : 0
+        );
+        $(window).off("scroll", activate);
+      }
+    };
+
+    $(window).on("scroll", activate);
+    activate();
+  });
+}
+
 function itemParalax() {
   gsap.registerPlugin(ScrollTrigger);
-
-  // let lenis;
-  // lenis = new Lenis();
-
-  // lenis.on("scroll", () => ScrollTrigger.update());
 
   gsap.utils.toArray(".js-parallax").forEach((wrap) => {
     const y = wrap.getAttribute("data-y") || 100;
@@ -410,8 +470,8 @@ function sectionServices() {
       start: "-64px top",
       end: "bottom bottom",
       scrub: 1,
-      pin: ".services-wrapper__left",
-      markers: true
+      pin: ".services-wrapper__left"
+      // markers: true
     }
   });
 
@@ -440,6 +500,7 @@ const init = () => {
   scrollHeader();
   gallery();
   magicCursor();
+  counterOnScroll();
   setTimeout(() => {
     loading();
     textQuote();

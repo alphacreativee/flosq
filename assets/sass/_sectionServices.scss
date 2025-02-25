@@ -45,25 +45,32 @@ section.section-services {
         font-size: 490px;
         font-family: var(--font-body);
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-        line-height: 100%;
-
-        & > span {
-          z-index: 1;
+        .number {
+          height: 490px;
           display: flex;
-          flex-direction: column;
-          height: 100%;
-          transition: transform 2s ease;
-          line-height: 1;
-          transform: translateY(0);
-          transition-delay: 0s;
+          overflow: hidden;
+          align-items: center;
+          justify-content: center;
 
-          span {
-            flex: 0 0 100%;
+          & > span {
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
             height: 100%;
+            transition: transform 2s ease;
+            transform: translateY(0);
+            line-height: 1;
+
+            span {
+              flex: 0 0 100%;
+              height: 100%;
+            }
+          }
+
+          &:nth-child(1) {
+            & > span {
+              transition-delay: 0s;
+            }
           }
         }
       }
