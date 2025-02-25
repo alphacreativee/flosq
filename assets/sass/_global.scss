@@ -33,18 +33,28 @@
     background-color: var(--color-primary);
     border-radius: 50%;
     transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &.show-text {
       width: 88px;
       height: 88px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       background-color: var(--color-primary);
+
+      .text {
+        opacity: 1;
+        transition-delay: 0.2s;
+      }
     }
 
     span {
       font-family: var(--font-body);
     }
+  }
+
+  .text {
+    min-width: max-content;
+    opacity: 0;
   }
 }

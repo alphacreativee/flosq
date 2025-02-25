@@ -210,17 +210,25 @@ body {
   background-color: var(--color-primary);
   border-radius: 50%;
   transition: all 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .magic-cursor .cursor.show-text {
   width: 88px;
   height: 88px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background-color: var(--color-primary);
+}
+.magic-cursor .cursor.show-text .text {
+  opacity: 1;
+  transition-delay: 0.2s;
 }
 .magic-cursor .cursor span {
   font-family: var(--font-body);
+}
+.magic-cursor .text {
+  min-width: max-content;
+  opacity: 0;
 }
 
 .loading {

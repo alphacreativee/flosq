@@ -166,18 +166,19 @@ function magicCursor() {
   moveCircle();
 
   const items = document.querySelectorAll("[data-cursor-text]");
-  var cursorText = document.querySelector(".magic-cursor .cursor");
+  var cursorDot = document.querySelector(".magic-cursor .cursor");
+  var cursorText = document.querySelector(".magic-cursor .cursor .text");
 
   items.forEach((item) => {
     item.addEventListener("mouseenter", () => {
       const text = item.getAttribute("data-cursor-text");
       cursorText.innerHTML = `<span class="b2-regular color-white">${text}</span>`;
-      cursorText.classList.add("show-text");
+      cursorDot.classList.add("show-text");
     });
 
     item.addEventListener("mouseleave", () => {
       cursorText.innerHTML = "";
-      cursorText.classList.remove("show-text");
+      cursorDot.classList.remove("show-text");
     });
   });
 }
