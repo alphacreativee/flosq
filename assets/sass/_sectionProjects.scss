@@ -1,6 +1,8 @@
 section.section-projects {
   position: relative;
   overflow: hidden;
+  z-index: 2;
+
   .projects-wrapper {
     padding: 120px 40px;
     position: relative;

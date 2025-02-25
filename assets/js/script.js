@@ -166,18 +166,19 @@ function magicCursor() {
   moveCircle();
 
   const items = document.querySelectorAll("[data-cursor-text]");
-  var cursorText = document.querySelector(".magic-cursor .cursor");
+  var cursorDot = document.querySelector(".magic-cursor .cursor");
+  var cursorText = document.querySelector(".magic-cursor .cursor .text");
 
   items.forEach((item) => {
     item.addEventListener("mouseenter", () => {
       const text = item.getAttribute("data-cursor-text");
       cursorText.innerHTML = `<span class="b2-regular color-white">${text}</span>`;
-      cursorText.classList.add("show-text");
+      cursorDot.classList.add("show-text");
     });
 
     item.addEventListener("mouseleave", () => {
       cursorText.innerHTML = "";
-      cursorText.classList.remove("show-text");
+      cursorDot.classList.remove("show-text");
     });
   });
 }
@@ -297,8 +298,6 @@ function bannerBall() {
       // markers: true,
 
       onUpdate: (self) => {
-        console.log(self.progress);
-
         if (self.progress > 0.26) {
           $(".hero__content").addClass("change");
         } else {
@@ -308,13 +307,75 @@ function bannerBall() {
     },
   });
 }
+
+function counterOnScroll() {
+  if ($(".section-services").length < 1) return;
+
+  $(".number").each(function () {
+    const $stat = $(this);
+    const patt = /(\D+)?(\d+(\.\d+)?)(\D+)?/;
+    const time = 0;
+    let result = patt.exec($stat.text());
+    let fresh = true;
+    let ticks;
+
+    if (!result) return;
+
+    result.shift();
+    result = result.filter((res) => res != null);
+
+    $stat.empty();
+
+    result.forEach((res) => {
+      if (isNaN(res)) {
+        $stat.append(`<span>${res}</span>`);
+      } else {
+        for (let i = 0; i < res.length; i++) {
+          $stat.append(`
+            <span data-value="${res[i]}">
+              <span>&nbsp;</span>
+              ${Array(parseInt(res[i]) + 1)
+                .join(0)
+                .split(0)
+                .map((x, j) => `<span>${j}</span>`)
+                .join("")}
+            </span>
+          `);
+        }
+      }
+    });
+
+    ticks = $stat.find("span[data-value]");
+
+    const activate = () => {
+      const top = $stat[0].getBoundingClientRect().top;
+      const offset = $(window).height() * 0.8;
+
+      setTimeout(() => {
+        fresh = false;
+      }, time);
+
+      if (top < offset) {
+        setTimeout(
+          () => {
+            ticks.each(function () {
+              const dist = parseInt($(this).attr("data-value")) + 1;
+              $(this).css("transform", `translateY(-${dist * 100}%)`);
+            });
+          },
+          fresh ? time : 0
+        );
+        $(window).off("scroll", activate);
+      }
+    };
+
+    $(window).on("scroll", activate);
+    activate();
+  });
+}
+
 function itemParalax() {
   gsap.registerPlugin(ScrollTrigger);
-
-  // let lenis;
-  // lenis = new Lenis();
-
-  // lenis.on("scroll", () => ScrollTrigger.update());
 
   gsap.utils.toArray(".js-parallax").forEach((wrap) => {
     const y = wrap.getAttribute("data-y") || 100;
@@ -417,6 +478,36 @@ function scrollBall() {
     .to(".projects-ball", { top: "70%", left: "10%", ease: "power1.inOut" })
     .to(".projects-ball", { top: "90%", left: "20%", ease: "power1.inOut" });
 }
+function sectionServices() {
+  gsap.to(".services-wrapper__right", {
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".section-services",
+      start: "-64px top",
+      end: "bottom bottom",
+      scrub: 1,
+      pin: ".services-wrapper__left",
+      // markers: true
+    },
+  });
+
+  // Animation di chuyển vòng tròn khi cuộn
+  const line = $(".service-ball");
+  const lineWrapper = $(".services-wrapper");
+  ScrollTrigger.create({
+    trigger: lineWrapper,
+    start: "top top",
+    end: "bottom top",
+    scrub: true,
+    // markers: true,
+    onUpdate: (self) => {
+      let progress = self.progress;
+      let moveY = progress * window.innerHeight;
+
+      gsap.to(line, { y: moveY, duration: 0.1, ease: "none" });
+    },
+  });
+}
 
 const init = () => {
   bannerBall();
@@ -426,10 +517,12 @@ const init = () => {
   scrollHeader();
   gallery();
   magicCursor();
+  counterOnScroll();
   setTimeout(() => {
     loading();
     textQuote();
     ourProjects();
+    sectionServices();
     itemParalax();
   }, 1000);
 };
