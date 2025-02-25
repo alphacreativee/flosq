@@ -1,0 +1,13 @@
+.partners {
+  &__container {
+    background-color: var(--color-black);
+    padding: 80px 0;
+    h3 {
+      padding-left: 40px;
+      margin-bottom: 40px;
+    }
+  }
+  .swiper-wrapper {
+    transition-timing-function: linear !important;
+  }
+}

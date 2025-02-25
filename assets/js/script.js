@@ -52,6 +52,7 @@ function handlePageVisibilityAndFavicon() {
 }
 
 function loading() {
+  if ($(".loading").length < 1) return;
   gsap.registerPlugin(ScrollTrigger);
 
   const tl = gsap.timeline({ defaults: { ease: "none" } });
@@ -572,10 +573,25 @@ function sectionServices() {
     },
   });
 }
+function swiperLogo() {
+  if ($(".swiper-logo").length < 1) return;
+  var swiper = new Swiper(".swiper-logo", {
+    slidesPerView: 6,
+    loop: true,
+    centeredSlides: true,
+    spaceBetween: 30,
 
+    speed: 4000,
+    autoplay: {
+      delay: 0,
+      enabled: true,
+    },
+  });
+}
 const init = () => {
   bannerBall();
   scrollBall();
+  swiperLogo();
   handlePageVisibilityAndFavicon();
   toggleMenu();
   scrollHeader();
