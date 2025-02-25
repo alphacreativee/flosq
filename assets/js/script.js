@@ -55,12 +55,56 @@ function loading() {
   gsap.registerPlugin(ScrollTrigger);
 
   const tl = gsap.timeline({ defaults: { ease: "none" } });
+  gsap.to(".dots", {
+    x: (index, target) => {
+      const logo = document.querySelector(".loading-overlay");
+      const logoRect = logo.getBoundingClientRect();
+      const dotRect = target.getBoundingClientRect();
+
+      // Lấy giá trị transform của logo
+      const logoTransform = getComputedStyle(logo).transform;
+      console.log(logoTransform);
+
+      let translateX = 0;
+
+      if (logoTransform !== "none") {
+        const matrix = new DOMMatrixReadOnly(logoTransform);
+        translateX = matrix.m41; // Lấy giá trị translateX
+      }
+
+      return (
+        logoRect.left +
+        logoRect.width / 2 -
+        dotRect.left -
+        dotRect.width / 2 -
+        translateX
+      );
+    },
+    y: (index, target) => {
+      const logo = document.querySelector(".loading-overlay");
+      const logoRect = logo.getBoundingClientRect();
+      const dotRect = target.getBoundingClientRect();
+
+      return (
+        logoRect.top + logoRect.height / 2 - dotRect.top - dotRect.height / 2
+      );
+    },
+    duration: 1,
+    ease: "power2.inOut",
+    stagger: 0.1,
+    onComplete: function () {
+      gsap.to(".dots", {
+        scale: 1,
+        transformOrigin: "center",
+      });
+    },
+  });
 
   gsap.fromTo(".loading-overlay", { opacity: 0 }, { opacity: 1, duration: 1 });
 
   tl.to(".loading-image", { opacity: 1, scale: 1, duration: 1 })
-    .to(".loading-overlay", { scale: 200, opacity: 1, duration: 1 }, "+=0.25")
-    .to(".loading", { opacity: 0, ease: "expo.inOut", duration: 1 }, "+=0.4");
+    .to(".loading-overlay", { scale: 200, opacity: 1, duration: 1 }, "+=0.5")
+    .to(".loading", { opacity: 0, ease: "expo.inOut", duration: 1 }, "+=0.7");
   // scaleY: 0, transformOrigin: "top", ease: "expo.inOut", duration: 1
 }
 
