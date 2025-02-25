@@ -58,4 +58,15 @@
     transform: translateY(17px);
     opacity: 0;
   }
+  &-overlay-white {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: var(--color-white);
+    top: 50%;
+    border-radius: 50%;
+    transform: translateY(17px);
+    opacity: 0;
+    z-index: 5;
+  }
 }
