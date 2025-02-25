@@ -482,7 +482,7 @@ function scrollBall() {
         path: [
           { x: "50vw", y: "100vh" },
           { x: "25vw", y: "150vh" },
-          { x: "75vw", y: "200vh" },
+          { x: "5vw", y: "200vh" },
           { x: "0vw", y: "300vh" },
         ],
       },
