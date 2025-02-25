@@ -400,8 +400,27 @@ function gallery() {
     },
   });
 }
+function scrollBall() {
+  let tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".section-projects",
+      start: "top 10%",
+      end: "bottom top",
+      scrub: 2,
+      // markers: true,
+      invalidateOnRefresh: true,
+    },
+  });
+
+  tl.to(".projects-ball", { top: "30%", left: "60%", ease: "power1.inOut" })
+    .to(".projects-ball", { top: "50%", left: "30%", ease: "power1.inOut" })
+    .to(".projects-ball", { top: "70%", left: "10%", ease: "power1.inOut" })
+    .to(".projects-ball", { top: "90%", left: "20%", ease: "power1.inOut" });
+}
+
 const init = () => {
   bannerBall();
+  scrollBall();
   handlePageVisibilityAndFavicon();
   toggleMenu();
   scrollHeader();

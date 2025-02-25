@@ -416,6 +416,7 @@ body {
 
 section.section-projects {
   position: relative;
+  overflow: hidden;
 }
 section.section-projects .projects-wrapper {
   padding: 120px 40px;
@@ -426,6 +427,7 @@ section.section-projects .section-tag {
   height: max-content;
   top: 120px;
   position: sticky;
+  z-index: 3;
 }
 section.section-projects.on-active .projects-filter {
   opacity: 1;
@@ -490,16 +492,49 @@ section.section-projects .projects-filter .filter-item .sub-menu li:hover, secti
   color: var(--color-primary);
 }
 section.section-projects .projects-ball {
-  width: 420px;
-  height: 420px;
-  background-color: var(--color-primary);
-  border-radius: 50%;
+  width: 400px;
+  height: 400px;
   position: absolute;
-  left: 40px;
-  top: 50vh;
-  transform: translateY(-50%);
+  left: 0;
+  top: 180px;
 }
-section.section-projects .projects-ball::after {
+section.section-projects .projects-ball:hover .ball-container span {
+  border-radius: 31% 45% 74% 35%/38% 56% 51% 87%;
+  animation: animate2 6s linear infinite;
+}
+section.section-projects .projects-ball:hover .ball-container span:nth-child(2) {
+  border-radius: 38% 62% 63% 37%/41% 44% 56% 59%;
+  animation: animate 10s linear infinite;
+}
+section.section-projects .projects-ball:hover .ball-container span:nth-child(3) {
+  border-radius: 32% 58% 69% 43%/48% 32% 59% 55%;
+  animation: animate2 4s linear infinite;
+}
+section.section-projects .projects-ball:hover .ball-container::after {
+  border-radius: 31% 45% 74% 35%/38% 56% 51% 87%;
+  animation: animate2 6s linear infinite;
+}
+section.section-projects .projects-ball .ball-container {
+  width: 100%;
+  position: relative;
+  height: 100%;
+}
+section.section-projects .projects-ball .ball-container span {
+  background-color: var(--color-primary);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 50%;
+}
+section.section-projects .projects-ball .ball-container span:nth-child(2) {
+  backdrop-filter: blur(30px);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+section.section-projects .projects-ball .ball-container span:nth-child(3) {
+  backdrop-filter: blur(30px);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+section.section-projects .projects-ball .ball-container::after {
   content: "";
   width: 100%;
   height: 100%;
@@ -578,6 +613,22 @@ section.section-projects .projects-list__right {
   margin-top: 40px;
 }
 
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes animate2 {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
 .section-map {
   position: relative;
 }

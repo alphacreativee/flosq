@@ -1,6 +1,6 @@
 section.section-projects {
   position: relative;
-
+  overflow: hidden;
   .projects-wrapper {
     padding: 120px 40px;
     position: relative;
@@ -11,6 +11,7 @@ section.section-projects {
     height: max-content;
     top: 120px;
     position: sticky;
+    z-index: 3;
   }
 
   &.on-active {
@@ -87,25 +88,62 @@ section.section-projects {
   }
 
   .projects-ball {
-    width: 420px;
-    height: 420px;
-    background-color: var(--color-primary);
-    border-radius: 50%;
+    width: 400px;
+    height: 400px;
+    // background-color: var(--color-primary);
+    // border-radius: 50%;
     position: absolute;
-    left: 40px;
-    top: 50vh;
-    transform: translateY(-50%);
-
-    &::after {
-      content: "";
+    left: 0;
+    top: 180px;
+    &:hover {
+      .ball-container span {
+        border-radius: 31% 45% 74% 35% / 38% 56% 51% 87%;
+        animation: animate2 6s linear infinite;
+      }
+      .ball-container span:nth-child(2) {
+        border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+        animation: animate 10s linear infinite;
+      }
+      .ball-container span:nth-child(3) {
+        border-radius: 32% 58% 69% 43% / 48% 32% 59% 55%;
+        animation: animate2 4s linear infinite;
+      }
+      .ball-container::after {
+        border-radius: 31% 45% 74% 35% / 38% 56% 51% 87%;
+        animation: animate2 6s linear infinite;
+      }
+    }
+    .ball-container {
       width: 100%;
+      position: relative;
       height: 100%;
-      position: absolute;
-      border-radius: 50%;
-      top: 0;
-      left: 0;
-      backdrop-filter: blur(30px);
-      background-color: rgba(255, 255, 255, 0.2);
+      span {
+        background-color: var(--color-primary);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        border-radius: 50%;
+        &:nth-child(2) {
+          backdrop-filter: blur(30px);
+          background-color: rgba(255, 255, 255, 0.2);
+        }
+        &:nth-child(3) {
+          backdrop-filter: blur(30px);
+          background-color: rgba(255, 255, 255, 0.2);
+        }
+      }
+
+      &::after {
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        border-radius: 50%;
+        top: 0;
+        left: 0;
+        backdrop-filter: blur(30px);
+        background-color: rgba(255, 255, 255, 0.2);
+      }
     }
   }
 
@@ -192,5 +230,22 @@ section.section-projects {
     &__right {
       margin-top: 40px;
     }
+  }
+}
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes animate2 {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }
