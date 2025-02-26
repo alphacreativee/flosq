@@ -215,16 +215,14 @@ function magicCursor() {
 
   moveCircle();
 
-  const items = document.querySelectorAll(
-    ".modal-backdrop, [data-cursor-text]"
-  );
+  const items = document.querySelectorAll(".modal, [data-cursor-text]");
   var cursorDot = document.querySelector(".magic-cursor .cursor");
   var cursorText = document.querySelector(".magic-cursor .cursor .text");
 
   items.forEach((item) => {
     item.addEventListener("mouseenter", () => {
       let text = "";
-      if (item.classList.contains("modal-backdrop")) {
+      if (item.classList.contains("modal")) {
         text = "Đóng";
       } else {
         text = item.getAttribute("data-cursor-text");
@@ -238,6 +236,18 @@ function magicCursor() {
     item.addEventListener("mouseleave", () => {
       cursorText.innerHTML = "";
       cursorDot.classList.remove("show-text");
+    });
+  });
+
+  const itemsContent = document.querySelectorAll(".modal-dialog");
+  itemsContent.forEach((item) => {
+    item.addEventListener("mouseenter", () => {
+      console.log("â");
+      cursorDot.classList.remove("show-text");
+    });
+    item.addEventListener("mouseleave", () => {
+      cursorText.innerHTML = `<span class="b2-regular color-white">Đóng</span>`;
+      cursorDot.classList.add("show-text");
     });
   });
 }
