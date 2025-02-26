@@ -34,7 +34,7 @@ function handlePageVisibilityAndFavicon() {
     isBlinking = true;
     const favicons = [
       "./assets/images/utilize/favicon_red.svg",
-      "./assets/images/utilize/favicon_black.svg",
+      "./assets/images/utilize/favicon_black.svg"
     ];
     let faviconIndex = 0;
 
@@ -96,9 +96,9 @@ function loading() {
     onComplete: function () {
       gsap.to(".dots", {
         scale: 1,
-        transformOrigin: "center",
+        transformOrigin: "center"
       });
-    },
+    }
   });
 
   gsap.fromTo(".loading-overlay", { opacity: 0 }, { opacity: 1, duration: 1 });
@@ -125,7 +125,7 @@ function toggleMenu() {
     y: 20,
     stagger: 0.1,
     duration: 0.6,
-    ease: "power2.out",
+    ease: "power2.out"
   }).from(
     ".menu__social ul li",
     {
@@ -133,7 +133,7 @@ function toggleMenu() {
       y: 20,
       stagger: 0.1,
       duration: 0.6,
-      ease: "power2.out",
+      ease: "power2.out"
     },
     "-=0.4"
   );
@@ -154,8 +154,8 @@ function scrollHeader() {
       trigger: "body",
       start: "top+=100 top",
       toggleClass: { targets: ".header", className: "scrolled" }, //
-      once: false,
-    },
+      once: false
+    }
   });
 }
 
@@ -175,8 +175,8 @@ function textQuote() {
         markers: false,
         scrub: 1,
         start: "top center",
-        end: "bottom center",
-      },
+        end: "bottom center"
+      }
     });
   });
 }
@@ -185,7 +185,7 @@ function magicCursor() {
 
   gsap.set(circle, {
     xPercent: -50,
-    yPercent: -50,
+    yPercent: -50
   });
 
   let mouseX = 0,
@@ -207,7 +207,7 @@ function magicCursor() {
       x: posX,
       y: posY,
       ease: "power3.out",
-      duration: 0.3,
+      duration: 0.3
     });
 
     requestAnimationFrame(moveCircle);
@@ -243,9 +243,17 @@ function magicCursor() {
 }
 
 function ourProjects() {
-  if (!$("section.section-projects").length) return;
+  if (
+    !$("section.section-projects").length &&
+    !$("section.section-members").length
+  )
+    return;
 
-  const itemProjects = $("section.section-projects .item");
+  const itemProjects = $(
+    "section.section-projects .item, section.section-members .item"
+  );
+
+  console.log(itemProjects);
 
   itemProjects.mousemove(function (e) {
     let offset = $(this).offset();
@@ -256,103 +264,133 @@ function ourProjects() {
     $(this).css("--y", y + "px");
   });
 
-  // filter
-  gsap.registerPlugin(ScrollTrigger);
-  gsap.to(".projects-list", {
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".projects-list",
-      // markers: true,
-      scrub: 1,
-      start: "top bottom",
-      end: "bottom bottom",
-      onUpdate: function (self) {
-        if (
-          self.progress >= 0.2 &&
-          !document
-            .querySelector(".section-projects")
-            .classList.contains("on-active")
-        ) {
-          document
-            .querySelector(".section-projects")
-            .classList.add("on-active");
-        } else if (self.progress <= 0 || self.progress >= 1) {
-          document
-            .querySelector(".section-projects")
-            .classList.remove("on-active");
-        }
-      },
-    },
-  });
-
-  // gsap.to(".section-projects", {
-  //   ease: "none",
-  //   scrollTrigger: {
-  //     trigger: ".section-projects",
-  //     markers: true,
-  //     scrub: 1,
-  //     start: "-64px top",
-  //     end: "bottom bottom",
-  //     onEnter: () => {
-  //       document.querySelector(".section-projects").classList.add("touch");
-  //     }
-  //   }
-  // });
-
-  let tl = gsap.timeline({ paused: true });
-  tl.from(
-    ".projects-filter .menu-item",
-    {
-      opacity: 0,
-      y: 20,
-      stagger: 0.1,
-      duration: 0.5,
+  if ($("section.section-projects").length) {
+    // filter
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.to(".projects-list", {
       ease: "none",
-    },
-    "-=0.3"
-  );
+      scrollTrigger: {
+        trigger: ".projects-list",
+        // markers: true,
+        scrub: 1,
+        start: "top bottom",
+        end: "bottom bottom",
+        onUpdate: function (self) {
+          if (
+            self.progress >= 0.2 &&
+            !document
+              .querySelector(".section-projects")
+              .classList.contains("on-active")
+          ) {
+            document
+              .querySelector(".section-projects")
+              .classList.add("on-active");
+          } else if (self.progress <= 0 || self.progress >= 1) {
+            document
+              .querySelector(".section-projects")
+              .classList.remove("on-active");
+          }
+        }
+      }
+    });
 
-  $(".projects-filter .filter-item").on("click", function () {
-    let thisFilterProject = $(this);
+    // gsap.to(".section-projects", {
+    //   ease: "none",
+    //   scrollTrigger: {
+    //     trigger: ".section-projects",
+    //     markers: true,
+    //     scrub: 1,
+    //     start: "-64px top",
+    //     end: "bottom bottom",
+    //     onEnter: () => {
+    //       document.querySelector(".section-projects").classList.add("touch");
+    //     }
+    //   }
+    // });
 
-    // $(".projects-filter .filter-item .sub-menu").removeClass("open");
-    thisFilterProject.siblings().find(".sub-menu").removeClass("open");
-    thisFilterProject.find(".sub-menu").toggleClass("open");
+    let tl = gsap.timeline({ paused: true });
+    tl.from(
+      ".projects-filter .menu-item",
+      {
+        opacity: 0,
+        y: 20,
+        stagger: 0.1,
+        duration: 0.5,
+        ease: "none"
+      },
+      "-=0.3"
+    );
 
-    let thisListItem = thisFilterProject.find(".menu-item");
+    $(".projects-filter .filter-item").on("click", function () {
+      let thisFilterProject = $(this);
 
-    if (thisFilterProject.find(".sub-menu").hasClass("open")) {
-      tl.restart();
-    } else {
-      tl.reverse();
-    }
-  });
+      // $(".projects-filter .filter-item .sub-menu").removeClass("open");
+      thisFilterProject.siblings().find(".sub-menu").removeClass("open");
+      thisFilterProject.find(".sub-menu").toggleClass("open");
 
-  // filter item on click
-  $(".projects-filter .menu-item").on("click", function () {
-    let thisItem = $(this);
+      let thisListItem = thisFilterProject.find(".menu-item");
 
-    let dataFilter = thisItem.data("filter");
-    let dataFilterValue = thisItem.data("filter-value");
-    let dataFilterText = thisItem.text();
+      if (thisFilterProject.find(".sub-menu").hasClass("open")) {
+        tl.restart();
+      } else {
+        tl.reverse();
+      }
+    });
 
-    thisItem.closest(".filter-item").find("span").text(dataFilterText);
-    updateLayout(dataFilter, dataFilterValue);
-  });
+    // filter item on click
+    $(".projects-filter .menu-item").on("click", function () {
+      let thisItem = $(this);
 
-  function updateLayout(dataFilter, dataFilterValue) {
-    $(".section-projects .projects-list .item").addClass("opacity");
-    $(
-      `.section-projects .projects-list .item[data-filter='${dataFilter}'][data-filter-value='${dataFilterValue}']`
-    ).removeClass("opacity");
+      let dataFilter = thisItem.data("filter");
+      let dataFilterValue = thisItem.data("filter-value");
+      let dataFilterText = thisItem.text();
 
-    if (dataFilterValue == "all") {
+      thisItem.closest(".filter-item").find("span").text(dataFilterText);
+      updateLayout(dataFilter, dataFilterValue);
+    });
+
+    function updateLayout(dataFilter, dataFilterValue) {
+      $(".section-projects .projects-list .item").addClass("opacity");
       $(
-        `.section-projects .projects-list .item[data-filter='${dataFilter}']`
+        `.section-projects .projects-list .item[data-filter='${dataFilter}'][data-filter-value='${dataFilterValue}']`
       ).removeClass("opacity");
+
+      if (dataFilterValue == "all") {
+        $(
+          `.section-projects .projects-list .item[data-filter='${dataFilter}']`
+        ).removeClass("opacity");
+      }
     }
   }
 }
+
+function ourMembers() {
+  if (!$("section.section-members").length) return;
+
+  let memberItems = $("section.section-members .item .item-wrapper");
+  memberItems.on("click", function () {
+    let thisItem = $(this);
+
+    // clear class open
+    $("section.section-members .item").removeClass("open");
+    $("section.section-members ul").removeClass("open");
+
+    // add class open
+    thisItem.closest(".item").addClass("open");
+    thisItem.closest("ul").addClass("open");
+  });
+
+  // close item
+  let itemContentShow = $("section.section-members .item-content-show");
+  itemContentShow.on("click", function () {
+    let thisContentShow = $(this);
+    console.log("click");
+
+    thisContentShow.closest(".item.open").removeClass("open");
+    thisContentShow.closest("ul.open").removeClass("open");
+  });
+}
+
 function bannerBall() {
   let yPercent = -135;
   gsap.set(".hero__ball", { yPercent: yPercent });
@@ -374,8 +412,8 @@ function bannerBall() {
         } else {
           $(".hero__content").removeClass("change");
         }
-      },
-    },
+      }
+    }
   });
 }
 
@@ -454,7 +492,7 @@ function itemParalax() {
     gsap.fromTo(
       wrap,
       {
-        y: y,
+        y: y
       },
       {
         y: 0,
@@ -464,9 +502,9 @@ function itemParalax() {
           end: "bottom top",
           scrub: 1,
           ease: "power4",
-          delay: 0.2,
+          delay: 0.2
           // markers: true
-        },
+        }
       }
     );
   });
@@ -484,7 +522,7 @@ function gallery() {
     trigger: ".gallery__container ",
     start: "top top",
     end: "bottom bottom",
-    pin: ".right",
+    pin: ".right"
   });
 
   details.forEach((detail, index) => {
@@ -493,7 +531,7 @@ function gallery() {
       .timeline()
       .to(photos[index], {
         clipPath: "inset(0% 0% 0% 0%)",
-        duration: 2.5,
+        duration: 2.5
       })
       .set(allPhotos[index], { autoAlpha: 0 });
     ScrollTrigger.create({
@@ -508,7 +546,7 @@ function gallery() {
       },
       onLeaveBack: () => {
         headline.classList.remove("active");
-      },
+      }
     });
   });
 
@@ -520,7 +558,7 @@ function gallery() {
     transformOrigin: "center center",
     xPercent: -50,
     yPercent: -50,
-    y: 0,
+    y: 0
   });
 
   // Animation di chuyển vòng tròn khi cuộn
@@ -535,7 +573,7 @@ function gallery() {
       let moveY = progress * window.innerHeight;
 
       gsap.to(line, { y: moveY, duration: 0.1, ease: "none" });
-    },
+    }
   });
 }
 function scrollBall() {
@@ -547,8 +585,8 @@ function scrollBall() {
       end: "bottom top",
       scrub: 2,
       // markers: true,
-      invalidateOnRefresh: true,
-    },
+      invalidateOnRefresh: true
+    }
   });
   tl.fromTo(
     ".projects-ball",
@@ -560,9 +598,9 @@ function scrollBall() {
           { x: "50vw", y: "100vh" },
           { x: "25vw", y: "150vh" },
           { x: "5vw", y: "200vh" },
-          { x: "0vw", y: "300vh" },
-        ],
-      },
+          { x: "0vw", y: "300vh" }
+        ]
+      }
     }
   );
   // tl.to(".projects-ball", { top: "30%", left: "60%", ease: "power1.inOut" })
@@ -579,9 +617,9 @@ function sectionServices() {
       start: "-64px top",
       end: "bottom bottom",
       scrub: 1,
-      pin: ".services-wrapper__left",
+      pin: ".services-wrapper__left"
       // markers: true
-    },
+    }
   });
 
   // Animation di chuyển vòng tròn khi cuộn
@@ -600,9 +638,11 @@ function sectionServices() {
       gsap.to(line, { y: moveY, duration: 0.1, ease: "none" });
 
       if (progress >= 0.93) {
-        document.querySelector(".section-projects").classList.add("touch");
+        document
+          .querySelector(".section-projects, .section-members")
+          .classList.add("touch");
       }
-    },
+    }
   });
 }
 function swiperLogo() {
@@ -616,13 +656,13 @@ function swiperLogo() {
     autoplay: {
       delay: 0,
       disableOnInteraction: true,
-      pauseOnMouseEnter: true,
+      pauseOnMouseEnter: true
     },
     breakpoints: {
       767: {
-        slidesPerView: 6,
-      },
-    },
+        slidesPerView: 6
+      }
+    }
   });
 }
 const init = () => {
@@ -639,6 +679,7 @@ const init = () => {
     loading();
     textQuote();
     ourProjects();
+    ourMembers();
     sectionServices();
     itemParalax();
   }, 1000);
