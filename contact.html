@@ -187,7 +187,11 @@
                           class="b2-bold-font color-black text-uppercase"
                           >Email*</label
                         >
-                        <input type="text" name="email" />
+                        <input
+                          type="email"
+                          name="email"
+                          pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
+                        />
                       </div>
                       <div class="input-group">
                         <label
