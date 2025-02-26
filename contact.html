@@ -75,11 +75,24 @@
           <div
             class="header__right d-flex align-items-center gap-big justify-content-end"
           >
-            <div class="header__lang">
-              <div class="header__head d-flex align-items-center gap-small">
-                <div class="value-select b2-font color-black">Tiếng Việt</div>
-                <div class="icon">
+            <div class="header__lang d-lg-flex align-items-center d-none">
+              <div class="header__btn-language dropdown-custom">
+                <div
+                  class="language__head dropdown-custom__btn d-flex align-items-center gap-small justify-content-between"
+                >
+                  <div
+                    class="value-select color-black b2-font dropdown-custom__text"
+                  >
+                    Tiếng Việt
+                  </div>
                   <img src="./assets/images/utilize/ic_arrow.svg" alt="" />
+                </div>
+                <div class="language__body dropdown-custom__menu">
+                  <a
+                    class="dropdown-custom__item language__item color-black b2-font"
+                  >
+                    English
+                  </a>
                 </div>
               </div>
             </div>
@@ -92,8 +105,38 @@
         </div>
         <div class="header__menu--sub">
           <div class="menu__sub--container">
-            <div class="menu__close btnClose">
-              <img src="./assets/images/utilize/ic_close.svg" alt="" />
+            <div
+              class="d-flex justify-content-between w-100 justify-content-lg-end"
+            >
+              <div
+                class="header__lang d-lg-flex align-items-center d-block d-lg-none"
+              >
+                <div class="header__btn-language dropdown-custom">
+                  <div
+                    class="language__head dropdown-custom__btn d-flex align-items-center gap-small justify-content-between"
+                  >
+                    <div
+                      class="value-select color-white b2-font dropdown-custom__text"
+                    >
+                      Tiếng Việt
+                    </div>
+                    <img
+                      src="./assets/images/utilize/ic_arrow_white.svg"
+                      alt=""
+                    />
+                  </div>
+                  <div class="language__body dropdown-custom__menu">
+                    <a
+                      class="dropdown-custom__item language__item color-white b2-font"
+                    >
+                      English
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="menu__close btnClose">
+                <img src="./assets/images/utilize/ic_close.svg" alt="" />
+              </div>
             </div>
             <div class="menu__container">
               <div class="menu__sub">
@@ -217,7 +260,7 @@
                           class="b2-bold-font color-black text-uppercase"
                           >MESSAGE</label
                         >
-                        <textarea name="message" rows="4" cols="50"> </textarea>
+                        <textarea name="message" rows="4" cols="5"> </textarea>
                       </div>
                     </div>
                   </div>
