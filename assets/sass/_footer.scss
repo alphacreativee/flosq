@@ -6,25 +6,66 @@ footer {
       background-image: url(../images/notutilize/bg-footer.png);
       background-size: cover;
       background-position: top;
+      @media (max-width: 991px) {
+        padding: 64px 24px 24px;
+      }
     }
 
     &-top {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-
+      @media (max-width: 991px) {
+        flex-direction: column;
+      }
       &__logo {
         width: 138px;
         height: auto;
+        @media (max-width: 991px) {
+          margin-bottom: 64px;
+        }
       }
 
       &__menu {
         display: flex;
         gap: 115px;
         align-items: flex-start;
-
+        @media (max-width: 991px) {
+          flex-direction: column;
+          gap: 48px 0;
+        }
         .menu {
           max-width: 400px;
+          @media (max-width: 991px) {
+            max-width: 100%;
+            width: 100%;
+
+            &:last-child {
+              display: grid;
+              grid-template-areas: "a b" "c c";
+              gap: 32px;
+              .menu-item:first-child {
+                grid-area: a;
+                ul {
+                  display: flex;
+                }
+              }
+              .menu-item:nth-child(2) {
+                grid-area: b;
+                margin: 0;
+                ul {
+                  display: flex;
+                }
+              }
+              .menu-item:nth-child(3) {
+                grid-area: c;
+
+                ul {
+                  grid-template-columns: 1fr;
+                }
+              }
+            }
+          }
         }
 
         .menu-item {
@@ -35,16 +76,37 @@ footer {
           &:not(:first-child) {
             margin-top: 16px;
           }
-
+          @media (max-width: 991px) {
+            flex-direction: column;
+            margin: 0;
+          }
           p {
             min-width: 80px;
+            @media (max-width: 991px) {
+              margin-bottom: 24px;
+            }
           }
-
+          ul {
+            @media (max-width: 991px) {
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 16px 40px;
+              width: 100%;
+            }
+          }
           li {
             min-width: 120px;
-
+            @media (max-width: 991px) {
+              min-width: auto;
+              a {
+                white-space: nowrap;
+              }
+            }
             &:not(:first-child) {
               margin-top: 16px;
+              @media (max-width: 991px) {
+                margin: 0;
+              }
             }
           }
         }
@@ -55,7 +117,9 @@ footer {
       width: 100%;
       margin-top: 50px;
       margin-bottom: 25px;
-
+      @media (max-width: 991px) {
+        margin-top: 24px;
+      }
       img {
         width: 100%;
         height: auto;
@@ -68,7 +132,11 @@ footer {
       align-items: center;
       justify-content: space-between;
       margin-top: 10px;
-
+      @media (max-width: 991px) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+      }
       p {
         color: var(--color-white);
       }

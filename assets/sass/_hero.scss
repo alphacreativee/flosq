@@ -4,6 +4,11 @@
   overflow: hidden;
   padding: 0 40px;
   position: relative;
+  &.without-home {
+    .hero__content--one {
+      transform: translate(-50%, -50%) scale(1) !important;
+    }
+  }
 
   &__content {
     height: 100vh;

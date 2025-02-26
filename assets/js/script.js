@@ -609,6 +609,7 @@ function scrollBall() {
   //   .to(".projects-ball", { top: "90%", left: "20%", ease: "power1.inOut" });
 }
 function sectionServices() {
+  if ($(".services-wrapper__left").length < 1) return;
   gsap.to(".services-wrapper__right", {
     ease: "none",
     scrollTrigger: {
@@ -647,15 +648,20 @@ function sectionServices() {
 function swiperLogo() {
   if ($(".swiper__logo").length < 1) return;
   var swiper = new Swiper(".swiper__logo", {
-    slidesPerView: 6,
+    slidesPerView: 3,
     loop: true,
-    centeredSlides: true,
     spaceBetween: 30,
 
-    speed: 4000,
+    speed: 2000,
     autoplay: {
       delay: 0,
-      enabled: true
+      disableOnInteraction: true,
+      pauseOnMouseEnter: true
+    },
+    breakpoints: {
+      767: {
+        slidesPerView: 6
+      }
     }
   });
 }
