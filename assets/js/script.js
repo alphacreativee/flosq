@@ -356,16 +356,16 @@ function ourProjects() {
 function bannerBall() {
   let yPercent = -135;
   gsap.set(".hero__ball", { yPercent: yPercent });
-
+  let yBasic = $(".hero").hasClass("without-home") ? 0 : 60;
   gsap.to(".hero__ball", {
-    yPercent: 60,
+    yPercent: yBasic,
     scrollTrigger: {
       trigger: ".hero",
       start: "top top",
       end: "+=100%",
       scrub: true,
       pin: true,
-      pinSpacing: true,
+      // pinSpacing: true,
       // markers: true,
 
       onUpdate: (self) => {
