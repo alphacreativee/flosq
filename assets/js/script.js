@@ -37,7 +37,7 @@ function handlePageVisibilityAndFavicon() {
     isBlinking = true;
     const favicons = [
       "./assets/images/utilize/favicon_red.svg",
-      "./assets/images/utilize/favicon_black.svg"
+      "./assets/images/utilize/favicon_black.svg",
     ];
     let faviconIndex = 0;
 
@@ -99,9 +99,9 @@ function loading() {
     onComplete: function () {
       gsap.to(".dots", {
         scale: 1,
-        transformOrigin: "center"
+        transformOrigin: "center",
       });
-    }
+    },
   });
 
   gsap.fromTo(".loading-overlay", { opacity: 0 }, { opacity: 1, duration: 1 });
@@ -128,7 +128,7 @@ function toggleMenu() {
     y: 20,
     stagger: 0.1,
     duration: 0.6,
-    ease: "power2.out"
+    ease: "power2.out",
   }).from(
     ".menu__social ul li",
     {
@@ -136,7 +136,7 @@ function toggleMenu() {
       y: 20,
       stagger: 0.1,
       duration: 0.6,
-      ease: "power2.out"
+      ease: "power2.out",
     },
     "-=0.4"
   );
@@ -157,8 +157,8 @@ function scrollHeader() {
       trigger: "body",
       start: "top+=100 top",
       toggleClass: { targets: ".header", className: "scrolled" }, //
-      once: false
-    }
+      once: false,
+    },
   });
 }
 
@@ -178,8 +178,8 @@ function textQuote() {
         markers: false,
         scrub: 1,
         start: "top center",
-        end: "bottom center"
-      }
+        end: "bottom center",
+      },
     });
   });
 }
@@ -188,7 +188,7 @@ function magicCursor() {
 
   gsap.set(circle, {
     xPercent: -50,
-    yPercent: -50
+    yPercent: -50,
   });
 
   let mouseX = 0,
@@ -210,7 +210,7 @@ function magicCursor() {
       x: posX,
       y: posY,
       ease: "power3.out",
-      duration: 0.3
+      duration: 0.3,
     });
 
     requestAnimationFrame(moveCircle);
@@ -301,8 +301,8 @@ function ourProjects() {
               .querySelector(".section-projects")
               .classList.remove("on-active");
           }
-        }
-      }
+        },
+      },
     });
 
     // gsap.to(".section-projects", {
@@ -327,7 +327,7 @@ function ourProjects() {
         y: 20,
         stagger: 0.1,
         duration: 0.5,
-        ease: "none"
+        ease: "none",
       },
       "-=0.3"
     );
@@ -489,14 +489,14 @@ function ourProjects() {
         `${columnClass} .item`,
         {
           opacity: 0,
-          y: 30 // Starting position: 30px below the final position
+          y: 30, // Starting position: 30px below the final position
         },
         {
           opacity: 1, // End with opacity: 1 (fully visible)
           y: 0, // End with transform: none (reset the translation)
           stagger: 0.2, // Delay for each item to appear one after another
           duration: 0.8, // Duration of the animation
-          ease: "power2.out" // Smooth ease out effect
+          ease: "power2.out", // Smooth ease out effect
         }
       );
     }
@@ -553,8 +553,8 @@ function bannerBall() {
           $(".hero__content").removeClass("change");
           $(".hero__ball").removeClass("change");
         }
-      }
-    }
+      },
+    },
   });
 }
 
@@ -633,7 +633,7 @@ function itemParalax() {
     gsap.fromTo(
       wrap,
       {
-        y: y
+        y: y,
       },
       {
         y: 0,
@@ -643,9 +643,9 @@ function itemParalax() {
           end: "bottom top",
           scrub: 1,
           ease: "power4",
-          delay: 0.2
+          delay: 0.2,
           // markers: true
-        }
+        },
       }
     );
   });
@@ -664,7 +664,7 @@ function gallery() {
     // start: `top bottom-=${itemHeight}`,
     start: "top 10%",
     end: "bottom bottom",
-    pin: ".right"
+    pin: ".right",
   });
 
   details.forEach((detail, index) => {
@@ -673,7 +673,7 @@ function gallery() {
       .timeline()
       .to(photos[index], {
         clipPath: "inset(0% 0% 0% 0%)",
-        duration: 2.5
+        duration: 2.5,
       })
       .set(allPhotos[index], { autoAlpha: 0 });
     ScrollTrigger.create({
@@ -688,7 +688,7 @@ function gallery() {
       },
       onLeaveBack: () => {
         headline.classList.remove("active");
-      }
+      },
     });
   });
 
@@ -700,7 +700,7 @@ function gallery() {
     transformOrigin: "center center",
     xPercent: -50,
     yPercent: -50,
-    y: 0
+    y: 0,
   });
 
   // Animation di chuyển vòng tròn khi cuộn
@@ -718,7 +718,7 @@ function gallery() {
     },
     onComplete: () => {
       gsap.to(line, { scale: 0, ease: "none" });
-    }
+    },
   });
 }
 function scrollBall() {
@@ -730,8 +730,8 @@ function scrollBall() {
       end: "bottom top",
       scrub: 2,
       // markers: true,
-      invalidateOnRefresh: true
-    }
+      invalidateOnRefresh: true,
+    },
   });
   tl.fromTo(
     ".projects-ball",
@@ -743,9 +743,9 @@ function scrollBall() {
           { x: "50vw", y: "100vh" },
           { x: "25vw", y: "150vh" },
           { x: "5vw", y: "200vh" },
-          { x: "0vw", y: "300vh" }
-        ]
-      }
+          { x: "0vw", y: "300vh" },
+        ],
+      },
     }
   );
   // tl.to(".projects-ball", { top: "30%", left: "60%", ease: "power1.inOut" })
@@ -763,8 +763,8 @@ function sectionServices() {
       start: "top top",
       end: "bottom bottom",
       scrub: 1,
-      pin: ".services-wrapper__left"
-    }
+      pin: ".services-wrapper__left",
+    },
   });
 
   // Animation di chuyển vòng tròn khi cuộn
@@ -789,7 +789,7 @@ function sectionServices() {
           .querySelector(".section-projects, .section-members")
           .classList.add("touch");
       }
-    }
+    },
   });
 }
 function swiperLogo() {
@@ -803,13 +803,13 @@ function swiperLogo() {
     autoplay: {
       delay: 0,
       disableOnInteraction: true,
-      pauseOnMouseEnter: true
+      pauseOnMouseEnter: true,
     },
     breakpoints: {
       767: {
-        slidesPerView: 6
-      }
-    }
+        slidesPerView: 6,
+      },
+    },
   });
 }
 function toggleDropdown() {
@@ -869,6 +869,8 @@ function toggleDropdown() {
   });
 }
 function blob() {
+  gsap.registerPlugin(ScrollTrigger);
+
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
   const w = canvas.width;
@@ -883,7 +885,8 @@ function blob() {
       this.mouse = { x: w / 2, y: h / 2 };
       this.targetMouse = { x: w / 2, y: h / 2 };
       this.ease = 0.05;
-      this.scrollOffset = 0; // Biến lưu vị trí zigzag
+      this.scrollOffset = 0;
+      this.time = 0; // Biến thời gian cho dao động tự nhiên
       this.initPoints();
       this.addListeners();
       this.addScrollEffect();
@@ -898,8 +901,11 @@ function blob() {
           y: h / 2 + Math.sin(angle) * this.radius,
           baseX: Math.cos(angle) * this.radius,
           baseY: Math.sin(angle) * this.radius,
-          offset: 0,
-          velocity: 0
+          offsetX: 0,
+          offsetY: 0,
+          velocityX: 0,
+          velocityY: 0,
+          angle: angle,
         });
       }
     }
@@ -913,30 +919,26 @@ function blob() {
     }
 
     addScrollEffect() {
-      // Dùng GSAP để tạo hiệu ứng zigzag khi scroll
       gsap.to(this, {
         scrollTrigger: {
           trigger: "body",
           start: "top top",
           end: "bottom bottom",
-          scrub: 1, // Chuyển động theo tốc độ scroll
-          marker: true,
+          scrub: 1,
           onUpdate: (self) => {
-            // Tính toán vị trí zigzag dựa trên scroll
-            const progress = self.progress; // Từ 0 đến 1
-            this.scrollOffset = Math.sin(progress * Math.PI * 4) * 50; // Zigzag với biên độ 50px, tần số 4 lần
-          }
-        }
+            const progress = self.progress;
+            this.scrollOffset = Math.sin(progress * Math.PI * 4) * 50;
+          },
+        },
       });
     }
 
     update() {
-      // Trượt mượt vị trí chuột
       this.mouse.x += (this.targetMouse.x - this.mouse.x) * this.ease;
       this.mouse.y += (this.targetMouse.y - this.mouse.y) * this.ease;
+      this.time += 0.05; // Tăng thời gian cho dao động
 
       this.points.forEach((point) => {
-        // Tính khoảng cách từ chuột đến điểm
         const dx = this.mouse.x - point.x;
         const dy = this.mouse.y - point.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
@@ -944,22 +946,42 @@ function blob() {
 
         // Hiệu ứng hover
         if (dist < maxDist) {
-          const force = ((maxDist - dist) / maxDist) * 5;
-          point.velocity += force * (dist < 75 ? -0.05 : 0.05);
+          const force = ((maxDist - dist) / maxDist) * 7;
+          const angleToMouse = Math.atan2(dy, dx);
+          point.velocityX += Math.cos(angleToMouse) * force * 0.03;
+          point.velocityY += Math.sin(angleToMouse) * force * 0.03;
         }
 
-        // Cập nhật vị trí với lực cản
-        point.velocity *= 0.85;
-        point.offset += point.velocity;
-        point.offset *= 0.95;
+        // Dao động tự nhiên dùng sin
+        const oscillation = Math.sin(this.time + point.angle) * 10; // Biên độ 10px
+        point.velocityX += Math.cos(point.angle) * oscillation * 0.01;
+        point.velocityY += Math.sin(point.angle) * oscillation * 0.01;
 
-        // Áp dụng scroll zigzag vào trục X
-        point.x = w / 2 + point.baseX + point.offset + this.scrollOffset;
-        point.y = h / 2 + point.baseY + point.offset;
+        // Lực đàn hồi để giữ hình tròn
+        const currentRadius = Math.sqrt(
+          point.offsetX * point.offsetX + point.offsetY * point.offsetY
+        );
+        const targetRadius = this.radius;
+        const radiusDiff = targetRadius - currentRadius;
+        const spring = 0.05;
+        point.velocityX += Math.cos(point.angle) * radiusDiff * spring;
+        point.velocityY += Math.sin(point.angle) * radiusDiff * spring;
 
-        // Dao động ngẫu nhiên nhẹ
+        // Cập nhật vị trí
+        point.velocityX *= 0.9;
+        point.velocityY *= 0.9;
+        point.offsetX += point.velocityX;
+        point.offsetY += point.velocityY;
+        point.offsetX *= 0.95;
+        point.offsetY *= 0.95;
+
+        point.x = w / 2 + point.baseX + point.offsetX + this.scrollOffset;
+        point.y = h / 2 + point.baseY + point.offsetY;
+
+        // Dao động ngẫu nhiên nhỏ
         if (Math.random() > 0.98) {
-          point.velocity += (Math.random() - 0.5) * 0.2;
+          point.velocityX += (Math.random() - 0.5) * 0.1;
+          point.velocityY += (Math.random() - 0.5) * 0.1;
         }
       });
     }
@@ -992,8 +1014,7 @@ function blob() {
     }
   }
 
-  // Khởi tạo blob
-  const blob = new Blob(150, 20, "#e82c2a");
+  const blob = new Blob(95, 50, "#e82c2a");
   blob.animate();
 }
 const init = () => {

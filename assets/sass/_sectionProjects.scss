@@ -118,63 +118,24 @@ section.section-projects {
   .projects-ball {
     width: 400px;
     height: 400px;
-    // background-color: var(--color-primary);
-    // border-radius: 50%;
+    background-color: var(--color-primary);
+    border-radius: 50%;
     position: absolute;
     left: 40px;
     top: 180px;
+    animation: blob 30s ease-in-out infinite alternate both;
     canvas {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      padding: 20px;
     }
-    &::after {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      backdrop-filter: blur(30px);
-      background-color: rgba(255, 255, 255, 0.2);
-    }
-    &:hover {
-      .ball-container span {
-        border-radius: 31% 45% 74% 35% / 38% 56% 51% 87%;
-        animation: animate2 6s linear infinite;
-      }
-      .ball-container span:nth-child(2) {
-        border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
-        animation: animate 10s linear infinite;
-      }
-      .ball-container span:nth-child(3) {
-        border-radius: 32% 58% 69% 43% / 48% 32% 59% 55%;
-        animation: animate2 4s linear infinite;
-      }
-      .ball-container::after {
-        border-radius: 31% 45% 74% 35% / 38% 56% 51% 87%;
-        animation: animate2 6s linear infinite;
-      }
-    }
+
     .ball-container {
       width: 100%;
       position: relative;
       height: 100%;
-      span {
-        background-color: var(--color-primary);
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        border-radius: 50%;
-        &:nth-child(2) {
-          backdrop-filter: blur(30px);
-          background-color: rgba(255, 255, 255, 0.2);
-        }
-        &:nth-child(3) {
-          backdrop-filter: blur(30px);
-          background-color: rgba(255, 255, 255, 0.2);
-        }
-      }
-
+      overflow: hidden;
       &::after {
         content: "";
         width: 100%;
@@ -185,6 +146,7 @@ section.section-projects {
         left: 0;
         backdrop-filter: blur(30px);
         background-color: rgba(255, 255, 255, 0.2);
+        animation: blob 30s ease-in-out infinite alternate both;
       }
     }
   }
@@ -301,20 +263,24 @@ section.section-projects {
     }
   }
 }
-@keyframes animate {
-  0% {
-    transform: rotate(0deg);
-  }
+@keyframes blob {
+  0%,
   100% {
-    transform: rotate(360deg);
+    border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
   }
-}
-
-@keyframes animate2 {
-  0% {
-    transform: rotate(360deg);
+  14% {
+    border-radius: 40% 60% 54% 46% / 49% 60% 40% 51%;
   }
-  100% {
-    transform: rotate(0deg);
+  28% {
+    border-radius: 54% 46% 38% 62% / 49% 70% 30% 51%;
+  }
+  42% {
+    border-radius: 61% 39% 55% 45% / 61% 38% 62% 39%;
+  }
+  56% {
+    border-radius: 61% 39% 67% 33% / 70% 50% 50% 30%;
+  }
+  84% {
+    border-radius: 46% 54% 50% 50% / 35% 61% 39% 65%;
   }
 }
