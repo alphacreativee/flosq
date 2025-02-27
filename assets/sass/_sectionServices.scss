@@ -78,8 +78,8 @@ section.section-services {
 
     &__right {
       width: 50%;
-      padding-top: 56px;
-      padding-bottom: 56px;
+      padding-top: 120px;
+      padding-bottom: 120px;
 
       .list-item {
         width: 60%;
@@ -117,7 +117,9 @@ section.section-services {
             &:hover {
               &::after {
                 width: 300%;
-                height: 300%;
+                height: 400%;
+                // aspect-ratio: 438 / 246;
+                // height: unset;
                 opacity: 1;
                 transition: width 0.6s, height 0.6s;
               }
@@ -135,7 +137,7 @@ section.section-services {
           }
 
           &:not(:first-child) {
-            margin-top: 115px;
+            margin-top: 120px;
           }
         }
       }

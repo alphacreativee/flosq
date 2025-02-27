@@ -569,8 +569,23 @@ section.section-projects {
 section.section-projects.ver-2 .projects-list .item::after {
   background-color: var(--color-black);
 }
-section.section-projects.touch {
+section.section-projects::after {
+  content: "";
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
   background-color: var(--color-white);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  opacity: 0;
+  transition: width 2s ease, height 2s ease, opacity 0.4s ease;
+}
+section.section-projects.touch::after {
+  opacity: 1;
+  width: 400%;
+  height: 200%;
 }
 section.section-projects .projects-wrapper {
   padding: 120px 40px;
@@ -1312,8 +1327,8 @@ section.section-services .services-wrapper__left .num-counter .number:nth-child(
 }
 section.section-services .services-wrapper__right {
   width: 50%;
-  padding-top: 56px;
-  padding-bottom: 56px;
+  padding-top: 120px;
+  padding-bottom: 120px;
 }
 section.section-services .services-wrapper__right .list-item {
   width: 60%;
@@ -1348,7 +1363,7 @@ section.section-services .services-wrapper__right .list-item .item-image::after 
 }
 section.section-services .services-wrapper__right .list-item .item-image:hover::after {
   width: 300%;
-  height: 300%;
+  height: 400%;
   opacity: 1;
   transition: width 0.6s, height 0.6s;
 }
@@ -1361,7 +1376,7 @@ section.section-services .services-wrapper__right .list-item .item-title {
   margin-top: 24px;
 }
 section.section-services .services-wrapper__right .list-item .item:not(:first-child) {
-  margin-top: 115px;
+  margin-top: 120px;
 }
 
 .services-modal .modal-content {
