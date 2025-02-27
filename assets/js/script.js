@@ -533,11 +533,11 @@ function ourMembers() {
 }
 
 function bannerBall() {
-  let yPercent = -135;
+  let yPercent = -125;
   gsap.set(".hero__ball", { yPercent: yPercent });
   let yBasic = $(".hero").hasClass("without-home") ? 0 : 60;
   gsap.to(".hero__ball", {
-    yPercent: yBasic,
+    yPercent: 0,
     scrollTrigger: {
       trigger: ".hero",
       start: "top top",
@@ -550,8 +550,10 @@ function bannerBall() {
       onUpdate: (self) => {
         if (self.progress > 0.26) {
           $(".hero__content").addClass("change");
+          $(".hero__ball").addClass("change");
         } else {
           $(".hero__content").removeClass("change");
+          $(".hero__ball").removeClass("change");
         }
       }
     }
