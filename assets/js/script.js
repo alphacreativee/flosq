@@ -1,6 +1,9 @@
 import { preloadImages } from "../libs/utils.js";
 let lenis;
 Splitting();
+("use strict");
+$ = jQuery;
+
 function handlePageVisibilityAndFavicon() {
   const originalTitle = document.title;
   let faviconInterval;
@@ -351,25 +354,153 @@ function ourProjects() {
     $(".projects-filter .menu-item").on("click", function () {
       let thisItem = $(this);
 
+      // Add 'active' class to the selected menu item and remove it from siblings
+      thisItem.addClass("active");
+      thisItem.siblings().removeClass("active");
+
+      // Get the filter data
       let dataFilter = thisItem.data("filter");
       let dataFilterValue = thisItem.data("filter-value");
       let dataFilterText = thisItem.text();
 
+      console.log(dataFilter + " " + dataFilterValue);
+
+      // Update the filter label text
       thisItem.closest(".filter-item").find("span").text(dataFilterText);
-      updateLayout(dataFilter, dataFilterValue);
+
+      // Call the updateLayout function to filter and reorder the projects
+      updateLayout();
     });
 
-    function updateLayout(dataFilter, dataFilterValue) {
-      $(".section-projects .projects-list .item").addClass("opacity");
-      $(
-        `.section-projects .projects-list .item[data-filter='${dataFilter}'][data-filter-value='${dataFilterValue}']`
-      ).removeClass("opacity");
+    function updateLayout() {
+      // Set default filter values
+      let dataFilterProject = "all";
+      let dataFilterType = "all";
+      let dataFilterStatus = "all";
 
-      if (dataFilterValue == "all") {
-        $(
-          `.section-projects .projects-list .item[data-filter='${dataFilter}']`
-        ).removeClass("opacity");
+      // Get the selected filter values from the filter items
+      let filterProject = $(
+        ".projects-filter .filter-item[filter-type='project'] .menu-item.active"
+      );
+      dataFilterProject = filterProject.data("filter-value");
+
+      let filterType = $(
+        ".projects-filter .filter-item[filter-type='type'] .menu-item.active"
+      );
+      dataFilterType = filterType.data("filter-value");
+
+      let filterStatus = $(
+        ".projects-filter .filter-item[filter-type='status'] .menu-item.active"
+      );
+      dataFilterStatus = filterStatus.data("filter-value");
+
+      // Filter each column independently (left and right)
+      filterColumn(
+        ".projects-list__left",
+        dataFilterProject,
+        dataFilterType,
+        dataFilterStatus
+      );
+      filterColumn(
+        ".projects-list__right",
+        dataFilterProject,
+        dataFilterType,
+        dataFilterStatus
+      );
+    }
+
+    // Function to filter and reorder items in each column
+    function filterColumn(
+      columnClass,
+      dataFilterProject,
+      dataFilterType,
+      dataFilterStatus
+    ) {
+      let filterString = "";
+
+      // Build the filter string based on selected filters
+      if (dataFilterProject !== "all") {
+        filterString += `project=${dataFilterProject},`;
       }
+      if (dataFilterType !== "all") {
+        filterString += `type=${dataFilterType},`;
+      }
+      if (dataFilterStatus !== "all") {
+        filterString += `status=${dataFilterStatus},`;
+      }
+
+      // Remove the trailing comma
+      filterString = filterString.slice(0, -1);
+
+      // Filter items in the current column (ul)
+      let columnItems = $(`${columnClass} .item`);
+
+      // Hide all items by default
+      columnItems.addClass("opacity");
+
+      // Show the items that match the constructed filter string
+      columnItems.each(function () {
+        let item = $(this);
+        let itemDataFilter = item.data("filter");
+
+        // If the item matches the filter, remove the "opacity" class to display it
+        if (itemDataFilter.includes(filterString)) {
+          item.removeClass("opacity");
+        }
+      });
+
+      // If "all" filters are selected, show all items
+      if (
+        dataFilterProject === "all" &&
+        dataFilterType === "all" &&
+        dataFilterStatus === "all"
+      ) {
+        columnItems.removeClass("opacity");
+      }
+
+      // After filtering, reorder items in the column: move active filter items to the top
+      reorderItemsInColumn(columnClass);
+
+      applyGSAPAnimation(columnClass);
+    }
+
+    // Function to reorder items in a column based on the active filter
+    function reorderItemsInColumn(columnClass) {
+      let items = $(`${columnClass} .item`);
+
+      // Separate active and non-active items
+      let activeItems = [];
+      let inactiveItems = [];
+
+      items.each(function () {
+        let item = $(this);
+        // Check if the item is visible (i.e., matches the filter)
+        if (!item.hasClass("opacity")) {
+          activeItems.push(item); // Item that matches the filters
+        } else {
+          inactiveItems.push(item); // Item that doesn't match the filters
+        }
+      });
+
+      $(columnClass).empty().append(activeItems).append(inactiveItems);
+    }
+
+    function applyGSAPAnimation(columnClass) {
+      // GSAP animation for opacity and translateY effect
+      gsap.fromTo(
+        `${columnClass} .item`,
+        {
+          opacity: 0,
+          y: 30, // Starting position: 30px below the final position
+        },
+        {
+          opacity: 1, // End with opacity: 1 (fully visible)
+          y: 0, // End with transform: none (reset the translation)
+          stagger: 0.2, // Delay for each item to appear one after another
+          duration: 0.8, // Duration of the animation
+          ease: "power2.out", // Smooth ease out effect
+        }
+      );
     }
   }
 }
@@ -536,7 +667,6 @@ function gallery() {
     start: "top 10%",
     end: "bottom bottom",
     pin: ".right",
-    markers: true,
   });
 
   details.forEach((detail, index) => {

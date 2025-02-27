@@ -83,9 +83,11 @@ section.section-projects {
       cursor: pointer;
       padding: 12px 0;
       position: relative;
+      line-height: 24px;
 
       span {
         font-weight: 600;
+        margin-left: 3px;
       }
 
       .sub-menu {
@@ -117,6 +119,10 @@ section.section-projects {
           text-transform: uppercase;
           width: 100%;
           text-align: center;
+
+          font-size: 14px;
+          line-height: 24px;
+          font-weight: 600;
 
           &:hover,
           &.active {
@@ -192,13 +198,25 @@ section.section-projects {
     grid-template-columns: repeat(2, 1fr);
     column-gap: 32px;
 
+    ul {
+      &.pending {
+        .item {
+          transform: translateY(30px);
+          opacity: 0;
+        }
+      }
+    }
+
     .item {
       position: relative;
       overflow: hidden;
+      // transition: all 0.5s ease;
+      // transform: none;
+      // opacity: 1;
 
       &.opacity {
         pointer-events: none;
-        opacity: 0.5;
+        opacity: 0.5 !important;
       }
 
       &-img {
