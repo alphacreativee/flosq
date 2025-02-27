@@ -402,11 +402,11 @@ function ourMembers() {
 }
 
 function bannerBall() {
-  let yPercent = -125;
+  let yPercent = -115;
   gsap.set(".hero__ball", { yPercent: yPercent });
   let yBasic = $(".hero").hasClass("without-home") ? 0 : 60;
   gsap.to(".hero__ball", {
-    yPercent: 0,
+    yPercent: 40,
     scrollTrigger: {
       trigger: ".hero",
       start: "top top",
@@ -526,15 +526,17 @@ function gallery() {
 
   const details = gsap.utils.toArray(".gallery__content:not(:first-child)");
   const photos = gsap.utils.toArray(".gallery__img:not(:first-child)");
-
+  const itemHeight = document.querySelector(".gallery__img").offsetHeight;
   gsap.set(photos, { clipPath: "inset(100% 0% 0% 0%)" });
 
   const allPhotos = gsap.utils.toArray(".gallery__img");
   ScrollTrigger.create({
     trigger: ".gallery__container ",
-    start: "top top",
+    // start: `top bottom-=${itemHeight}`,
+    start: "top 10%",
     end: "bottom bottom",
     pin: ".right",
+    markers: true,
   });
 
   details.forEach((detail, index) => {

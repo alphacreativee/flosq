@@ -1,21 +1,30 @@
 .gallery {
   padding-top: 80px;
   // padding-right: 40px;
-
+  @media (max-width: 767px) {
+    padding-top: 64px;
+  }
   &__contents {
     padding-left: 127px;
     padding-right: 95px;
     width: 100%;
+    @media (max-width: 767px) {
+      padding: 0;
+    }
   }
   &__title {
     padding-left: 40px;
     margin-bottom: 84px;
+    @media (max-width: 767px) {
+      padding-left: 24px;
+      margin-bottom: 48px;
+    }
   }
   &__content {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    // justify-content: center;
 
     h2 {
       margin-bottom: 32px;
@@ -28,9 +37,12 @@
   }
   &__imgs {
     width: calc(100% - 127px);
-    height: 40vw;
+    aspect-ratio: 1;
     position: relative;
     overflow: hidden;
+    @media (max-width: 767px) {
+      display: none;
+    }
   }
   &__img {
     position: absolute;
@@ -42,6 +54,9 @@
 
 .left {
   width: 50%;
+  @media (max-width: 767px) {
+    width: calc(100% - 64px);
+  }
 }
 
 .right {
@@ -50,8 +65,12 @@
   width: 50%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  // justify-content: center;
+  padding-bottom: 64px;
   position: relative;
+  @media (max-width: 767px) {
+    width: 0;
+  }
   &::before {
     content: "";
     position: absolute;
@@ -62,12 +81,6 @@
     top: 0;
   }
   .section-line {
-    // width: 2px;
-    // height: 100%;
-    // background-color: red;
-    // position: absolute;
-    // right: 0;
-    // top: 0;
     width: 32px;
     height: 32px;
     background-color: var(--color-primary);

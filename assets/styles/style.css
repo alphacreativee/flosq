@@ -321,6 +321,9 @@ body {
   width: 100%;
   z-index: 99;
 }
+.header.scrolled .logo-group {
+  height: 32px;
+}
 .header__btn-language {
   position: relative;
 }
@@ -455,7 +458,7 @@ body {
   position: relative;
   width: 156px;
   height: 50px;
-  transition: height 0.3s ease-in-out;
+  transition: height 0.3s ease;
 }
 @media (max-width: 767px) {
   .header .logo-group {
@@ -464,12 +467,12 @@ body {
   .header .logo-group img:first-child {
     opacity: 0;
     visibility: hidden;
-    transform: translate(-50%, -50%) scale(0) !important;
+    transform: translate(-50%, -50%) !important;
   }
   .header .logo-group img:last-child {
     opacity: 1 !important;
     visibility: visible !important;
-    transform: translate(0%, -50%) scale(1) !important;
+    transform: translate(0%, -50%) !important;
     left: 0 !important;
   }
 }
@@ -477,14 +480,14 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-origin: center;
+  transform-origin: top;
 }
 .header .logo-group img:last-child {
   opacity: 0;
   visibility: hidden;
-  transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%);
 }
 
 .spacing {
@@ -499,7 +502,12 @@ body {
   position: relative;
 }
 .hero.without-home .hero__content--one {
-  transform: translate(-50%, -50%) scale(1) !important;
+  transform: translate(-50%, -50%) !important;
+}
+@media (max-width: 767px) {
+  .hero {
+    padding: 0 16px;
+  }
 }
 .hero__content {
   height: 100vh;
@@ -510,11 +518,12 @@ body {
   position: relative;
 }
 .hero__content.change .hero__content--one {
-  transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%);
+  opacity: 0;
   transform-origin: center center;
 }
 .hero__content.change .hero__content--two {
-  transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%);
   opacity: 1;
   visibility: visible;
 }
@@ -529,7 +538,7 @@ body {
 }
 .hero__content--two {
   opacity: 0;
-  transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%);
   transform-origin: center;
   visibility: hidden;
 }
@@ -543,6 +552,7 @@ body {
   background-color: var(--color-primary);
   border-radius: 50%;
   z-index: -1;
+  transition: all 0.4s;
 }
 .hero__ball.change {
   box-shadow: 0px 0px 100px 100px var(--color-primary);
@@ -1102,6 +1112,11 @@ section.section-members .members-list__right .item-content-show {
   width: 100%;
   height: 810px;
 }
+@media (max-width: 767px) {
+  .section-map__container {
+    height: auto;
+  }
+}
 .section-map__container img {
   width: 100%;
   height: 100%;
@@ -1111,20 +1126,35 @@ section.section-members .members-list__right .item-content-show {
 .gallery {
   padding-top: 80px;
 }
+@media (max-width: 767px) {
+  .gallery {
+    padding-top: 64px;
+  }
+}
 .gallery__contents {
   padding-left: 127px;
   padding-right: 95px;
   width: 100%;
 }
+@media (max-width: 767px) {
+  .gallery__contents {
+    padding: 0;
+  }
+}
 .gallery__title {
   padding-left: 40px;
   margin-bottom: 84px;
+}
+@media (max-width: 767px) {
+  .gallery__title {
+    padding-left: 24px;
+    margin-bottom: 48px;
+  }
 }
 .gallery__content {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 .gallery__content h2 {
   margin-bottom: 32px;
@@ -1135,9 +1165,14 @@ section.section-members .members-list__right .item-content-show {
 }
 .gallery__imgs {
   width: calc(100% - 127px);
-  height: 40vw;
+  aspect-ratio: 1;
   position: relative;
   overflow: hidden;
+}
+@media (max-width: 767px) {
+  .gallery__imgs {
+    display: none;
+  }
 }
 .gallery__img {
   position: absolute;
@@ -1149,6 +1184,11 @@ section.section-members .members-list__right .item-content-show {
 .left {
   width: 50%;
 }
+@media (max-width: 767px) {
+  .left {
+    width: calc(100% - 64px);
+  }
+}
 
 .right {
   height: 100vh;
@@ -1156,8 +1196,13 @@ section.section-members .members-list__right .item-content-show {
   width: 50%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  padding-bottom: 64px;
   position: relative;
+}
+@media (max-width: 767px) {
+  .right {
+    width: 0;
+  }
 }
 .right::before {
   content: "";

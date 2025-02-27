@@ -6,10 +6,12 @@
   position: relative;
   &.without-home {
     .hero__content--one {
-      transform: translate(-50%, -50%) scale(1) !important;
+      transform: translate(-50%, -50%) !important;
     }
   }
-
+  @media (max-width: 767px) {
+    padding: 0 16px;
+  }
   &__content {
     height: 100vh;
     display: flex;
@@ -19,11 +21,12 @@
     position: relative;
     &.change {
       .hero__content--one {
-        transform: translate(-50%, -50%) scale(0);
+        transform: translate(-50%, -50%);
+        opacity: 0;
         transform-origin: center center;
       }
       .hero__content--two {
-        transform: translate(-50%, -50%) scale(1);
+        transform: translate(-50%, -50%);
         opacity: 1;
         visibility: visible;
       }
@@ -40,7 +43,7 @@
     }
     &--two {
       opacity: 0;
-      transform: translate(-50%, -50%) scale(0);
+      transform: translate(-50%, -50%);
       transform-origin: center;
       visibility: hidden;
     }
@@ -55,6 +58,7 @@
     background-color: var(--color-primary);
     border-radius: 50%;
     z-index: -1;
+    transition: all 0.4s;
     &.change {
       box-shadow: 0px 0px 100px 100px var(--color-primary);
     }
