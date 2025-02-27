@@ -2,7 +2,8 @@
   position: relative;
   &__container {
     width: 100%;
-    height: 810px;
+    // height: 810px;
+    aspect-ratio: 1440 / 810;
     @media (max-width: 767px) {
       height: auto;
     }

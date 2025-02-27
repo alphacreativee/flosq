@@ -263,10 +263,8 @@ function ourProjects() {
     return;
 
   const itemProjects = $(
-    "section.section-projects .item, section.section-members .item"
+    "section.section-projects .item, section.section-members .item, .services-wrapper__right .item-image"
   );
-
-  console.log(itemProjects);
 
   itemProjects.mousemove(function (e) {
     let offset = $(this).offset();
@@ -921,9 +919,9 @@ function blob() {
     }
 
     addScrollEffect() {
-      gsap.to(".projects-ball", {
+      gsap.to(this, {
         scrollTrigger: {
-          trigger: ".section-projects",
+          trigger: "body",
           start: "top top",
           end: "bottom bottom",
           scrub: 1,
@@ -948,14 +946,14 @@ function blob() {
 
         // Hiệu ứng hover
         if (dist < maxDist) {
-          const force = ((maxDist - dist) / maxDist) * 10;
+          const force = ((maxDist - dist) / maxDist) * 7;
           const angleToMouse = Math.atan2(dy, dx);
           point.velocityX += Math.cos(angleToMouse) * force * 0.03;
           point.velocityY += Math.sin(angleToMouse) * force * 0.03;
         }
 
         // Dao động tự nhiên dùng sin
-        const oscillation = Math.sin(this.time + point.angle) * 15; // Biên độ 10px
+        const oscillation = Math.sin(this.time + point.angle) * 10; // Biên độ 10px
         point.velocityX += Math.cos(point.angle) * oscillation * 0.01;
         point.velocityY += Math.sin(point.angle) * oscillation * 0.01;
 
@@ -982,8 +980,8 @@ function blob() {
 
         // Dao động ngẫu nhiên nhỏ
         if (Math.random() > 0.98) {
-          point.velocityX += (Math.random() - 0.5) * 0.2;
-          point.velocityY += (Math.random() - 0.5) * 0.2;
+          point.velocityX += (Math.random() - 0.5) * 0.1;
+          point.velocityY += (Math.random() - 0.5) * 0.1;
         }
       });
     }
@@ -1016,7 +1014,7 @@ function blob() {
     }
   }
 
-  const blob = new Blob(90, 50, "#e82c2a");
+  const blob = new Blob(95, 50, "#e82c2a");
   blob.animate();
 }
 const init = () => {
