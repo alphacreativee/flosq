@@ -546,11 +546,14 @@ function bannerBall() {
       // markers: true,
 
       onUpdate: (self) => {
-        if (self.progress > 0.26) {
+        if (self.progress > 0.5) {
           $(".hero__content").addClass("change");
-          $(".hero__ball").addClass("change");
         } else {
           $(".hero__content").removeClass("change");
+        }
+        if (self.progress > 0.2) {
+          $(".hero__ball").addClass("change");
+        } else {
           $(".hero__ball").removeClass("change");
         }
       }
