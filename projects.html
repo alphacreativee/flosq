@@ -221,8 +221,7 @@
                 <li
                   class="item"
                   data-cursor-text="Chi tiết"
-                  data-filter="type"
-                  data-filter-value="home"
+                  data-filter="project=2025,type=home,status=done"
                 >
                   <div class="item-img">
                     <img
@@ -236,8 +235,7 @@
                 <li
                   class="item"
                   data-cursor-text="Chi tiết"
-                  data-filter="type"
-                  data-filter-value="home"
+                  data-filter="project=2025,type=home,status=comming-soon"
                 >
                   <div class="item-img">
                     <img
@@ -251,8 +249,7 @@
                 <li
                   class="item"
                   data-cursor-text="Chi tiết"
-                  data-filter="type"
-                  data-filter-value="nghi-duong"
+                  data-filter="project=2025,type=nghi-duong,status=done"
                 >
                   <div class="item-img">
                     <img
@@ -268,8 +265,7 @@
                 <li
                   class="item"
                   data-cursor-text="Chi tiết"
-                  data-filter="project"
-                  data-filter-value="2025"
+                  data-filter="project=2023,type=home,status=doing"
                 >
                   <div class="item-img">
                     <img
@@ -287,8 +283,7 @@
                 <li
                   class="item"
                   data-cursor-text="Chi tiết"
-                  data-filter="project"
-                  data-filter-value="2025"
+                  data-filter="project=2025,type=nghi-duong,status=doing"
                 >
                   <div class="item-img">
                     <img
@@ -302,8 +297,7 @@
                 <li
                   class="item"
                   data-cursor-text="Chi tiết"
-                  data-filter="status"
-                  data-filter-value="done"
+                  data-filter="project=2025,type=home,status=done"
                 >
                   <div class="item-img">
                     <img
@@ -317,8 +311,7 @@
                 <li
                   class="item"
                   data-cursor-text="Chi tiết"
-                  data-filter="status"
-                  data-filter-value="done"
+                  data-filter="project=2025,type=home,status=done"
                 >
                   <div class="item-img">
                     <img
@@ -334,8 +327,7 @@
                 <li
                   class="item"
                   data-cursor-text="Chi tiết"
-                  data-filter="status"
-                  data-filter-value="done"
+                  data-filter="project=2025,type=home,status=done"
                 >
                   <div class="item-img">
                     <img
@@ -353,9 +345,8 @@
 
             <div class="projects-filter">
               <div
-                class="filter-item b2-regular color-text-white"
-                data-filter="project"
-                data-filter-value="all"
+                class="filter-item b2-font color-text-white"
+                filter-type="project"
               >
                 Dự án <span>Tất cả</span>
 
@@ -398,15 +389,21 @@
                 </ul>
               </div>
               <div
-                class="filter-item b2-regular color-text-white"
-                data-filter="type"
-                data-filter-value="building"
+                class="filter-item b2-font color-text-white"
+                filter-type="type"
               >
-                Loại hình <span>Khu đô thị</span>
+                Loại hình <span>Tất cả</span>
 
                 <ul class="sub-menu">
                   <li
                     class="menu-item active"
+                    data-filter="type"
+                    data-filter-value="all"
+                  >
+                    Tất cả
+                  </li>
+                  <li
+                    class="menu-item"
                     data-filter="type"
                     data-filter-value="home"
                   >
@@ -436,15 +433,21 @@
                 </ul>
               </div>
               <div
-                class="filter-item b2-regular color-text-white"
-                data-filter="status"
-                data-filter-value="done"
+                class="filter-item b2-font color-text-white"
+                filter-type="status"
               >
-                Tình trạng <span>Đã hoàn thành</span>
+                Tình trạng <span>Tất cả</span>
 
                 <ul class="sub-menu">
                   <li
                     class="menu-item active"
+                    data-filter="status"
+                    data-filter-value="all"
+                  >
+                    Tất cả
+                  </li>
+                  <li
+                    class="menu-item"
                     data-filter="status"
                     data-filter-value="done"
                   >

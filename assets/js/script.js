@@ -1,6 +1,9 @@
 import { preloadImages } from "../libs/utils.js";
 let lenis;
 Splitting();
+("use strict");
+$ = jQuery;
+
 function handlePageVisibilityAndFavicon() {
   const originalTitle = document.title;
   let faviconInterval;
@@ -34,7 +37,7 @@ function handlePageVisibilityAndFavicon() {
     isBlinking = true;
     const favicons = [
       "./assets/images/utilize/favicon_red.svg",
-      "./assets/images/utilize/favicon_black.svg",
+      "./assets/images/utilize/favicon_black.svg"
     ];
     let faviconIndex = 0;
 
@@ -96,9 +99,9 @@ function loading() {
     onComplete: function () {
       gsap.to(".dots", {
         scale: 1,
-        transformOrigin: "center",
+        transformOrigin: "center"
       });
-    },
+    }
   });
 
   gsap.fromTo(".loading-overlay", { opacity: 0 }, { opacity: 1, duration: 1 });
@@ -125,7 +128,7 @@ function toggleMenu() {
     y: 20,
     stagger: 0.1,
     duration: 0.6,
-    ease: "power2.out",
+    ease: "power2.out"
   }).from(
     ".menu__social ul li",
     {
@@ -133,7 +136,7 @@ function toggleMenu() {
       y: 20,
       stagger: 0.1,
       duration: 0.6,
-      ease: "power2.out",
+      ease: "power2.out"
     },
     "-=0.4"
   );
@@ -154,8 +157,8 @@ function scrollHeader() {
       trigger: "body",
       start: "top+=100 top",
       toggleClass: { targets: ".header", className: "scrolled" }, //
-      once: false,
-    },
+      once: false
+    }
   });
 }
 
@@ -175,8 +178,8 @@ function textQuote() {
         markers: false,
         scrub: 1,
         start: "top center",
-        end: "bottom center",
-      },
+        end: "bottom center"
+      }
     });
   });
 }
@@ -185,7 +188,7 @@ function magicCursor() {
 
   gsap.set(circle, {
     xPercent: -50,
-    yPercent: -50,
+    yPercent: -50
   });
 
   let mouseX = 0,
@@ -207,7 +210,7 @@ function magicCursor() {
       x: posX,
       y: posY,
       ease: "power3.out",
-      duration: 0.3,
+      duration: 0.3
     });
 
     requestAnimationFrame(moveCircle);
@@ -300,8 +303,8 @@ function ourProjects() {
               .querySelector(".section-projects")
               .classList.remove("on-active");
           }
-        },
-      },
+        }
+      }
     });
 
     // gsap.to(".section-projects", {
@@ -326,7 +329,7 @@ function ourProjects() {
         y: 20,
         stagger: 0.1,
         duration: 0.5,
-        ease: "none",
+        ease: "none"
       },
       "-=0.3"
     );
@@ -351,25 +354,153 @@ function ourProjects() {
     $(".projects-filter .menu-item").on("click", function () {
       let thisItem = $(this);
 
+      // Add 'active' class to the selected menu item and remove it from siblings
+      thisItem.addClass("active");
+      thisItem.siblings().removeClass("active");
+
+      // Get the filter data
       let dataFilter = thisItem.data("filter");
       let dataFilterValue = thisItem.data("filter-value");
       let dataFilterText = thisItem.text();
 
+      console.log(dataFilter + " " + dataFilterValue);
+
+      // Update the filter label text
       thisItem.closest(".filter-item").find("span").text(dataFilterText);
-      updateLayout(dataFilter, dataFilterValue);
+
+      // Call the updateLayout function to filter and reorder the projects
+      updateLayout();
     });
 
-    function updateLayout(dataFilter, dataFilterValue) {
-      $(".section-projects .projects-list .item").addClass("opacity");
-      $(
-        `.section-projects .projects-list .item[data-filter='${dataFilter}'][data-filter-value='${dataFilterValue}']`
-      ).removeClass("opacity");
+    function updateLayout() {
+      // Set default filter values
+      let dataFilterProject = "all";
+      let dataFilterType = "all";
+      let dataFilterStatus = "all";
 
-      if (dataFilterValue == "all") {
-        $(
-          `.section-projects .projects-list .item[data-filter='${dataFilter}']`
-        ).removeClass("opacity");
+      // Get the selected filter values from the filter items
+      let filterProject = $(
+        ".projects-filter .filter-item[filter-type='project'] .menu-item.active"
+      );
+      dataFilterProject = filterProject.data("filter-value");
+
+      let filterType = $(
+        ".projects-filter .filter-item[filter-type='type'] .menu-item.active"
+      );
+      dataFilterType = filterType.data("filter-value");
+
+      let filterStatus = $(
+        ".projects-filter .filter-item[filter-type='status'] .menu-item.active"
+      );
+      dataFilterStatus = filterStatus.data("filter-value");
+
+      // Filter each column independently (left and right)
+      filterColumn(
+        ".projects-list__left",
+        dataFilterProject,
+        dataFilterType,
+        dataFilterStatus
+      );
+      filterColumn(
+        ".projects-list__right",
+        dataFilterProject,
+        dataFilterType,
+        dataFilterStatus
+      );
+    }
+
+    // Function to filter and reorder items in each column
+    function filterColumn(
+      columnClass,
+      dataFilterProject,
+      dataFilterType,
+      dataFilterStatus
+    ) {
+      let filterString = "";
+
+      // Build the filter string based on selected filters
+      if (dataFilterProject !== "all") {
+        filterString += `project=${dataFilterProject},`;
       }
+      if (dataFilterType !== "all") {
+        filterString += `type=${dataFilterType},`;
+      }
+      if (dataFilterStatus !== "all") {
+        filterString += `status=${dataFilterStatus},`;
+      }
+
+      // Remove the trailing comma
+      filterString = filterString.slice(0, -1);
+
+      // Filter items in the current column (ul)
+      let columnItems = $(`${columnClass} .item`);
+
+      // Hide all items by default
+      columnItems.addClass("opacity");
+
+      // Show the items that match the constructed filter string
+      columnItems.each(function () {
+        let item = $(this);
+        let itemDataFilter = item.data("filter");
+
+        // If the item matches the filter, remove the "opacity" class to display it
+        if (itemDataFilter.includes(filterString)) {
+          item.removeClass("opacity");
+        }
+      });
+
+      // If "all" filters are selected, show all items
+      if (
+        dataFilterProject === "all" &&
+        dataFilterType === "all" &&
+        dataFilterStatus === "all"
+      ) {
+        columnItems.removeClass("opacity");
+      }
+
+      // After filtering, reorder items in the column: move active filter items to the top
+      reorderItemsInColumn(columnClass);
+
+      applyGSAPAnimation(columnClass);
+    }
+
+    // Function to reorder items in a column based on the active filter
+    function reorderItemsInColumn(columnClass) {
+      let items = $(`${columnClass} .item`);
+
+      // Separate active and non-active items
+      let activeItems = [];
+      let inactiveItems = [];
+
+      items.each(function () {
+        let item = $(this);
+        // Check if the item is visible (i.e., matches the filter)
+        if (!item.hasClass("opacity")) {
+          activeItems.push(item); // Item that matches the filters
+        } else {
+          inactiveItems.push(item); // Item that doesn't match the filters
+        }
+      });
+
+      $(columnClass).empty().append(activeItems).append(inactiveItems);
+    }
+
+    function applyGSAPAnimation(columnClass) {
+      // GSAP animation for opacity and translateY effect
+      gsap.fromTo(
+        `${columnClass} .item`,
+        {
+          opacity: 0,
+          y: 30 // Starting position: 30px below the final position
+        },
+        {
+          opacity: 1, // End with opacity: 1 (fully visible)
+          y: 0, // End with transform: none (reset the translation)
+          stagger: 0.2, // Delay for each item to appear one after another
+          duration: 0.8, // Duration of the animation
+          ease: "power2.out" // Smooth ease out effect
+        }
+      );
     }
   }
 }
@@ -422,8 +553,8 @@ function bannerBall() {
         } else {
           $(".hero__content").removeClass("change");
         }
-      },
-    },
+      }
+    }
   });
 }
 
@@ -502,7 +633,7 @@ function itemParalax() {
     gsap.fromTo(
       wrap,
       {
-        y: y,
+        y: y
       },
       {
         y: 0,
@@ -512,9 +643,9 @@ function itemParalax() {
           end: "bottom top",
           scrub: 1,
           ease: "power4",
-          delay: 0.2,
+          delay: 0.2
           // markers: true
-        },
+        }
       }
     );
   });
@@ -532,7 +663,7 @@ function gallery() {
     trigger: ".gallery__container ",
     start: "top top",
     end: "bottom bottom",
-    pin: ".right",
+    pin: ".right"
   });
 
   details.forEach((detail, index) => {
@@ -541,7 +672,7 @@ function gallery() {
       .timeline()
       .to(photos[index], {
         clipPath: "inset(0% 0% 0% 0%)",
-        duration: 2.5,
+        duration: 2.5
       })
       .set(allPhotos[index], { autoAlpha: 0 });
     ScrollTrigger.create({
@@ -556,7 +687,7 @@ function gallery() {
       },
       onLeaveBack: () => {
         headline.classList.remove("active");
-      },
+      }
     });
   });
 
@@ -568,7 +699,7 @@ function gallery() {
     transformOrigin: "center center",
     xPercent: -50,
     yPercent: -50,
-    y: 0,
+    y: 0
   });
 
   // Animation di chuyển vòng tròn khi cuộn
@@ -583,7 +714,7 @@ function gallery() {
       let moveY = progress * window.innerHeight;
 
       gsap.to(line, { y: moveY, duration: 0.1, ease: "none" });
-    },
+    }
   });
 }
 function scrollBall() {
@@ -595,8 +726,8 @@ function scrollBall() {
       end: "bottom top",
       scrub: 2,
       // markers: true,
-      invalidateOnRefresh: true,
-    },
+      invalidateOnRefresh: true
+    }
   });
   tl.fromTo(
     ".projects-ball",
@@ -608,9 +739,9 @@ function scrollBall() {
           { x: "50vw", y: "100vh" },
           { x: "25vw", y: "150vh" },
           { x: "5vw", y: "200vh" },
-          { x: "0vw", y: "300vh" },
-        ],
-      },
+          { x: "0vw", y: "300vh" }
+        ]
+      }
     }
   );
   // tl.to(".projects-ball", { top: "30%", left: "60%", ease: "power1.inOut" })
@@ -627,9 +758,9 @@ function sectionServices() {
       start: "-64px top",
       end: "bottom bottom",
       scrub: 1,
-      pin: ".services-wrapper__left",
+      pin: ".services-wrapper__left"
       // markers: true
-    },
+    }
   });
 
   // Animation di chuyển vòng tròn khi cuộn
@@ -652,7 +783,7 @@ function sectionServices() {
           .querySelector(".section-projects, .section-members")
           .classList.add("touch");
       }
-    },
+    }
   });
 }
 function swiperLogo() {
@@ -666,13 +797,13 @@ function swiperLogo() {
     autoplay: {
       delay: 0,
       disableOnInteraction: true,
-      pauseOnMouseEnter: true,
+      pauseOnMouseEnter: true
     },
     breakpoints: {
       767: {
-        slidesPerView: 6,
-      },
-    },
+        slidesPerView: 6
+      }
+    }
   });
 }
 function toggleDropdown() {

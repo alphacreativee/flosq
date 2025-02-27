@@ -617,9 +617,11 @@ section.section-projects .projects-filter .filter-item {
   cursor: pointer;
   padding: 12px 0;
   position: relative;
+  line-height: 24px;
 }
 section.section-projects .projects-filter .filter-item span {
   font-weight: 600;
+  margin-left: 3px;
 }
 section.section-projects .projects-filter .filter-item .sub-menu {
   max-width: 370px;
@@ -649,6 +651,9 @@ section.section-projects .projects-filter .filter-item .sub-menu li {
   text-transform: uppercase;
   width: 100%;
   text-align: center;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 600;
 }
 section.section-projects .projects-filter .filter-item .sub-menu li:hover, section.section-projects .projects-filter .filter-item .sub-menu li.active {
   color: var(--color-primary);
@@ -712,13 +717,17 @@ section.section-projects .projects-list {
   grid-template-columns: repeat(2, 1fr);
   column-gap: 32px;
 }
+section.section-projects .projects-list ul.pending .item {
+  transform: translateY(30px);
+  opacity: 0;
+}
 section.section-projects .projects-list .item {
   position: relative;
   overflow: hidden;
 }
 section.section-projects .projects-list .item.opacity {
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 0.5 !important;
 }
 section.section-projects .projects-list .item-img {
   width: 100%;
