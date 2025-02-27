@@ -870,6 +870,134 @@ function toggleDropdown() {
     }
   });
 }
+function blob() {
+  const canvas = document.getElementById("canvas");
+  const ctx = canvas.getContext("2d");
+  const w = canvas.width;
+  const h = canvas.height;
+
+  class Blob {
+    constructor(radius, pointsCount, color) {
+      this.radius = radius;
+      this.pointsCount = pointsCount;
+      this.color = color;
+      this.points = [];
+      this.mouse = { x: w / 2, y: h / 2 };
+      this.targetMouse = { x: w / 2, y: h / 2 };
+      this.ease = 0.05;
+      this.scrollOffset = 0; // Biến lưu vị trí zigzag
+      this.initPoints();
+      this.addListeners();
+      this.addScrollEffect();
+    }
+
+    initPoints() {
+      const angleStep = (Math.PI * 2) / this.pointsCount;
+      for (let i = 0; i < this.pointsCount; i++) {
+        const angle = i * angleStep;
+        this.points.push({
+          x: w / 2 + Math.cos(angle) * this.radius,
+          y: h / 2 + Math.sin(angle) * this.radius,
+          baseX: Math.cos(angle) * this.radius,
+          baseY: Math.sin(angle) * this.radius,
+          offset: 0,
+          velocity: 0,
+        });
+      }
+    }
+
+    addListeners() {
+      canvas.addEventListener("mousemove", (e) => {
+        const rect = canvas.getBoundingClientRect();
+        this.targetMouse.x = e.clientX - rect.left;
+        this.targetMouse.y = e.clientY - rect.top;
+      });
+    }
+
+    addScrollEffect() {
+      // Dùng GSAP để tạo hiệu ứng zigzag khi scroll
+      gsap.to(this, {
+        scrollTrigger: {
+          trigger: "body",
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 1, // Chuyển động theo tốc độ scroll
+          marker: true,
+          onUpdate: (self) => {
+            // Tính toán vị trí zigzag dựa trên scroll
+            const progress = self.progress; // Từ 0 đến 1
+            this.scrollOffset = Math.sin(progress * Math.PI * 4) * 50; // Zigzag với biên độ 50px, tần số 4 lần
+          },
+        },
+      });
+    }
+
+    update() {
+      // Trượt mượt vị trí chuột
+      this.mouse.x += (this.targetMouse.x - this.mouse.x) * this.ease;
+      this.mouse.y += (this.targetMouse.y - this.mouse.y) * this.ease;
+
+      this.points.forEach((point) => {
+        // Tính khoảng cách từ chuột đến điểm
+        const dx = this.mouse.x - point.x;
+        const dy = this.mouse.y - point.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const maxDist = 150;
+
+        // Hiệu ứng hover
+        if (dist < maxDist) {
+          const force = ((maxDist - dist) / maxDist) * 5;
+          point.velocity += force * (dist < 75 ? -0.05 : 0.05);
+        }
+
+        // Cập nhật vị trí với lực cản
+        point.velocity *= 0.85;
+        point.offset += point.velocity;
+        point.offset *= 0.95;
+
+        // Áp dụng scroll zigzag vào trục X
+        point.x = w / 2 + point.baseX + point.offset + this.scrollOffset;
+        point.y = h / 2 + point.baseY + point.offset;
+
+        // Dao động ngẫu nhiên nhẹ
+        if (Math.random() > 0.98) {
+          point.velocity += (Math.random() - 0.5) * 0.2;
+        }
+      });
+    }
+
+    draw() {
+      ctx.clearRect(0, 0, w, h);
+      ctx.beginPath();
+      ctx.fillStyle = this.color;
+
+      for (let i = 0; i < this.pointsCount; i++) {
+        const curr = this.points[i];
+        const next = this.points[(i + 1) % this.pointsCount];
+        const mx = (curr.x + next.x) / 2;
+        const my = (curr.y + next.y) / 2;
+
+        if (i === 0) {
+          ctx.moveTo(curr.x, curr.y);
+        }
+        ctx.quadraticCurveTo(curr.x, curr.y, mx, my);
+      }
+
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    animate() {
+      this.update();
+      this.draw();
+      requestAnimationFrame(() => this.animate());
+    }
+  }
+
+  // Khởi tạo blob
+  const blob = new Blob(150, 20, "#e82c2a");
+  blob.animate();
+}
 const init = () => {
   bannerBall();
   toggleDropdown();
@@ -881,6 +1009,7 @@ const init = () => {
   gallery();
   magicCursor();
   counterOnScroll();
+  blob();
   setTimeout(() => {
     loading();
     textQuote();
