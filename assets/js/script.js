@@ -67,7 +67,7 @@ function loading() {
 
       // Lấy giá trị transform của logo
       const logoTransform = getComputedStyle(logo).transform;
-      console.log(logoTransform);
+      // console.log(logoTransform);
 
       let translateX = 0;
 
@@ -245,7 +245,6 @@ function magicCursor() {
   const itemsContent = document.querySelectorAll(".modal-dialog");
   itemsContent.forEach((item) => {
     item.addEventListener("mouseenter", () => {
-      console.log("â");
       cursorDot.classList.remove("show-text");
     });
     item.addEventListener("mouseleave", () => {
@@ -296,7 +295,7 @@ function ourProjects() {
             document
               .querySelector(".section-projects")
               .classList.add("on-active");
-          } else if (self.progress <= 0 || self.progress >= 1) {
+          } else if (self.progress < 0.2 || self.progress >= 1) {
             document
               .querySelector(".section-projects")
               .classList.remove("on-active");
@@ -361,7 +360,7 @@ function ourProjects() {
       let dataFilterValue = thisItem.data("filter-value");
       let dataFilterText = thisItem.text();
 
-      console.log(dataFilter + " " + dataFilterValue);
+      // console.log(dataFilter + " " + dataFilterValue);
 
       // Update the filter label text
       thisItem.closest(".filter-item").find("span").text(dataFilterText);
@@ -523,7 +522,6 @@ function ourMembers() {
   let itemContentShow = $("section.section-members .item-content-show");
   itemContentShow.on("click", function () {
     let thisContentShow = $(this);
-    console.log("click");
 
     thisContentShow.closest(".item.open").removeClass("open");
     thisContentShow.closest("ul.open").removeClass("open");
@@ -718,6 +716,10 @@ function gallery() {
       let moveY = progress * window.innerHeight;
 
       gsap.to(line, { y: moveY, duration: 0.1, ease: "none" });
+
+      if (progress >= 0.88) {
+        document.querySelector(".section-services").classList.add("touch");
+      }
     },
     onComplete: () => {
       gsap.to(line, { scale: 0, ease: "none" });

@@ -1,9 +1,14 @@
 section.section-services {
   // height: 100vh;
-  background-color: var(--color-black);
+  background-color: var(--volor-white);
   padding: 0 24px;
   position: relative;
   overflow: hidden;
+  transition: background-color 0.4s ease;
+
+  &.touch {
+    background-color: var(--color-black);
+  }
 
   &::after {
     content: "";

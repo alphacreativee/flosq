@@ -1260,10 +1260,14 @@ section.section-quote .text .line {
 }
 
 section.section-services {
-  background-color: var(--color-black);
+  background-color: var(--volor-white);
   padding: 0 24px;
   position: relative;
   overflow: hidden;
+  transition: background-color 0.4s ease;
+}
+section.section-services.touch {
+  background-color: var(--color-black);
 }
 section.section-services::after {
   content: "";
