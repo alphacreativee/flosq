@@ -871,6 +871,8 @@ function toggleDropdown() {
   });
 }
 function blob() {
+  gsap.registerPlugin(ScrollTrigger);
+
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
   const w = canvas.width;
@@ -885,7 +887,8 @@ function blob() {
       this.mouse = { x: w / 2, y: h / 2 };
       this.targetMouse = { x: w / 2, y: h / 2 };
       this.ease = 0.05;
-      this.scrollOffset = 0; // Biến lưu vị trí zigzag
+      this.scrollOffset = 0;
+      this.time = 0; // Biến thời gian cho dao động tự nhiên
       this.initPoints();
       this.addListeners();
       this.addScrollEffect();
@@ -900,8 +903,11 @@ function blob() {
           y: h / 2 + Math.sin(angle) * this.radius,
           baseX: Math.cos(angle) * this.radius,
           baseY: Math.sin(angle) * this.radius,
-          offset: 0,
-          velocity: 0,
+          offsetX: 0,
+          offsetY: 0,
+          velocityX: 0,
+          velocityY: 0,
+          angle: angle,
         });
       }
     }
@@ -915,30 +921,26 @@ function blob() {
     }
 
     addScrollEffect() {
-      // Dùng GSAP để tạo hiệu ứng zigzag khi scroll
-      gsap.to(this, {
+      gsap.to(".projects-ball", {
         scrollTrigger: {
-          trigger: "body",
+          trigger: ".section-projects",
           start: "top top",
           end: "bottom bottom",
-          scrub: 1, // Chuyển động theo tốc độ scroll
-          marker: true,
+          scrub: 1,
           onUpdate: (self) => {
-            // Tính toán vị trí zigzag dựa trên scroll
-            const progress = self.progress; // Từ 0 đến 1
-            this.scrollOffset = Math.sin(progress * Math.PI * 4) * 50; // Zigzag với biên độ 50px, tần số 4 lần
+            const progress = self.progress;
+            this.scrollOffset = Math.sin(progress * Math.PI * 4) * 50;
           },
         },
       });
     }
 
     update() {
-      // Trượt mượt vị trí chuột
       this.mouse.x += (this.targetMouse.x - this.mouse.x) * this.ease;
       this.mouse.y += (this.targetMouse.y - this.mouse.y) * this.ease;
+      this.time += 0.05; // Tăng thời gian cho dao động
 
       this.points.forEach((point) => {
-        // Tính khoảng cách từ chuột đến điểm
         const dx = this.mouse.x - point.x;
         const dy = this.mouse.y - point.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
@@ -946,22 +948,42 @@ function blob() {
 
         // Hiệu ứng hover
         if (dist < maxDist) {
-          const force = ((maxDist - dist) / maxDist) * 5;
-          point.velocity += force * (dist < 75 ? -0.05 : 0.05);
+          const force = ((maxDist - dist) / maxDist) * 10;
+          const angleToMouse = Math.atan2(dy, dx);
+          point.velocityX += Math.cos(angleToMouse) * force * 0.03;
+          point.velocityY += Math.sin(angleToMouse) * force * 0.03;
         }
 
-        // Cập nhật vị trí với lực cản
-        point.velocity *= 0.85;
-        point.offset += point.velocity;
-        point.offset *= 0.95;
+        // Dao động tự nhiên dùng sin
+        const oscillation = Math.sin(this.time + point.angle) * 15; // Biên độ 10px
+        point.velocityX += Math.cos(point.angle) * oscillation * 0.01;
+        point.velocityY += Math.sin(point.angle) * oscillation * 0.01;
 
-        // Áp dụng scroll zigzag vào trục X
-        point.x = w / 2 + point.baseX + point.offset + this.scrollOffset;
-        point.y = h / 2 + point.baseY + point.offset;
+        // Lực đàn hồi để giữ hình tròn
+        const currentRadius = Math.sqrt(
+          point.offsetX * point.offsetX + point.offsetY * point.offsetY
+        );
+        const targetRadius = this.radius;
+        const radiusDiff = targetRadius - currentRadius;
+        const spring = 0.05;
+        point.velocityX += Math.cos(point.angle) * radiusDiff * spring;
+        point.velocityY += Math.sin(point.angle) * radiusDiff * spring;
 
-        // Dao động ngẫu nhiên nhẹ
+        // Cập nhật vị trí
+        point.velocityX *= 0.9;
+        point.velocityY *= 0.9;
+        point.offsetX += point.velocityX;
+        point.offsetY += point.velocityY;
+        point.offsetX *= 0.95;
+        point.offsetY *= 0.95;
+
+        point.x = w / 2 + point.baseX + point.offsetX + this.scrollOffset;
+        point.y = h / 2 + point.baseY + point.offsetY;
+
+        // Dao động ngẫu nhiên nhỏ
         if (Math.random() > 0.98) {
-          point.velocity += (Math.random() - 0.5) * 0.2;
+          point.velocityX += (Math.random() - 0.5) * 0.2;
+          point.velocityY += (Math.random() - 0.5) * 0.2;
         }
       });
     }
@@ -994,8 +1016,7 @@ function blob() {
     }
   }
 
-  // Khởi tạo blob
-  const blob = new Blob(150, 20, "#e82c2a");
+  const blob = new Blob(90, 50, "#e82c2a");
   blob.animate();
 }
 const init = () => {
