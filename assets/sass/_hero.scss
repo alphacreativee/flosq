@@ -7,6 +7,7 @@
   &.without-home {
     .hero__content--one {
       transform: translate(-50%, -50%) !important;
+      opacity: 1 !important;
     }
   }
   @media (max-width: 767px) {
