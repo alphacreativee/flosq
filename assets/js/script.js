@@ -718,6 +718,9 @@ function gallery() {
 
       gsap.to(line, { y: moveY, duration: 0.1, ease: "none" });
     },
+    onComplete: () => {
+      gsap.to(line, { scale: 0, ease: "none" });
+    },
   });
 }
 function scrollBall() {
@@ -758,11 +761,11 @@ function sectionServices() {
     ease: "none",
     scrollTrigger: {
       trigger: ".section-services",
-      start: "-64px top",
+      // start: "-64px top",
+      start: "top top",
       end: "bottom bottom",
       scrub: 1,
       pin: ".services-wrapper__left",
-      // markers: true
     },
   });
 
@@ -771,17 +774,19 @@ function sectionServices() {
   const lineWrapper = $(".services-wrapper");
   ScrollTrigger.create({
     trigger: lineWrapper,
-    start: "top top",
-    end: "bottom top",
+    start: "top 65%",
+    end: "bottom 5%",
     scrub: true,
+    // markers: true,
     // markers: true,
     onUpdate: (self) => {
       let progress = self.progress;
       let moveY = progress * window.innerHeight;
+      console.log(progress);
 
       gsap.to(line, { y: moveY, duration: 0.1, ease: "none" });
 
-      if (progress >= 0.93) {
+      if (progress >= 1) {
         document
           .querySelector(".section-projects, .section-members")
           .classList.add("touch");
