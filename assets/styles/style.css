@@ -1118,6 +1118,11 @@ section.section-members .members-list__right .item-content-show {
 .gallery {
   padding-top: 80px;
   z-index: 2;
+  background-color: var(--color-black);
+  transition: background-color 0.4s ease;
+}
+.gallery.touch {
+  background-color: var(--color-white);
 }
 @media (max-width: 767px) {
   .gallery {
@@ -1205,6 +1210,7 @@ section.section-members .members-list__right .item-content-show {
   background-color: rgba(240, 240, 240, 0.9411764706);
   right: 0px;
   top: 0;
+  transform: translateX(50%);
 }
 .right .section-line {
   width: 32px;
