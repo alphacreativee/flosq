@@ -1073,10 +1073,10 @@ const init = () => {
   counterOnScroll();
   blob();
   fadeText();
+  ourProjects();
   setTimeout(() => {
     loading();
     textQuote();
-    ourProjects();
     ourMembers();
     sectionServices();
     itemParalax();

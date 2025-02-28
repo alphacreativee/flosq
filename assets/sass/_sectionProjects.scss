@@ -133,6 +133,13 @@ section.section-projects {
     }
   }
 
+  &.section-members {
+    .projects-ball {
+      top: 400px;
+      left: 150px;
+    }
+  }
+
   .projects-ball {
     width: 400px;
     height: 400px;

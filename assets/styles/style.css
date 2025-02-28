@@ -50,6 +50,13 @@
   font-weight: 400;
 }
 
+.b2-regular {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
 .b2-bold-font {
   font-family: var(--font-body);
   font-size: 14px;
@@ -672,6 +679,10 @@ section.section-projects .projects-filter .filter-item .sub-menu li {
 section.section-projects .projects-filter .filter-item .sub-menu li:hover, section.section-projects .projects-filter .filter-item .sub-menu li.active {
   color: var(--color-primary);
 }
+section.section-projects.section-members .projects-ball {
+  top: 400px;
+  left: 150px;
+}
 section.section-projects .projects-ball {
   width: 400px;
   height: 400px;
@@ -994,6 +1005,12 @@ section.section-members .members-list .item.open .item-content-show p {
   transition-duration: 0.5s;
   transition-delay: 0.6s;
 }
+section.section-members .members-list .item.open .item-content-show .item-text {
+  transform: translateY(0);
+  opacity: 1;
+  transition-duration: 0.5s;
+  transition-delay: 0.6s;
+}
 section.section-members .members-list .item-wrapper {
   overflow: hidden;
   position: relative;
@@ -1057,6 +1074,8 @@ section.section-members .members-list .item-content-show p {
 }
 section.section-members .members-list .item-content-show .item-text {
   position: unset;
+  transform: translateY(20px);
+  opacity: 0;
 }
 section.section-members .members-list .item-title, section.section-members .members-list .item-text {
   position: absolute;
