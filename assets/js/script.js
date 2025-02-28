@@ -719,6 +719,10 @@ function gallery() {
 
       if (progress >= 0.88) {
         document.querySelector(".section-services").classList.add("touch");
+        document.querySelector("section.gallery").classList.remove("touch");
+      } else if (progress < 0.88) {
+        document.querySelector(".section-services").classList.remove("touch");
+        document.querySelector("section.gallery").classList.add("touch");
       }
     },
     onComplete: () => {
