@@ -152,10 +152,17 @@ function toggleMenu() {
   });
 }
 function fadeText() {
-  let tl = gsap.timeline();
+  gsap.set("[data-fade-in]", {
+    opacity: 0,
+    y: 20,
+  });
+
+  let tl = gsap.timeline({
+    paused: true,
+  });
 
   tl.fromTo(
-    ".footer-wrapper .menu-item ul li",
+    "[data-fade-in]",
     {
       opacity: 0,
       y: 20,
@@ -166,15 +173,18 @@ function fadeText() {
       stagger: 0.1,
       duration: 0.6,
       ease: "power2.out",
-      scrollTrigger: {
-        trigger: "footer",
-        start: "top 50%",
-        end: "+=100%",
-        markers: true,
-      },
     }
   );
+
+  ScrollTrigger.create({
+    trigger: "footer",
+    start: "top 80%",
+    markers: true,
+    animation: tl,
+    toggleActions: "play none none none",
+  });
 }
+
 function scrollHeader() {
   gsap.to(".header", {
     scrollTrigger: {
@@ -1052,7 +1062,6 @@ function blob() {
   blob.animate();
 }
 const init = () => {
-  fadeText();
   bannerBall();
   toggleDropdown();
   scrollBall();
@@ -1064,6 +1073,7 @@ const init = () => {
   magicCursor();
   counterOnScroll();
   blob();
+  fadeText();
   setTimeout(() => {
     loading();
     textQuote();
