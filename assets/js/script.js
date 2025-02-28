@@ -578,6 +578,7 @@ function bannerBall() {
         } else {
           $(".hero__ball").removeClass("change");
         }
+        // ScrollTrigger.refresh();
       },
     },
   });
@@ -960,7 +961,7 @@ function blob() {
           scrub: 1,
           onUpdate: (self) => {
             const progress = self.progress;
-            this.scrollOffset = Math.sin(progress * Math.PI * 4) * 50;
+            this.scrollOffset = Math.sin(progress * Math.PI * 4) * 25;
           },
         },
       });
@@ -1047,7 +1048,7 @@ function blob() {
     }
   }
 
-  const blob = new Blob(90, 50, "#e82c2a");
+  const blob = new Blob(90, 90, "#e82c2a");
   blob.animate();
 }
 const init = () => {
