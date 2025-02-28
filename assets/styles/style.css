@@ -496,7 +496,7 @@ body {
 
 .hero {
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   overflow: hidden;
   padding: 0 40px;
   position: relative;
@@ -675,12 +675,9 @@ section.section-projects .projects-filter .filter-item .sub-menu li:hover, secti
 section.section-projects .projects-ball {
   width: 400px;
   height: 400px;
-  background-color: var(--color-primary);
-  border-radius: 50%;
   position: absolute;
   left: 40px;
   top: 180px;
-  animation: blob 30s ease-in-out infinite alternate both;
 }
 section.section-projects .projects-ball canvas {
   width: 100%;
@@ -1244,6 +1241,7 @@ section.section-members .members-list__right .item-content-show {
 
 section.section-quote {
   background-color: var(--color-black);
+  position: relative;
 }
 section.section-quote .quote-wrapper {
   padding: 150px 0;
@@ -1520,6 +1518,9 @@ section.section-services .services-wrapper__right .list-item .item:not(:first-ch
   align-items: center;
 }
 
+footer {
+  position: relative;
+}
 footer .footer-wrapper {
   padding: 80px 40px 20px;
   background-image: url(../images/notutilize/bg-footer.png);
