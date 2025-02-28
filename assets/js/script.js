@@ -982,7 +982,7 @@ function blob() {
         }
 
         // Dao động tự nhiên dùng sin
-        const oscillation = Math.sin(this.time + point.angle) * 10; // Biên độ 10px
+        const oscillation = Math.sin(this.time + point.angle) * 5; // Biên độ 10px
         point.velocityX += Math.cos(point.angle) * oscillation * 0.01;
         point.velocityY += Math.sin(point.angle) * oscillation * 0.01;
 
@@ -1043,7 +1043,7 @@ function blob() {
     }
   }
 
-  const blob = new Blob(95, 50, "#e82c2a");
+  const blob = new Blob(90, 50, "#e82c2a");
   blob.animate();
 }
 const init = () => {
