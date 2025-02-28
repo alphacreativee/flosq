@@ -688,6 +688,7 @@ function itemParalax() {
 }
 function gallery() {
   // gsap.registerPlugin(ScrollTrigger);
+  if (!$("section.gallery").length) return;
 
   const details = gsap.utils.toArray(".gallery__content:not(:first-child)");
   const photos = gsap.utils.toArray(".gallery__img:not(:first-child)");
@@ -913,6 +914,8 @@ function toggleDropdown() {
   });
 }
 function blob() {
+  if (!$(".projects-ball").length) return;
+
   gsap.registerPlugin(ScrollTrigger);
 
   const canvas = document.getElementById("canvas");
