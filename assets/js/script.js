@@ -179,7 +179,7 @@ function fadeText() {
   ScrollTrigger.create({
     trigger: "footer",
     start: "top 80%",
-    markers: true,
+    // markers: true,
     animation: tl,
     toggleActions: "play none none none",
   });
@@ -585,7 +585,7 @@ function bannerBall() {
       scrub: true,
       pin: true,
       // pinSpacing: true,
-      markers: true,
+      // markers: true,
 
       onUpdate: (self) => {
         if (self.progress > 0.5) {
@@ -1087,10 +1087,10 @@ const init = () => {
   counterOnScroll();
   blob();
   fadeText();
+  ourProjects();
   setTimeout(() => {
     loading();
     textQuote();
-    ourProjects();
     ourMembers();
     sectionServices();
     itemParalax();
