@@ -353,26 +353,36 @@ function ourProjects() {
     // });
 
     let tl = gsap.timeline({ paused: true });
-    tl.from(
-      ".projects-filter .menu-item",
-      {
-        opacity: 0,
-        y: 20,
-        stagger: 0.1,
-        duration: 0.5,
-        ease: "none",
-      },
-      "-=0.3"
-    );
+    tl.from(".projects-filter .menu-item", {
+      opacity: 0,
+      y: 20,
+      stagger: 0.1,
+      duration: 0.5,
+      ease: "none",
+    });
 
     $(".projects-filter .filter-item").on("click", function () {
       let thisFilterProject = $(this);
+      let thisListItem = thisFilterProject.find(".menu-item");
 
-      // $(".projects-filter .filter-item .sub-menu").removeClass("open");
       thisFilterProject.siblings().find(".sub-menu").removeClass("open");
       thisFilterProject.find(".sub-menu").toggleClass("open");
 
-      let thisListItem = thisFilterProject.find(".menu-item");
+      let tl = gsap.timeline({ paused: true });
+      tl.fromTo(
+        thisListItem,
+        {
+          opacity: 0,
+          y: 20,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          stagger: 0.1,
+          duration: 0.5,
+          ease: "none",
+        }
+      );
 
       if (thisFilterProject.find(".sub-menu").hasClass("open")) {
         tl.restart();
