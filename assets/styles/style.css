@@ -972,6 +972,8 @@ section.section-members .members-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   column-gap: 32px;
+  position: relative;
+  z-index: 2;
 }
 section.section-members .members-list ul {
   position: relative;
@@ -1292,7 +1294,7 @@ section.section-services .services-wrapper__left {
 section.section-services .services-wrapper__left .service-ball {
   width: 32px;
   height: 32px;
-  background-color: var(--color-primary);
+  background-color: var(--color-white);
   border-radius: 50%;
   position: absolute;
   z-index: 2;
