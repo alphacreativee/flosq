@@ -6,6 +6,9 @@ section.section-quote {
     text-align: center;
     max-width: 900px;
     margin: 0 auto;
+    @media (max-width: 767px) {
+      padding: 80px 16px;
+    }
   }
 
   .text {

@@ -686,7 +686,7 @@ function counterOnScroll() {
 
 function itemParalax() {
   gsap.registerPlugin(ScrollTrigger);
-
+  if (window.innerWidth < 768) return;
   gsap.utils.toArray(".js-parallax").forEach((wrap) => {
     const y = wrap.getAttribute("data-y") || 100;
 
