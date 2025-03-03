@@ -1585,7 +1585,7 @@ section.section-services .services-wrapper__right .list-item .item:not(:first-ch
   background: #d9d9d9;
   border-radius: unset;
 }
-.services-modal .modal-content .content-wrapper {
+.services-modal .modal-content .content .wrapper-content {
   margin-top: 16px;
 }
 .services-modal .modal-content ul li:not(:first-child) {

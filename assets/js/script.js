@@ -572,22 +572,22 @@ function ourMembers() {
 }
 
 function bannerBall() {
-  let yPercent = -115;
-  // gsap.set(".hero__ball", { yPercent: yPercent });
+  let yPercent = -90;
+  gsap.set(".hero__ball", { yPercent: yPercent });
 
-  gsap.fromTo(
-    ".hero__ball",
-    { yPercent: -130 }, // Start from 150%
-    {
-      yPercent: -100, // Animate to 115%
-      duration: 0.6, // Duration of the animation
-      ease: "power2.out", // Optional easing
-      onComplete: () => {
-        // Remove overflow-hidden class from the body when animation completes
-        document.body.classList.remove("overflow-hidden");
-      },
-    }
-  );
+  // gsap.fromTo(
+  //   ".hero__ball",
+  //   { yPercent: -130 }, // Start from 150%
+  //   {
+  //     yPercent: -100, // Animate to 115%
+  //     duration: 0.6, // Duration of the animation
+  //     ease: "power2.out", // Optional easing
+  //     onComplete: () => {
+  //       // Remove overflow-hidden class from the body when animation completes
+  //       // document.body.classList.remove("overflow-hidden");
+  //     },
+  //   }
+  // );
 
   let yBasic = $(".hero").hasClass("without-home") ? 0 : 60;
   gsap.to(".hero__ball", {
