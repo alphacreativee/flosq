@@ -825,6 +825,8 @@ function scrollBall() {
 }
 function sectionServices() {
   if ($(".services-wrapper__left").length < 1) return;
+  let pin =
+    window.innerWidth < 767 ? ".section-services" : ".services-wrapper__left";
   gsap.to(".services-wrapper__right", {
     ease: "none",
     scrollTrigger: {
@@ -833,7 +835,7 @@ function sectionServices() {
       // start: "top top",
       end: "bottom bottom",
       scrub: 1,
-      pin: ".services-wrapper__left",
+      pin: pin,
     },
   });
 

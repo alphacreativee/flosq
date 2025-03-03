@@ -104,6 +104,10 @@
     right: 50%;
     top: 0;
     transform: translateX(50%);
+    @media (max-width: 767px) {
+      right: 24px;
+      transform: translateX(0%);
+    }
   }
   .section-line {
     width: 32px;
@@ -115,7 +119,7 @@
     right: -32px;
     z-index: 99;
     @media (max-width: 767px) {
-      right: 0;
+      right: -8px;
       top: 16px;
     }
   }
