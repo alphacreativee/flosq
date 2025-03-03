@@ -37,7 +37,7 @@ function handlePageVisibilityAndFavicon() {
     isBlinking = true;
     const favicons = [
       "./assets/images/utilize/favicon_red.svg",
-      "./assets/images/utilize/favicon_black.svg",
+      "./assets/images/utilize/favicon_black.svg"
     ];
     let faviconIndex = 0;
 
@@ -99,9 +99,9 @@ function loading() {
     onComplete: function () {
       gsap.to(".dots", {
         scale: 1,
-        transformOrigin: "center",
+        transformOrigin: "center"
       });
-    },
+    }
   });
 
   gsap.fromTo(".loading-overlay", { opacity: 0 }, { opacity: 1, duration: 1 });
@@ -113,8 +113,13 @@ function loading() {
   );
   tl.to(".loading-image", { opacity: 1, scale: 1, duration: 1 })
     .to(".loading-overlay", { scale: 200, opacity: 1, duration: 1 }, "+=0.5")
-    .to(".loading", { opacity: 0, ease: "expo.inOut", duration: 1 }, "+=0.7");
+    .to(".loading", { opacity: 0, ease: "expo.inOut", duration: 1 }, "+=0.7")
+    .call(() => {
+      bannerBall();
+    });
   // scaleY: 0, transformOrigin: "top", ease: "expo.inOut", duration: 1
+
+  setTimeout(() => {}, 5000);
 }
 
 function toggleMenu() {
@@ -128,7 +133,7 @@ function toggleMenu() {
     y: 20,
     stagger: 0.1,
     duration: 0.6,
-    ease: "power2.out",
+    ease: "power2.out"
   }).from(
     ".menu__social ul li",
     {
@@ -136,7 +141,7 @@ function toggleMenu() {
       y: 20,
       stagger: 0.1,
       duration: 0.6,
-      ease: "power2.out",
+      ease: "power2.out"
     },
     "-=0.4"
   );
@@ -154,25 +159,25 @@ function toggleMenu() {
 function fadeText() {
   gsap.set("[data-fade-in]", {
     opacity: 0,
-    y: 20,
+    y: 20
   });
 
   let tl = gsap.timeline({
-    paused: true,
+    paused: true
   });
 
   tl.fromTo(
     "[data-fade-in]",
     {
       opacity: 0,
-      y: 20,
+      y: 20
     },
     {
       opacity: 1,
       y: 0,
       stagger: 0.1,
       duration: 0.6,
-      ease: "power2.out",
+      ease: "power2.out"
     }
   );
 
@@ -181,7 +186,7 @@ function fadeText() {
     start: "top 80%",
     // markers: true,
     animation: tl,
-    toggleActions: "play none none none",
+    toggleActions: "play none none none"
   });
 }
 
@@ -191,8 +196,8 @@ function scrollHeader() {
       trigger: "body",
       start: "top+=100 top",
       toggleClass: { targets: ".header", className: "scrolled" }, //
-      once: false,
-    },
+      once: false
+    }
   });
 }
 
@@ -212,8 +217,8 @@ function textQuote() {
         markers: false,
         scrub: 1,
         start: "top center",
-        end: "bottom center",
-      },
+        end: "bottom center"
+      }
     });
   });
 }
@@ -222,7 +227,7 @@ function magicCursor() {
 
   gsap.set(circle, {
     xPercent: -50,
-    yPercent: -50,
+    yPercent: -50
   });
 
   let mouseX = 0,
@@ -244,7 +249,7 @@ function magicCursor() {
       x: posX,
       y: posY,
       ease: "power3.out",
-      duration: 0.3,
+      duration: 0.3
     });
 
     requestAnimationFrame(moveCircle);
@@ -334,8 +339,8 @@ function ourProjects() {
               .querySelector(".section-projects")
               .classList.remove("on-active");
           }
-        },
-      },
+        }
+      }
     });
 
     // gsap.to(".section-projects", {
@@ -358,7 +363,7 @@ function ourProjects() {
       y: 20,
       stagger: 0.1,
       duration: 0.5,
-      ease: "none",
+      ease: "none"
     });
 
     $(".projects-filter .filter-item").on("click", function () {
@@ -373,14 +378,14 @@ function ourProjects() {
         thisListItem,
         {
           opacity: 0,
-          y: 20,
+          y: 20
         },
         {
           opacity: 1,
           y: 0,
           stagger: 0.1,
           duration: 0.5,
-          ease: "none",
+          ease: "none"
         }
       );
 
@@ -532,14 +537,14 @@ function ourProjects() {
         `${columnClass} .item`,
         {
           opacity: 0,
-          y: 30, // Starting position: 30px below the final position
+          y: 30 // Starting position: 30px below the final position
         },
         {
           opacity: 1, // End with opacity: 1 (fully visible)
           y: 0, // End with transform: none (reset the translation)
           stagger: 0.2, // Delay for each item to appear one after another
           duration: 0.8, // Duration of the animation
-          ease: "power2.out", // Smooth ease out effect
+          ease: "power2.out" // Smooth ease out effect
         }
       );
     }
@@ -574,7 +579,22 @@ function ourMembers() {
 
 function bannerBall() {
   let yPercent = -115;
-  gsap.set(".hero__ball", { yPercent: yPercent });
+  // gsap.set(".hero__ball", { yPercent: yPercent });
+
+  gsap.fromTo(
+    ".hero__ball",
+    { yPercent: -150 }, // Start from 150%
+    {
+      yPercent: -115, // Animate to 115%
+      duration: 0.6, // Duration of the animation
+      ease: "power2.out", // Optional easing
+      onComplete: () => {
+        // Remove overflow-hidden class from the body when animation completes
+        document.body.classList.remove("overflow-hidden");
+      }
+    }
+  );
+
   let yBasic = $(".hero").hasClass("without-home") ? 0 : 60;
   gsap.to(".hero__ball", {
     yPercent: 40,
@@ -599,8 +619,8 @@ function bannerBall() {
           $(".hero__ball").removeClass("change");
         }
         // ScrollTrigger.refresh();
-      },
-    },
+      }
+    }
   });
 }
 
@@ -679,7 +699,7 @@ function itemParalax() {
     gsap.fromTo(
       wrap,
       {
-        y: y,
+        y: y
       },
       {
         y: 0,
@@ -689,9 +709,9 @@ function itemParalax() {
           end: "bottom top",
           scrub: 1,
           ease: "power4",
-          delay: 0.2,
+          delay: 0.2
           // markers: true
-        },
+        }
       }
     );
   });
@@ -711,7 +731,7 @@ function gallery() {
     // start: `top bottom-=${itemHeight}`,
     start: "top 10%",
     end: "bottom bottom",
-    pin: ".right",
+    pin: ".right"
   });
 
   details.forEach((detail, index) => {
@@ -720,7 +740,7 @@ function gallery() {
       .timeline()
       .to(photos[index], {
         clipPath: "inset(0% 0% 0% 0%)",
-        duration: 2.5,
+        duration: 2.5
       })
       .set(allPhotos[index], { autoAlpha: 0 });
     ScrollTrigger.create({
@@ -735,7 +755,7 @@ function gallery() {
       },
       onLeaveBack: () => {
         headline.classList.remove("active");
-      },
+      }
     });
   });
 
@@ -747,7 +767,7 @@ function gallery() {
     transformOrigin: "center center",
     xPercent: -50,
     yPercent: -50,
-    y: 0,
+    y: 0
   });
 
   // Animation di chuyển vòng tròn khi cuộn
@@ -773,7 +793,7 @@ function gallery() {
     },
     onComplete: () => {
       gsap.to(line, { scale: 0, ease: "none" });
-    },
+    }
   });
 }
 function scrollBall() {
@@ -785,8 +805,8 @@ function scrollBall() {
       end: "bottom top",
       scrub: 2,
       // markers: true,
-      invalidateOnRefresh: true,
-    },
+      invalidateOnRefresh: true
+    }
   });
   tl.fromTo(
     ".projects-ball",
@@ -798,9 +818,9 @@ function scrollBall() {
           { x: "50vw", y: "100vh" },
           { x: "25vw", y: "150vh" },
           { x: "5vw", y: "200vh" },
-          { x: "0vw", y: "300vh" },
-        ],
-      },
+          { x: "0vw", y: "300vh" }
+        ]
+      }
     }
   );
   // tl.to(".projects-ball", { top: "30%", left: "60%", ease: "power1.inOut" })
@@ -818,8 +838,8 @@ function sectionServices() {
       // start: "top top",
       end: "bottom bottom",
       scrub: 1,
-      pin: ".services-wrapper__left",
-    },
+      pin: ".services-wrapper__left"
+    }
   });
 
   // Animation di chuyển vòng tròn khi cuộn
@@ -844,7 +864,7 @@ function sectionServices() {
           .querySelector(".section-projects, .section-members")
           .classList.add("touch");
       }
-    },
+    }
   });
 }
 function swiperLogo() {
@@ -858,13 +878,13 @@ function swiperLogo() {
     autoplay: {
       delay: 0,
       disableOnInteraction: true,
-      pauseOnMouseEnter: true,
+      pauseOnMouseEnter: true
     },
     breakpoints: {
       767: {
-        slidesPerView: 6,
-      },
-    },
+        slidesPerView: 6
+      }
+    }
   });
 }
 function toggleDropdown() {
@@ -962,7 +982,7 @@ function blob() {
           offsetY: 0,
           velocityX: 0,
           velocityY: 0,
-          angle: angle,
+          angle: angle
         });
       }
     }
@@ -985,8 +1005,8 @@ function blob() {
           onUpdate: (self) => {
             const progress = self.progress;
             this.scrollOffset = Math.sin(progress * Math.PI * 4) * 25;
-          },
-        },
+          }
+        }
       });
     }
 
@@ -1075,7 +1095,6 @@ function blob() {
   blob.animate();
 }
 const init = () => {
-  bannerBall();
   toggleDropdown();
   scrollBall();
   swiperLogo();

@@ -1490,6 +1490,9 @@ section.section-services .services-wrapper__right .list-item .item:not(:first-ch
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   resize: none;
 }
+.contact-form__form .input-group label {
+  font-weight: 600;
+}
 .contact-form__submit {
   margin-top: 24px;
   display: flex;
