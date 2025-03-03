@@ -4,6 +4,11 @@ section.section-projects {
   z-index: 2;
   background-color: var(--color-black);
   transition: background-color 0.4s ease;
+  .section-tag {
+    @media (max-width: 767px) {
+      margin-bottom: 48px !important;
+    }
+  }
   &.ver-2 {
     .projects-list .item::after {
       background-color: var(--color-black);
@@ -36,6 +41,9 @@ section.section-projects {
     padding: 120px 40px;
     position: relative;
     z-index: 1;
+    @media (max-width: 767px) {
+      padding: 64px 24px 120px;
+    }
   }
 
   .projects-content {
@@ -77,14 +85,26 @@ section.section-projects {
     transition: all 0.4s ease;
     opacity: 0;
     visibility: hidden;
-
+    z-index: 123;
+    @media (max-width: 767px) {
+      padding: 0px 24px;
+      width: calc(100% - 32px);
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
     .filter-item {
       text-transform: uppercase;
       cursor: pointer;
       padding: 12px 0;
       position: relative;
       line-height: 24px;
-
+      @media (max-width: 767px) {
+        white-space: nowrap;
+        &:first-child {
+          padding-left: 24px;
+        }
+      }
       span {
         font-weight: 600;
         margin-left: 3px;
@@ -92,6 +112,7 @@ section.section-projects {
 
       .sub-menu {
         max-width: 370px;
+        z-index: 123;
         width: max-content;
         height: max-content;
         position: absolute;
@@ -180,7 +201,10 @@ section.section-projects {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 32px;
-
+    @media (max-width: 767px) {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
     ul {
       &.pending {
         .item {

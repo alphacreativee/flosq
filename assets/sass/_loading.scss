@@ -9,9 +9,10 @@
     //   position: absolute;
     //   width: 1px;
     //   height: 100%;
-    //   background-color: red;
+    //   background-color: white;
     //   left: 50%;
     //   transform: translateX(-50%);
+    //   z-index: 999;
     // }
     .dots {
       background-color: var(--color-primary);
@@ -24,21 +25,33 @@
         transform: scale(2);
         top: 105px;
         left: 100px;
+        @media (max-width: 767px) {
+          left: 50px;
+        }
       }
       &.bottom-left {
         transform: scale(3);
         left: 100px;
         bottom: 60px;
+        @media (max-width: 767px) {
+          left: 50px;
+        }
       }
       &.right-left {
         transform: scale(5);
         top: 60px;
         right: 100px;
+        @media (max-width: 767px) {
+          right: 50px;
+        }
       }
       &.bottom-right {
         transform: scale(1.5);
         bottom: 170px;
         right: 113px;
+        @media (max-width: 767px) {
+          right: 50px;
+        }
       }
     }
   }
@@ -47,6 +60,16 @@
     opacity: 0;
     position: relative;
     z-index: 5;
+    @media (max-width: 767px) {
+      width: auto;
+      height: 48px;
+      transform: translateX(-55px);
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
   }
   &-overlay {
     position: absolute;

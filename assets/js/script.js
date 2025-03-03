@@ -113,15 +113,7 @@ function loading() {
   );
   tl.to(".loading-image", { opacity: 1, scale: 1, duration: 1 })
     .to(".loading-overlay", { scale: 200, opacity: 1, duration: 1 }, "+=0.5")
-    .to(".loading", { opacity: 0, ease: "expo.inOut", duration: 1 }, "+=0.7")
-    .call(
-      () => {
-        bannerBall();
-      },
-      null,
-      "-=0.7"
-    );
-  // scaleY: 0, transformOrigin: "top", ease: "expo.inOut", duration: 1
+    .to(".loading", { opacity: 0, ease: "expo.inOut", duration: 1 }, "+=0.7");
 }
 
 function toggleMenu() {
@@ -585,9 +577,9 @@ function bannerBall() {
 
   gsap.fromTo(
     ".hero__ball",
-    { yPercent: -150 }, // Start from 150%
+    { yPercent: -130 }, // Start from 150%
     {
-      yPercent: -115, // Animate to 115%
+      yPercent: -100, // Animate to 115%
       duration: 0.6, // Duration of the animation
       ease: "power2.out", // Optional easing
       onComplete: () => {
@@ -694,7 +686,7 @@ function counterOnScroll() {
 
 function itemParalax() {
   gsap.registerPlugin(ScrollTrigger);
-
+  if (window.innerWidth < 768) return;
   gsap.utils.toArray(".js-parallax").forEach((wrap) => {
     const y = wrap.getAttribute("data-y") || 100;
 
@@ -728,12 +720,13 @@ function gallery() {
   gsap.set(photos, { clipPath: "inset(100% 0% 0% 0%)" });
 
   const allPhotos = gsap.utils.toArray(".gallery__img");
+  let pin = window.innerWidth < 768 ? ".right-mobile" : ".right-desktop";
   ScrollTrigger.create({
     trigger: ".gallery__container ",
     // start: `top bottom-=${itemHeight}`,
     start: "top 10%",
     end: "bottom bottom",
-    pin: ".right",
+    pin: pin,
   });
 
   details.forEach((detail, index) => {
@@ -1095,8 +1088,10 @@ function blob() {
 
   const blob = new Blob(90, 90, "#e82c2a");
   blob.animate();
-}
+} // Chạy sau 3.7 giây
+
 const init = () => {
+  bannerBall();
   toggleDropdown();
   scrollBall();
   swiperLogo();
@@ -1108,8 +1103,8 @@ const init = () => {
   counterOnScroll();
   blob();
   fadeText();
-  ourProjects();
   setTimeout(() => {
+    ourProjects();
     loading();
     textQuote();
     ourMembers();
