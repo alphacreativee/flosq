@@ -839,8 +839,20 @@ function sectionServices() {
     },
   });
 
-  // Animation di chuyển vòng tròn khi cuộn
-  const line = $(".service-ball");
+  // const line =
+  //   window.innerWidth < 767 ? $(".service-ball-mobile") : $(".service-ball");
+
+  // Kiểm tra xem line có được chọn đúng không
+  console.log(line.length > 0 ? "Element found" : "Element not found");
+
+  // Ví dụ sử dụng với GSAP (nếu cần)
+  if (line.length > 0) {
+    gsap.to(line, {
+      x: 100,
+      duration: 1,
+      ease: "power2.out",
+    });
+  }
   const lineWrapper = $(".services-wrapper");
   ScrollTrigger.create({
     trigger: lineWrapper,
