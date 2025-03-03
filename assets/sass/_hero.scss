@@ -20,6 +20,7 @@
     align-items: center;
     overflow: hidden;
     position: relative;
+
     &.change {
       .hero__content--one {
         transform: translate(-50%, -50%);
