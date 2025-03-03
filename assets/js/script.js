@@ -720,12 +720,13 @@ function gallery() {
   gsap.set(photos, { clipPath: "inset(100% 0% 0% 0%)" });
 
   const allPhotos = gsap.utils.toArray(".gallery__img");
+  let pin = window.innerWidth < 768 ? ".right-mobile" : ".right-desktop";
   ScrollTrigger.create({
     trigger: ".gallery__container ",
     // start: `top bottom-=${itemHeight}`,
     start: "top 10%",
     end: "bottom bottom",
-    pin: ".right",
+    pin: pin,
   });
 
   details.forEach((detail, index) => {
