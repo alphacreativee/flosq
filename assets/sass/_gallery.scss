@@ -95,6 +95,11 @@
     width: 64px;
     height: auto;
   }
+  &-desktop {
+    &::before {
+      right: 0 !important;
+    }
+  }
   &::before {
     content: "";
     position: absolute;

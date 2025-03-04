@@ -839,8 +839,8 @@ function sectionServices() {
     },
   });
 
-  // const line =
-  //   window.innerWidth < 767 ? $(".service-ball-mobile") : $(".service-ball");
+  const line = $(".service-ball");
+  // window.innerWidth < 767 ? $(".service-ball") : $(".service-ball");
 
   // Kiểm tra xem line có được chọn đúng không
   console.log(line.length > 0 ? "Element found" : "Element not found");

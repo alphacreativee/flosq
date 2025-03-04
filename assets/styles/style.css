@@ -1312,6 +1312,9 @@ section.section-members .members-list__right .item-content-show {
     height: auto;
   }
 }
+.right-desktop::before {
+  right: 0 !important;
+}
 .right::before {
   content: "";
   position: absolute;
