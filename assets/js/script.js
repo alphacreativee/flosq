@@ -843,9 +843,6 @@ function sectionServices() {
     window.innerWidth < 767 ? $(".service-ball-mobile") : $(".service-ball");
   //
 
-  // Kiểm tra xem line có được chọn đúng không
-  console.log(line.length > 0 ? "Element found" : "Element not found");
-
   const lineWrapper = $(".services-wrapper");
   ScrollTrigger.create({
     trigger: lineWrapper,
@@ -861,6 +858,7 @@ function sectionServices() {
           ? document.querySelector(".section-services").offsetHeight
           : window.innerHeight;
       let moveY = progress * windowHeight;
+      console.log(windowHeight);
 
       gsap.to(line, { y: moveY, duration: 0.1, ease: "none" });
 
