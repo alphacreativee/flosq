@@ -573,7 +573,7 @@ function ourMembers() {
 
 function bannerBall() {
   // let yPercent = -100;
-  const yPercent = $(window).width() < 768 ? "-120" : "-100";
+  const yPercent = $(window).width() < 768 ? "-120" : "-65";
   gsap.set(".hero__ball", { yPercent: yPercent });
 
   // gsap.fromTo(
