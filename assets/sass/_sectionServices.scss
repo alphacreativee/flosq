@@ -19,6 +19,15 @@ section.section-services {
       z-index: 2;
       top: 0;
       right: 9px;
+
+      &-wrapper {
+        position: absolute;
+        right: -24px !important;
+        top: 0 !important;
+        height: 100vh !important;
+        width: 1px !important;
+        max-height: 100vh !important;
+      }
     }
   }
   &::after {

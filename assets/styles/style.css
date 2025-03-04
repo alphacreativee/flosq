@@ -597,6 +597,13 @@ body {
 .hero__ball.change {
   box-shadow: 0px 0px 100px 100px var(--color-primary);
 }
+@media (max-width: 768px) {
+  .hero__ball {
+    width: 120%;
+    height: unset;
+    aspect-ratio: 1;
+  }
+}
 
 section.section-projects {
   position: relative;
@@ -1413,6 +1420,14 @@ section.section-services .service-ball-mobile {
   z-index: 2;
   top: 0;
   right: 9px;
+}
+section.section-services .service-ball-mobile-wrapper {
+  position: absolute;
+  right: -24px !important;
+  top: 0 !important;
+  height: 100vh !important;
+  width: 1px !important;
+  max-height: 100vh !important;
 }
 section.section-services::after {
   content: "";

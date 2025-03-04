@@ -64,5 +64,11 @@
     &.change {
       box-shadow: 0px 0px 100px 100px var(--color-primary);
     }
+
+    @media (max-width: 768px) {
+      width: 120%;
+      height: unset;
+      aspect-ratio: 1;
+    }
   }
 }
