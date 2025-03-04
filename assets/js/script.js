@@ -1097,7 +1097,7 @@ function blob() {
     }
   }
 
-  const blob = new Blob(90, 180, "#e82c2a"); // Tăng pointsCount lên 180
+  const blob = new Blob(90, 360, "#e82c2a");
   blob.animate();
 }
 
