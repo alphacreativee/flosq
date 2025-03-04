@@ -821,6 +821,7 @@ section.section-projects .projects-list .item-title, section.section-projects .p
   z-index: 3;
   bottom: 32px;
   left: 32px;
+  right: 32px;
 }
 section.section-projects .projects-list .item-title.desc, section.section-projects .projects-list .item-text.desc {
   margin-top: 8px;
