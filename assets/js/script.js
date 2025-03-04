@@ -952,9 +952,13 @@ function blob() {
   gsap.registerPlugin(ScrollTrigger);
 
   const canvas = document.getElementById("canvas");
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = canvas.offsetWidth * dpr;
+  canvas.height = canvas.offsetHeight * dpr;
   const ctx = canvas.getContext("2d");
-  const w = canvas.width;
-  const h = canvas.height;
+  ctx.scale(dpr, dpr);
+  const w = canvas.width / dpr;
+  const h = canvas.height / dpr;
 
   class Blob {
     constructor(radius, pointsCount, color) {
@@ -966,7 +970,7 @@ function blob() {
       this.targetMouse = { x: w / 2, y: h / 2 };
       this.ease = 0.05;
       this.scrollOffset = 0;
-      this.time = 0; // Biến thời gian cho dao động tự nhiên
+      this.time = 0;
       this.initPoints();
       this.addListeners();
       this.addScrollEffect();
@@ -1007,7 +1011,7 @@ function blob() {
           scrub: 1,
           onUpdate: (self) => {
             const progress = self.progress;
-            this.scrollOffset = Math.sin(progress * Math.PI * 4) * 25;
+            this.scrollOffset = Math.sin(progress * Math.PI * 4) * 10; // Giảm từ 25 xuống 10
           },
         },
       });
@@ -1016,7 +1020,7 @@ function blob() {
     update() {
       this.mouse.x += (this.targetMouse.x - this.mouse.x) * this.ease;
       this.mouse.y += (this.targetMouse.y - this.mouse.y) * this.ease;
-      this.time += 0.05; // Tăng thời gian cho dao động
+      this.time += 0.05;
 
       this.points.forEach((point) => {
         const dx = this.mouse.x - point.x;
@@ -1024,7 +1028,6 @@ function blob() {
         const dist = Math.sqrt(dx * dx + dy * dy);
         const maxDist = 150;
 
-        // Hiệu ứng hover
         if (dist < maxDist) {
           const force = ((maxDist - dist) / maxDist) * 7;
           const angleToMouse = Math.atan2(dy, dx);
@@ -1032,12 +1035,10 @@ function blob() {
           point.velocityY += Math.sin(angleToMouse) * force * 0.03;
         }
 
-        // Dao động tự nhiên dùng sin
-        const oscillation = Math.sin(this.time + point.angle) * 5; // Biên độ 10px
+        const oscillation = Math.sin(this.time + point.angle) * 2; // Giảm từ 5 xuống 2
         point.velocityX += Math.cos(point.angle) * oscillation * 0.01;
         point.velocityY += Math.sin(point.angle) * oscillation * 0.01;
 
-        // Lực đàn hồi để giữ hình tròn
         const currentRadius = Math.sqrt(
           point.offsetX * point.offsetX + point.offsetY * point.offsetY
         );
@@ -1047,7 +1048,6 @@ function blob() {
         point.velocityX += Math.cos(point.angle) * radiusDiff * spring;
         point.velocityY += Math.sin(point.angle) * radiusDiff * spring;
 
-        // Cập nhật vị trí
         point.velocityX *= 0.9;
         point.velocityY *= 0.9;
         point.offsetX += point.velocityX;
@@ -1058,7 +1058,6 @@ function blob() {
         point.x = w / 2 + point.baseX + point.offsetX + this.scrollOffset;
         point.y = h / 2 + point.baseY + point.offsetY;
 
-        // Dao động ngẫu nhiên nhỏ
         if (Math.random() > 0.98) {
           point.velocityX += (Math.random() - 0.5) * 0.1;
           point.velocityY += (Math.random() - 0.5) * 0.1;
@@ -1071,16 +1070,20 @@ function blob() {
       ctx.beginPath();
       ctx.fillStyle = this.color;
 
-      for (let i = 0; i < this.pointsCount; i++) {
-        const curr = this.points[i];
-        const next = this.points[(i + 1) % this.pointsCount];
-        const mx = (curr.x + next.x) / 2;
-        const my = (curr.y + next.y) / 2;
+      const points = this.points;
+      ctx.moveTo(points[0].x, points[0].y);
 
-        if (i === 0) {
-          ctx.moveTo(curr.x, curr.y);
-        }
-        ctx.quadraticCurveTo(curr.x, curr.y, mx, my);
+      for (let i = 0; i < this.pointsCount; i++) {
+        const curr = points[i];
+        const next = points[(i + 1) % this.pointsCount];
+        const prev = points[i === 0 ? this.pointsCount - 1 : i - 1];
+
+        const cp1x = curr.x + (curr.x - prev.x) * 0.25;
+        const cp1y = curr.y + (curr.y - prev.y) * 0.25;
+        const cp2x = next.x - (next.x - curr.x) * 0.25;
+        const cp2y = next.y - (next.y - curr.y) * 0.25;
+
+        ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, next.x, next.y);
       }
 
       ctx.closePath();
@@ -1094,9 +1097,9 @@ function blob() {
     }
   }
 
-  const blob = new Blob(90, 90, "#e82c2a");
+  const blob = new Blob(90, 180, "#e82c2a"); // Tăng pointsCount lên 180
   blob.animate();
-} // Chạy sau 3.7 giây
+}
 
 function contactForm() {
   if (!$(".contact-form").length) return;
