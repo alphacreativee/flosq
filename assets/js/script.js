@@ -600,10 +600,10 @@ function bannerBall() {
       scrub: true,
       pin: true,
       // pinSpacing: true,
-      // markers: true,
+      markers: true,
 
       onUpdate: (self) => {
-        if (self.progress > 0.5) {
+        if (self.progress > 0.3) {
           $(".hero__content").addClass("change");
         } else {
           $(".hero__content").removeClass("change");
