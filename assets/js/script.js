@@ -1090,6 +1090,93 @@ function blob() {
   blob.animate();
 } // Chạy sau 3.7 giây
 
+function contactForm() {
+  if (!$(".contact-form").length) return;
+
+  const contactForm = $(".contact-form");
+  contactForm.on("submit", function (e) {
+    e.preventDefault();
+
+    const nameField = contactForm.find("input[name='name']");
+    const emailField = contactForm.find("input[name='email']");
+    const phoneField = contactForm.find("input[type='tel']");
+    const companyField = contactForm.find("input[type='company']");
+    const messageField = $("#contact-form textarea[name='message']");
+
+    contactForm.find(".error-message").remove();
+    contactForm.find("input, textarea").removeClass("error");
+
+    let isValid = true;
+
+    if (!nameField.val().trim()) {
+      nameField.addClass("error");
+      isValid = false;
+    }
+
+    if (!emailField.val().trim()) {
+      emailField.addClass("error");
+      isValid = false;
+    }
+
+    if (!phoneField.val().trim()) {
+      phoneField.addClass("error");
+      isValid = false;
+    }
+
+    if (!isValid) {
+      return;
+    }
+
+    $.ajax({
+      type: "POST",
+      url: ajaxUrl,
+      data: {
+        action: "submit_contact_form",
+        name: nameField.val().trim(),
+        email: emailField.val().trim(),
+        phone: phoneField.val().trim(),
+        company: companyField.val().trim(),
+        messageNote: messageField.val().trim()
+      },
+      beforeSend: function () {
+        console.log("Đang gửi dữ liệu...");
+        $(".contact-message").remove();
+      },
+      success: function (res) {
+        console.log("Phản hồi từ server:", res);
+
+        let message = "";
+        if (res.success === true) {
+          message =
+            '<span class="contact-message" style="color: green;">' +
+            res.data +
+            "</span>";
+          contactForm.append(message);
+          contactForm[0].reset();
+
+          setTimeout(function () {
+            $(".contact-message").fadeOut("slow", function () {
+              $(this).remove();
+            });
+          }, 5000);
+        } else {
+          message = `<span class="contact-message" style="color: red;">${
+            res.data || "Có lỗi xảy ra, vui lòng thử lại."
+          }</span>`;
+          contactForm.append(message);
+        }
+      },
+      error: function (xhr, status, error) {
+        console.error("Lỗi khi gửi form:", error);
+        $(".contact-message").remove();
+        contactForm.append(
+          '<span class="contact-message" style="color: red;">Có lỗi xảy ra, vui lòng thử lại sau.</span>'
+        );
+      }
+    });
+  });
+}
+
 const init = () => {
   bannerBall();
   toggleDropdown();
@@ -1103,6 +1190,7 @@ const init = () => {
   counterOnScroll();
   blob();
   fadeText();
+  contactForm();
   setTimeout(() => {
     ourProjects();
     loading();
