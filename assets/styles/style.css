@@ -322,8 +322,8 @@ body {
 @media (max-width: 767px) {
   .loading-image {
     width: auto;
-    height: 48px;
-    transform: translateX(-55px);
+    height: 40px;
+    transform: translate(-48px, 5px);
   }
   .loading-image img {
     width: 100%;
