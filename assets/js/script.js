@@ -839,20 +839,13 @@ function sectionServices() {
     },
   });
 
-  const line = $(".service-ball");
-  // window.innerWidth < 767 ? $(".service-ball") : $(".service-ball");
+  const line =
+    window.innerWidth < 767 ? $(".service-ball-mobile") : $(".service-ball");
+  //
 
   // Kiểm tra xem line có được chọn đúng không
   console.log(line.length > 0 ? "Element found" : "Element not found");
 
-  // Ví dụ sử dụng với GSAP (nếu cần)
-  if (line.length > 0) {
-    gsap.to(line, {
-      x: 100,
-      duration: 1,
-      ease: "power2.out",
-    });
-  }
   const lineWrapper = $(".services-wrapper");
   ScrollTrigger.create({
     trigger: lineWrapper,
@@ -1150,7 +1143,7 @@ function contactForm() {
         email: emailField.val().trim(),
         phone: phoneField.val().trim(),
         company: companyField.val().trim(),
-        messageNote: messageField.val().trim()
+        messageNote: messageField.val().trim(),
       },
       beforeSend: function () {
         console.log("Đang gửi dữ liệu...");
@@ -1186,7 +1179,7 @@ function contactForm() {
         contactForm.append(
           '<span class="contact-message" style="color: red;">Có lỗi xảy ra, vui lòng thử lại sau.</span>'
         );
-      }
+      },
     });
   });
 }
