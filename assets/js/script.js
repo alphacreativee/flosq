@@ -856,8 +856,11 @@ function sectionServices() {
     // markers: true,
     onUpdate: (self) => {
       let progress = self.progress;
-      let moveY = progress * window.innerHeight;
-      // console.log(progress);
+      let windowHeight =
+        window.innerWidth < 767 && document.querySelector(".section-services")
+          ? document.querySelector(".section-services").offsetHeight
+          : window.innerHeight;
+      let moveY = progress * windowHeight;
 
       gsap.to(line, { y: moveY, duration: 0.1, ease: "none" });
 
