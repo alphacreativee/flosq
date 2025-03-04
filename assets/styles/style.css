@@ -599,7 +599,7 @@ body {
 }
 @media (max-width: 768px) {
   .hero__ball {
-    width: 120%;
+    width: 150%;
     height: unset;
     aspect-ratio: 1;
   }
@@ -1419,7 +1419,7 @@ section.section-services .service-ball-mobile {
   position: absolute;
   z-index: 2;
   top: 0;
-  right: 9px;
+  right: 32px;
 }
 section.section-services .service-ball-mobile-wrapper {
   position: absolute;

@@ -573,7 +573,7 @@ function ourMembers() {
 
 function bannerBall() {
   // let yPercent = -100;
-  const yPercent = $(window).width() < 768 ? "-120" : "-65";
+  const yPercent = $(window).width() < 768 ? "-10" : "-65";
   gsap.set(".hero__ball", { yPercent: yPercent });
 
   // gsap.fromTo(
@@ -845,7 +845,8 @@ function sectionServices() {
   const line =
     window.innerWidth < 767 ? $(".service-ball-mobile") : $(".service-ball");
   //
-
+  const $ball =
+    window.innerWidth < 767 ? $(".service-ball-mobile") : $(".service-ball");
   gsap.set(".service-ball-mobile-wrapper", {
     width: "1px",
     height: "100vh",
@@ -863,25 +864,42 @@ function sectionServices() {
   ScrollTrigger.create({
     trigger: lineWrapper,
     start: "top 65%",
-    end: "bottom 60%",
+    end: () => {
+      // For mobile: end when section is fully scrolled; for desktop: keep original behavior
+      if (window.innerWidth < 767) {
+        const sectionHeight =
+          document.querySelector(".section-services").offsetHeight;
+        return `+=${sectionHeight}`; // End when section is fully scrolled
+      }
+      return "bottom 60%"; // Desktop original end
+    },
     scrub: true,
     // markers: true,
     // markers: true,
     onUpdate: (self) => {
       let progress = self.progress;
-      let windowHeight =
-        window.innerWidth < 767 && document.querySelector(".section-services")
-          ? document.querySelector(".section-services").offsetHeight
-          : window.innerHeight;
-      let moveY = progress * windowHeight;
-      console.log(windowHeight);
+      let moveY;
 
-      gsap.to(line, { y: moveY, duration: 0.1, ease: "none" });
+      if (window.innerWidth < 767) {
+        // On mobile: move ball exactly 100vh over the full section scroll
+        const viewportHeight = window.innerHeight; // 100vh
+        moveY = progress * viewportHeight; // Ball moves 100vh total
+      } else {
+        // On desktop: original behavior
+        const windowHeight = window.innerHeight;
+        moveY = progress * windowHeight;
+      }
+
+      gsap.to($ball, {
+        y: moveY,
+        duration: 0.1,
+        ease: "none"
+      });
 
       if (progress >= 0.95) {
-        document
-          .querySelector(".section-projects, .section-members")
-          .classList.add("touch");
+        // Note: This selector might not work as intended - should be separate queries
+        document.querySelector(".section-projects")?.classList.add("touch");
+        document.querySelector(".section-members")?.classList.add("touch");
       }
     }
   });
