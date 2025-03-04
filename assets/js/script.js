@@ -600,7 +600,7 @@ function bannerBall() {
       scrub: true,
       pin: true,
       // pinSpacing: true,
-      markers: true,
+      // markers: true,
 
       onUpdate: (self) => {
         if (self.progress > 0.3) {
