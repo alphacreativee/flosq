@@ -89,6 +89,8 @@ section.section-projects {
     @media (max-width: 767px) {
       padding: 0px 24px;
       width: calc(100% - 32px);
+      justify-content: space-around;
+
       &::-webkit-scrollbar {
         display: none;
       }
@@ -149,6 +151,11 @@ section.section-projects {
           font-size: 14px;
           line-height: 24px;
           font-weight: 600;
+
+          @media (max-width: 767px) {
+            font-size: 12px;
+            line-height: 16px;
+          }
 
           &:hover,
           &.active {

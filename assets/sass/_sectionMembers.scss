@@ -36,6 +36,10 @@ section.section-members {
     padding: 120px 40px;
     position: relative;
     z-index: 1;
+
+    @media (max-width: 991px) {
+      padding: 64px 24px;
+    }
   }
 
   .members-content {
@@ -44,13 +48,27 @@ section.section-members {
     position: sticky;
     z-index: 3;
 
+    @media (max-width: 991px) {
+      top: unset;
+    }
+
     &__title {
       max-width: 80%;
+
+      @media (max-width: 767px) {
+        font-size: 48px;
+        line-height: 50px;
+        max-width: 100%;
+      }
     }
 
     &__desc {
       margin-top: 32px;
       max-width: 80%;
+
+      @media (max-width: 767px) {
+        max-width: 100%;
+      }
     }
   }
 
@@ -194,6 +212,14 @@ section.section-members {
     position: relative;
     z-index: 2;
 
+    @media (max-width: 991px) {
+      margin-top: 48px;
+    }
+
+    @media (max-width: 767px) {
+      grid-template-columns: 1fr;
+    }
+
     ul {
       position: relative;
 
@@ -205,10 +231,23 @@ section.section-members {
     .item {
       position: relative;
 
+      @media (max-width: 767px) {
+        transition: all 0.5s ease;
+      }
+
       &.open {
+        @media (max-width: 767px) {
+          height: 500px;
+        }
+
         .item-content-show {
           z-index: 2;
           width: calc(200% + 32px);
+
+          @media (max-width: 767px) {
+            width: 100%;
+            height: 100%;
+          }
 
           p {
             transform: translateY(0);
@@ -296,6 +335,11 @@ section.section-members {
         background-color: var(--color-black);
         transition: all 0.5s ease;
 
+        @media (max-width: 767px) {
+          flex-direction: column-reverse !important;
+          row-gap: 40px;
+        }
+
         p {
           transform: translateY(20px);
           opacity: 0;
@@ -337,6 +381,13 @@ section.section-members {
       .item-content-show {
         left: unset;
         right: 0;
+
+        @media (max-width: 767px) {
+          flex-direction: column-reverse !important;
+          row-gap: 40px;
+          left: 0;
+          right: unset;
+        }
       }
     }
   }

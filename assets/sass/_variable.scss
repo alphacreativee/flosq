@@ -38,6 +38,11 @@
   font-size: 16px;
   line-height: 26px;
   font-weight: 400;
+
+  @media (max-width: 767px) {
+    font-size: 14px;
+    line-height: 18px;
+  }
 }
 .b2-font {
   font-family: var(--font-body);
