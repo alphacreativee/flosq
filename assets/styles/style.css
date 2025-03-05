@@ -592,7 +592,8 @@ body {
   background-color: var(--color-primary);
   border-radius: 50%;
   z-index: -1;
-  transition: all 0.4s;
+  transition: box-shadow 0.4s ease;
+  will-change: transform;
 }
 .hero__ball.change {
   box-shadow: 0px 0px 100px 100px var(--color-primary);

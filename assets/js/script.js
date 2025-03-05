@@ -576,23 +576,10 @@ function bannerBall() {
   const yPercent = $(window).width() < 768 ? "-60" : "-65";
   gsap.set(".hero__ball", { yPercent: yPercent });
 
-  // gsap.fromTo(
-  //   ".hero__ball",
-  //   { yPercent: -130 }, // Start from 150%
-  //   {
-  //     yPercent: -100, // Animate to 115%
-  //     duration: 0.6, // Duration of the animation
-  //     ease: "power2.out", // Optional easing
-  //     onComplete: () => {
-  //       // Remove overflow-hidden class from the body when animation completes
-  //       // document.body.classList.remove("overflow-hidden");
-  //     },
-  //   }
-  // );
-
   let yBasic = $(".hero").hasClass("without-home") ? 0 : 60;
   gsap.to(".hero__ball", {
     yPercent: 40,
+    // esae: "none",
     scrollTrigger: {
       trigger: ".hero",
       start: "top top",
@@ -603,17 +590,10 @@ function bannerBall() {
       // markers: true,
 
       onUpdate: (self) => {
-        if (self.progress > 0.3) {
-          $(".hero__content").addClass("change");
-        } else {
-          $(".hero__content").removeClass("change");
-        }
-        if (self.progress > 0.2) {
-          $(".hero__ball").addClass("change");
-        } else {
-          $(".hero__ball").removeClass("change");
-        }
-        // ScrollTrigger.refresh();
+        // Chỉ cập nhật khi cần thiết
+        const progress = self.progress;
+        $(".hero__content").toggleClass("change", progress > 0.3);
+        $(".hero__ball").toggleClass("change", progress > 0.2);
       },
     },
   });
