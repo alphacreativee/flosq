@@ -124,8 +124,10 @@
     right: -32px;
     z-index: 99;
     @media (max-width: 767px) {
-      right: -8px;
-      top: 16px;
+      right: 6.5px;
+      top: 9px;
+      width: 18px;
+      height: 18px;
     }
   }
 }

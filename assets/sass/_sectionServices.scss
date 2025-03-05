@@ -20,6 +20,13 @@ section.section-services {
       top: 0;
       right: 32px;
 
+      @media (max-width: 767px) {
+        width: 18px;
+        height: 18px;
+        right: 39px;
+        top: -9px;
+      }
+
       &-wrapper {
         position: absolute;
         right: -24px !important;
@@ -76,6 +83,12 @@ section.section-services {
           border-radius: 50%;
           position: absolute;
           z-index: 2;
+
+          @media (max-width: 767px) {
+            width: 18px;
+            height: 18px;
+            top: -18px;
+          }
         }
       }
 

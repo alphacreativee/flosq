@@ -101,8 +101,13 @@ section.section-projects {
       line-height: 24px;
       @media (max-width: 767px) {
         white-space: nowrap;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 12px;
+
         &:first-child {
-          padding-left: 24px;
+          // padding-left: 24px;
         }
       }
       span {
