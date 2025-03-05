@@ -213,7 +213,9 @@ section.section-services {
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-
+      @media (max-width: 767px) {
+        padding-left: 16px;
+      }
       .content {
         display: flex;
         gap: 48px;
@@ -223,9 +225,14 @@ section.section-services {
 
         max-height: 375px;
         overflow-y: scroll;
-
+        @media (max-width: 767px) {
+          flex-direction: column;
+        }
         .content-item {
           width: calc(50% - 24px);
+          @media (max-width: 767px) {
+            width: calc(100% - 24px);
+          }
         }
 
         &::-webkit-scrollbar {
