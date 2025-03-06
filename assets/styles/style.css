@@ -1771,7 +1771,7 @@ section.section-services .services-wrapper__right .list-item .item:not(:first-ch
   padding-top: 120px;
   padding-bottom: 32px;
 }
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .contact-form {
     padding: 64px 24px 48px;
   }
@@ -1785,7 +1785,7 @@ section.section-services .services-wrapper__right .list-item .item:not(:first-ch
   gap: 24px;
   margin-bottom: 24px;
 }
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .contact-form__form--input {
     grid-template-columns: 1fr;
   }
@@ -1833,7 +1833,7 @@ section.section-services .services-wrapper__right .list-item .item:not(:first-ch
   background-color: var(--color-black);
   padding: 80px 0;
 }
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .partners__container {
     padding: 48px 0;
   }
@@ -1842,7 +1842,7 @@ section.section-services .services-wrapper__right .list-item .item:not(:first-ch
   padding-left: 40px;
   margin-bottom: 40px;
 }
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .partners__container h3 {
     padding-left: 24px;
   }
