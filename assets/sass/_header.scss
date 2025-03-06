@@ -67,7 +67,7 @@
       width: 100%;
     }
     &.show-menu {
-      display: block !important;
+      // display: block !important;
       clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
     }
   }
