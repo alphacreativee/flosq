@@ -33,7 +33,7 @@
     }
   }
   &__container {
-    padding: 7px 60px;
+    padding: 12px 60px;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     background-color: rgba(255, 255, 255, 0.85);
@@ -59,12 +59,23 @@
     clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
     will-change: transform;
     transition: all 0.3s ease-in-out;
+
+    @media (max-width: 1200px) and (min-width: 768px) {
+      opacity: 0;
+      visibility: hidden;
+    }
+
     @media (max-width: 767px) {
       max-width: 100%;
       width: 100%;
     }
     &.show {
       clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
+
+      @media (max-width: 1200px) and (min-width: 768px) {
+        opacity: 1;
+        visibility: visible;
+      }
     }
   }
   .menu__sub--container {
@@ -151,8 +162,8 @@
   .logo-group {
     display: block;
     position: relative;
-    width: 156px;
-    height: 50px;
+    width: 172px;
+    height: 56px;
     transition: height 0.3s ease;
     @media (max-width: 767px) {
       height: 20px;

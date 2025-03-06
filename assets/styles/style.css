@@ -227,7 +227,7 @@ body {
 .magic-cursor .cursor {
   width: 10px;
   height: 10px;
-  background-color: var(--color-primary);
+  background-color: transparent;
   border-radius: 50%;
   transition: all 0.4s ease;
   display: flex;
@@ -407,7 +407,7 @@ body {
   visibility: visible;
 }
 .header__container {
-  padding: 7px 60px;
+  padding: 12px 60px;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   background-color: rgba(255, 255, 255, 0.85);
@@ -436,6 +436,12 @@ body {
   will-change: transform;
   transition: all 0.3s ease-in-out;
 }
+@media (max-width: 1200px) and (min-width: 768px) {
+  .header__menu--sub {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
 @media (max-width: 767px) {
   .header__menu--sub {
     max-width: 100%;
@@ -444,6 +450,12 @@ body {
 }
 .header__menu--sub.show {
   clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
+}
+@media (max-width: 1200px) and (min-width: 768px) {
+  .header__menu--sub.show {
+    opacity: 1;
+    visibility: visible;
+  }
 }
 .header .menu__sub--container {
   background-color: var(--color-black);
@@ -518,8 +530,8 @@ body {
 .header .logo-group {
   display: block;
   position: relative;
-  width: 156px;
-  height: 50px;
+  width: 172px;
+  height: 56px;
   transition: height 0.3s ease;
 }
 @media (max-width: 767px) {
@@ -579,6 +591,8 @@ body {
   align-items: center;
   overflow: hidden;
   position: relative;
+  max-width: 670px;
+  margin: 0 auto;
 }
 .hero__content.change .hero__content--one {
   transform: translate(-50%, -50%);
@@ -790,8 +804,8 @@ section.section-projects.section-members .projects-ball {
   left: 150px;
 }
 section.section-projects .projects-ball {
-  width: 400px;
-  height: 400px;
+  width: 300px;
+  height: 300px;
   position: absolute;
   left: 40px;
   top: 180px;
@@ -889,7 +903,7 @@ section.section-projects .projects-list .item::before {
 }
 section.section-projects .projects-list .item::after {
   content: "";
-  background-color: var(--color-primary);
+  background-color: rgba(0, 0, 0, 0.2);
   position: absolute;
   opacity: 0;
   z-index: 2;
@@ -1679,7 +1693,7 @@ section.section-services .services-wrapper__right .list-item .item-image {
 }
 section.section-services .services-wrapper__right .list-item .item-image::after {
   content: "";
-  background-color: var(--color-primary);
+  background-color: rgba(255, 255, 255, 0.2);
   position: absolute;
   opacity: 0;
   z-index: 2;

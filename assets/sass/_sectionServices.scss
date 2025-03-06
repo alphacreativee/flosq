@@ -171,7 +171,8 @@ section.section-services {
 
             &::after {
               content: "";
-              background-color: var(--color-primary);
+              // background-color: var(--color-primary);
+              background-color: rgba($color: #fff, $alpha: 0.2);
               position: absolute;
               opacity: 0;
               z-index: 2;
