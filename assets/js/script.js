@@ -898,8 +898,11 @@ function swiperLogo() {
       pauseOnMouseEnter: true,
     },
     breakpoints: {
-      767: {
+      991: {
         slidesPerView: 6,
+      },
+      767: {
+        slidesPerView: 4,
       },
     },
   });
