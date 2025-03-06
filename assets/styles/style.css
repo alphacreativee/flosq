@@ -435,6 +435,7 @@ body {
   clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
   will-change: transform;
   transition: all 0.3s ease-in-out;
+  display: none !important;
 }
 @media (max-width: 767px) {
   .header__menu--sub {
@@ -443,6 +444,7 @@ body {
   }
 }
 .header__menu--sub.show-menu {
+  display: block !important;
   clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
 }
 .header .menu__sub--container {
