@@ -59,7 +59,7 @@
     clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
     will-change: transform;
     transition: all 0.3s ease-in-out;
-    @media (max-width: 991px) and (min-width: 768px) {
+    @media (max-width: 1023px) and (min-width: 768px) {
       display: none !important;
     }
     @media (max-width: 767px) {
@@ -67,7 +67,7 @@
       width: 100%;
     }
     &.show-menu {
-      // display: block !important;
+      display: block !important;
       clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
     }
   }
