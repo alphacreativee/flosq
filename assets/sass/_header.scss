@@ -60,14 +60,16 @@
     will-change: transform;
     transition: all 0.3s ease-in-out;
 
-    display: none !important;
+    opacity: 0;
+    visibility: hidden;
 
     @media (max-width: 767px) {
       max-width: 100%;
       width: 100%;
     }
     &.show-menu {
-      display: block !important;
+      opacity: 1;
+      visibility: visible;
       clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
     }
   }
