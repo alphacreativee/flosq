@@ -952,7 +952,7 @@ section.section-members {
   background-color: var(--color-black);
 }
 section.section-members.ver-2 .members-list .item-wrapper::after {
-  background-color: var(--color-black);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 section.section-members::after {
   content: "";
@@ -1201,7 +1201,7 @@ section.section-members .members-list .item-wrapper::before {
 }
 section.section-members .members-list .item-wrapper::after {
   content: "";
-  background-color: var(--color-primary);
+  background-color: rgba(0, 0, 0, 0.2);
   position: absolute;
   opacity: 0;
   z-index: 2;
