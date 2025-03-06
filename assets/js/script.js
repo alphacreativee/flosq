@@ -64,24 +64,20 @@ function loading() {
       const logo = document.querySelector(".loading-overlay");
       const logoRect = logo.getBoundingClientRect();
       const dotRect = target.getBoundingClientRect();
-
-      // Lấy giá trị transform của logo
       const logoTransform = getComputedStyle(logo).transform;
-      // console.log(logoTransform);
-
       let translateX = 0;
 
       if (logoTransform !== "none") {
         const matrix = new DOMMatrixReadOnly(logoTransform);
-        translateX = matrix.m41; // Lấy giá trị translateX
+        translateX = matrix.m41;
       }
 
-      return (
+      return Math.round(
         logoRect.left +
-        logoRect.width / 2 -
-        dotRect.left -
-        dotRect.width / 2 -
-        translateX
+          logoRect.width / 2 -
+          dotRect.left -
+          dotRect.width / 2 -
+          translateX
       );
     },
     y: (index, target) => {
@@ -89,17 +85,18 @@ function loading() {
       const logoRect = logo.getBoundingClientRect();
       const dotRect = target.getBoundingClientRect();
 
-      return (
+      return Math.round(
         logoRect.top + logoRect.height / 2 - dotRect.top - dotRect.height / 2
       );
     },
     duration: 1,
-    ease: "power2.inOut",
+    ease: "power1.inOut",
     stagger: 0.1,
+    force3D: true,
     onComplete: function () {
       gsap.to(".dots", {
-        scale: 1,
         transformOrigin: "center",
+        force3D: true,
       });
     },
   });
@@ -112,7 +109,19 @@ function loading() {
     "+=0.2"
   );
   tl.to(".loading-image", { opacity: 1, scale: 1, duration: 1 })
-    .to(".loading-overlay", { scale: 200, opacity: 1, duration: 1 }, "+=0.5")
+    .to(
+      ".loading-overlay",
+      {
+        width: "2000px",
+        height: "2000px",
+        opacity: 1,
+        duration: 1,
+        force3D: true,
+        x: "0",
+        y: "-=995px",
+      },
+      "+=0.5"
+    )
     .to(".loading", { opacity: 0, ease: "expo.inOut", duration: 1 }, "+=0.7");
 }
 
