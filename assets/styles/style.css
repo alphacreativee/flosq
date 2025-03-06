@@ -381,7 +381,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 99;
+  z-index: 999;
 }
 .header.scrolled .logo-group {
   height: 32px;
@@ -442,7 +442,7 @@ body {
     width: 100%;
   }
 }
-.header__menu--sub.show {
+.header__menu--sub.show-menu {
   clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
 }
 .header .menu__sub--container {

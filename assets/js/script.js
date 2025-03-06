@@ -150,12 +150,12 @@ function toggleMenu() {
   );
 
   btnOpen.on("click", function () {
-    // $(".header__menu--sub").addClass("show");
+    $(".header__menu--sub").addClass("show-menu");
     tl.restart();
   });
 
   btnClose.on("click", function () {
-    // $(".header__menu--sub").removeClass("show");
+    $(".header__menu--sub").removeClass("show-menu");
     tl.reverse();
   });
 }
