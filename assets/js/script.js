@@ -1220,7 +1220,7 @@ const init = () => {
   scrollBall();
   swiperLogo();
   handlePageVisibilityAndFavicon();
-  toggleMenu();
+  // toggleMenu();
   scrollHeader();
   gallery();
   magicCursor();
