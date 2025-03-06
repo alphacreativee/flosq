@@ -721,6 +721,11 @@ section.section-projects .projects-filter .filter-item span {
   font-weight: 600;
   margin-left: 3px;
 }
+@media (max-width: 767px) {
+  section.section-projects .projects-filter .filter-item span {
+    margin-left: 0;
+  }
+}
 section.section-projects .projects-filter .filter-item .sub-menu {
   max-width: 370px;
   z-index: 123;

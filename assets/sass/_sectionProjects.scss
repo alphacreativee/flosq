@@ -115,6 +115,10 @@ section.section-projects {
       span {
         font-weight: 600;
         margin-left: 3px;
+
+        @media (max-width: 767px) {
+          margin-left: 0;
+        }
       }
 
       .sub-menu {
