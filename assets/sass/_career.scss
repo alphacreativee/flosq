@@ -1,0 +1,181 @@
+.positions-hiring {
+  // background-color: var(--color-white);
+  background-image: url("../images/utilize/bg-modal.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 120px 0;
+}
+.positions-hiring__container .title {
+  margin-bottom: 45px;
+}
+.position-list .position-item {
+  display: grid;
+  grid-template-columns: 3fr 2fr 1.5fr 1.5fr;
+}
+.position-list .position-link:hover {
+  color: var(--color-black);
+}
+.position-list .position-item .position-item-sub {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: end;
+}
+.position-list .position-item .position-item-sub .dropdown-custom__item {
+  padding: 5px 0;
+}
+.position-list .position-item .position-item-sub .dropdown-custom__menu {
+  padding: 0 10px 5px;
+}
+.position-list .position-item .position-item-sub .dropdown-custom__menu {
+  top: 25px;
+  background-color: var(--color-gray-10);
+  left: unset;
+  right: 13px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.position-list .position-item .position-item-sub .dropdown-custom__btn {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.position-list .position-item .position-item-sub .dropdown-custom__text {
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--color-black);
+  font-weight: 900;
+}
+.position-list .position-item .position-item-sub .dropdown-custom__item {
+  color: var(--color-black);
+  text-align: right;
+  width: max-content;
+}
+.position-list .position-item .position-item-sub .dropdown-custom__item:hover {
+  color: var(--color-primary);
+}
+.position-list .position-filters {
+  // position: sticky;
+  top: 56px;
+  // background-color: var(--color-white);
+  z-index: 2;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  border-bottom: 1px solid var(--color-black);
+}
+
+.position-list .position-filters.fixed {
+  position: sticky;
+  top: 120px;
+  right: 0;
+  left: 0;
+  z-index: 99;
+  transition: top 0.9s;
+  box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.05);
+  margin-bottom: 0;
+  background-color: var(--color-white);
+}
+.position-list .position-filters.scrolling-up {
+  top: 120px;
+  background-color: var(--color-white);
+}
+.position-list .position-filters.scrolling-down {
+  top: 60px;
+  background-color: var(--color-white);
+}
+.position-list .position-item .position-item-sub:first-child {
+  justify-content: start;
+}
+.position-list .position-item.sub {
+  padding: 12px 0;
+  border-bottom: 1px solid #a9a9a9;
+  position: relative;
+}
+.position-list .position-item.sub::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-primary);
+  bottom: -1px;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+}
+.position-list .position-item.sub:hover::before {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+.position-list .position-item.sub .position-item-sub {
+  // font-size: 16px;
+  // line-height: 26px;
+  font-weight: 400;
+  // letter-spacing: 0.04px;
+  text-align: right;
+}
+.position-list .position-item.sub .position-item-sub:first-child {
+  // font-size: 20px;
+  // line-height: 36px;
+  font-weight: 400;
+}
+
+.position-list .list a {
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .positions-hiring__container {
+    padding: 0 24px;
+  }
+
+  .position-filters .position-item-sub:nth-child(2),
+  .position-filters .position-item-sub:nth-child(3) {
+    display: none;
+  }
+
+  .position-list .position-item.sub .position-item-sub:nth-child(2),
+  .position-list .position-item.sub .position-item-sub:nth-child(3) {
+    display: none;
+  }
+
+  .position-list .position-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .positions-hiring__container .title {
+    font-size: 28px;
+    line-height: 36px;
+    letter-spacing: 0.84px;
+    font-weight: 900;
+    margin-bottom: 16px;
+  }
+
+  .position-list .position-item.sub .position-item-sub:first-child {
+    // font-weight: 900;
+    text-align: left;
+  }
+
+  .positions-hiring {
+    padding: 64px 0;
+  }
+
+  .position-list .position-filters.scrolling-up {
+    top: 60px;
+  }
+
+  .room-facilities.why-join-sec {
+    padding: 0 16px;
+  }
+
+  .position-list .position-item .position-item-sub .dropdown-custom__menu {
+    right: 0;
+    left: unset;
+    padding-right: 22px;
+  }
+}

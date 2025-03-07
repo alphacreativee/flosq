@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flos.Q</title>
+    <!-- import favicon -->
+    <link
+      id="favicon"
+      rel="icon"
+      type="image/x-icon"
+      href="./assets/images/utilize/favicon_red.svg"
+    />
+    <!-- meta -->
+    <meta property="og:url" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="" />
+    <!-- end meta -->
+    <link rel="stylesheet" href="./assets/libs/bootstrap.min.css" />
+    <link rel="stylesheet" href="./assets/libs/splitting.min.css" />
+    <link rel="stylesheet" href="./assets/libs/lenis.css" />
+    <!-- link font  -->
+    <link rel="stylesheet" href="./assets/font/Plus-Jakarta/stylesheet.css" />
+    <link
+      rel="stylesheet"
+      href="./assets/font/RB-Vitruv-Display/stylesheet.css"
+    />
+    <!-- end link font  -->
+
+    <!-- link custom css page -->
+    <link rel="stylesheet" href="./assets/styles/style.css" />
+    <!-- end link custom css page -->
+  </head>
+  <body>
+    <!-- magic cursor -->
+    <div class="magic-cursor">
+      <div class="cursor">
+        <div class="text"></div>
+      </div>
+    </div>
+    <!-- end magic cursor -->
+    <!-- loading -->
+    <div class="loading position-fixed top-0 lef-0 w-100 h-100 d-none">
+      <div
+        class="loading-inner d-flex justify-content-center align-items-center w-100 h-100"
+      >
+        <div class="dots top-left"></div>
+        <div class="dots bottom-left"></div>
+        <div class="dots right-left"></div>
+        <div class="dots bottom-right"></div>
+        <div class="loading-image">
+          <img src="./assets/images/utilize/logo_v2.svg" alt="" />
+        </div>
+        <div class="loading-overlay"></div>
+        <div class="loading-overlay-white"></div>
+      </div>
+    </div>
+    <!-- end loading -->
+    <!-- layout -->
+    <header class="header">
+      <div class="container-fluid p-0">
+        <div class="header__container">
+          <div class="header__left"></div>
+          <div
+            class="header__logo d-flex align-items-center justify-content-center"
+          >
+            <a href="" class="logo-group">
+              <img src="./assets/images/utilize/logo_full.svg" alt="" />
+              <img src="./assets/images/utilize/logo_scroll.svg" alt="" />
+            </a>
+          </div>
+          <div
+            class="header__right d-flex align-items-center gap-big justify-content-end"
+          >
+            <div class="header__lang d-lg-flex align-items-center d-none">
+              <div class="header__btn-language dropdown-custom">
+                <div
+                  class="language__head dropdown-custom__btn d-flex align-items-center gap-small justify-content-between"
+                >
+                  <div
+                    class="value-select color-black b2-font dropdown-custom__text"
+                  >
+                    Tiếng Việt
+                  </div>
+                  <img src="./assets/images/utilize/ic_arrow.svg" alt="" />
+                </div>
+                <div class="language__body dropdown-custom__menu">
+                  <a
+                    class="dropdown-custom__item language__item color-black b2-font"
+                  >
+                    English
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="header__menu">
+              <div class="header__menu--icon btnOpen">
+                <img src="./assets/images/utilize/ic_menu.svg" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="header__menu--sub">
+          <div class="menu__sub--container">
+            <div
+              class="d-flex justify-content-between w-100 justify-content-lg-end"
+            >
+              <div
+                class="header__lang d-lg-flex align-items-center d-block d-lg-none"
+              >
+                <div class="header__btn-language dropdown-custom">
+                  <div
+                    class="language__head dropdown-custom__btn d-flex align-items-center gap-small justify-content-between"
+                  >
+                    <div
+                      class="value-select color-white b2-font dropdown-custom__text"
+                    >
+                      Tiếng Việt
+                    </div>
+                    <img
+                      src="./assets/images/utilize/ic_arrow_white.svg"
+                      alt=""
+                    />
+                  </div>
+                  <div class="language__body dropdown-custom__menu">
+                    <a
+                      class="dropdown-custom__item language__item color-white b2-font"
+                    >
+                      English
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="menu__close btnClose">
+                <img src="./assets/images/utilize/ic_close.svg" alt="" />
+              </div>
+            </div>
+            <div class="menu__container">
+              <div class="menu__sub">
+                <ul>
+                  <li>
+                    <a href="./index.html" class="h3-font color-white a-line"
+                      >Trang chủ</a
+                    >
+                  </li>
+                  <li>
+                    <a href="./about.html" class="h3-font color-white a-line"
+                      >Flos.Q</a
+                    >
+                  </li>
+                  <li>
+                    <a href="./projects.html" class="h3-font color-white a-line"
+                      >Dự án</a
+                    >
+                  </li>
+                  <li>
+                    <a href="./contact.html" class="h3-font color-white a-line"
+                      >Liên hệ</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="menu__social">
+                <ul>
+                  <li>
+                    <a href="" class="b2-bold-font color-white a-line"
+                      >Facebook</a
+                    >
+                  </li>
+                  <li>
+                    <a href="" class="b2-bold-font color-white a-line"
+                      >Linkdln</a
+                    >
+                  </li>
+                  <li>
+                    <a href="" class="b2-bold-font color-white a-line"
+                      >Behance</a
+                    >
+                  </li>
+                  <li>
+                    <a href="" class="b2-bold-font color-white a-line">
+                      Instagram
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero d-flex align-items-center justify-content-center">
+        <div class="container-fluid p-0 h-100">
+          <div class="hero__ball">
+            <div class="ball"></div>
+          </div>
+          <div class="row g-0 h-100">
+            <div class="col-lg-8 offset-lg-2 h-100">
+              <div class="hero__content">
+                <div class="hero__content--one h2-font color-white">
+                  Flos.Q là đơn vị tư vấn, cung cấp giải pháp chiến lược và
+                  triển khai kích hoạt thương hiệu với mô hình “Boutique Agency”
+                  chuyên biệt đầu tiên trong lĩnh vực Bất Động Sản tại thị
+                  trường Việt Nam.
+                </div>
+                <div class="hero__content--two h2-font color-black">
+                  Flos.Q đồng hành cùng các Chủ Đầu Tư, Nhà Phát Triển BĐS giúp
+                  mỗi dự án trở nên nổi bật với câu chuyện và giá trị kiến tạo
+                  của riêng mình.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Fake scroll -->
+
+      <section class="positions-hiring">
+        <div class="container-fluid p-0">
+          <div class="row g-0">
+            <div class="col-md-10 offset-md-1">
+              <div class="positions-hiring__container">
+                <h2 class="h2-font color-black title">Positions Hiring</h2>
+                <div class="position-list">
+                  <div class="position-filters">
+                    <div class="position-item">
+                      <div class="position-item-sub tag-font text-uppercase">
+                        VỊ TRÍ
+                      </div>
+                      <div class="position-item-sub tag-font text-uppercase">
+                        HÌNH THỨC
+                      </div>
+                      <div class="position-item-sub tag-font text-uppercase">
+                        PHÒNG BAN
+                      </div>
+                      <div class="position-item-sub tag-font text-uppercase">
+                        THỜI HẠN
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list">
+                    <a
+                      href="./career-detail.html"
+                      target="_blank"
+                      class="color-black position-link"
+                    >
+                      <div
+                        class="position-item sub"
+                        data-cursor-text="Chi tiết"
+                      >
+                        <div class="position-item-sub b1-font">
+                          General Manager
+                        </div>
+                        <div class="position-item-sub b1-font">
+                          Wink Hotel Hai Phong
+                        </div>
+                        <div class="position-item-sub b1-font">Hai Phong</div>
+                        <div class="position-item-sub b1-font">Operation</div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="container-fluid p-0">
+        <div class="footer-wrapper">
+          <div class="footer-top">
+            <div class="footer-top__logo">
+              <a href="#">
+                <img src="./assets/images/utilize/footer_logo.svg" alt="" />
+              </a>
+            </div>
+            <div class="footer-top__menu">
+              <div class="menu">
+                <div class="menu-item">
+                  <p class="b1-font color-white" data-fade-in>Social</p>
+                  <ul>
+                    <li data-fade-in>
+                      <a href="#" class="a-line tag-font color-white"
+                        >Behance</a
+                      >
+                    </li>
+                    <li data-fade-in>
+                      <a href="#" class="a-line tag-font color-white"
+                        >Facebook</a
+                      >
+                    </li>
+                    <li data-fade-in>
+                      <a href="#" class="a-line tag-font color-white"
+                        >Linked In</a
+                      >
+                    </li>
+                    <li data-fade-in>
+                      <a href="#" class="a-line tag-font color-white"
+                        >Instagram</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="menu">
+                <div class="menu-item">
+                  <p class="b1-font color-white" data-fade-in>Email</p>
+                  <ul>
+                    <li data-fade-in>
+                      <a
+                        href="mailto:email@flosq.com"
+                        class="a-line tag-font color-white"
+                        >email@flosq.com</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+                <div class="menu-item">
+                  <p class="b1-font color-white" data-fade-in>Điện thoại</p>
+                  <ul>
+                    <li data-fade-in>
+                      <a
+                        href="+tel:+84704582758"
+                        class="a-line tag-font color-white"
+                        >+84 704 58 27 58</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+                <div class="menu-item">
+                  <p class="b1-font color-white" data-fade-in>Địa chỉ</p>
+                  <ul>
+                    <li data-fade-in>
+                      <p class="tag-font color-white">
+                        Tầng 3, 1 Bis Phạm Ngọc Thạch, Phường Bến Nghé, Quận 1,
+                        Thành phố Hồ Chí Minh
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer-center" data-fade-in>
+            <img src="./assets/images/notutilize/text-footer.svg" alt="" />
+          </div>
+          <div class="footer-bottom">
+            <p class="copyright">2025 © Flos.Q</p>
+            <a
+              href="https://alphacreative.vn/"
+              class="alpha-link b2-font color-white a-line"
+              >Digital experience by Alpha Creative</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- end layout -->
+
+    <script src="./assets/libs/jquery-3.7.1.js"></script>
+    <script src="./assets/libs/lenis.min.js"></script>
+    <script src="./assets/libs/gsap.min.js"></script>
+    <script src="./assets/libs/ScrollTrigger.min.js"></script>
+    <script src="./assets/libs/splitType.min.js"></script>
+    <script src="./assets/libs/splitting.min.js"></script>
+    <script src="./assets/libs/bootstrap.bundle.min.js"></script>
+    <script src="./assets/libs/MotionPathPlugin.min.js"></script>
+    <script src="./assets/libs/imagesloaded.pkgd.min.js"></script>
+    <!-- import custom js -->
+    <script type="module" src="./assets/js/script.js"></script>
+    <!-- end import custom js -->
+  </body>
+</html>
